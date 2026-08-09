@@ -2,6 +2,7 @@ import React from 'react';
 import { ChevronUp, Mail } from 'lucide-react';
 import type { ProfileInfo } from '../types';
 import { GithubIcon, LinkedinIcon } from './Icons';
+import { Logo } from './Logo';
 
 interface FooterProps {
   profile: ProfileInfo;
@@ -18,22 +19,8 @@ export const Footer: React.FC<FooterProps> = ({ profile }) => {
         
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/5">
           
-          {/* Left Brand info */}
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500 to-emerald-500 p-[1px]">
-              <div className="w-full h-full bg-[#090D16] rounded-[11px] flex items-center justify-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400 text-sm">
-                FM
-              </div>
-            </div>
-            <div>
-              <span className="font-bold text-white text-base tracking-wide block">
-                FURKAN MASRAF
-              </span>
-              <span className="text-xs text-gray-400 font-mono">
-                Backend Developer & Spring Boot Specialist
-              </span>
-            </div>
-          </div>
+          {/* Left Brand Logo */}
+          <Logo size={40} />
 
           {/* Social Links */}
           <div className="flex items-center gap-4 text-gray-400 text-xs font-mono">

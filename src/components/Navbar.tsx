@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Terminal, Code2, Server, FolderGit2, Award, Mail, Cpu } from 'lucide-react';
+import { Logo } from './Logo';
 
 interface NavbarProps {
   onOpenTerminal: () => void;
@@ -57,21 +58,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
-        {/* Brand Logo */}
-        <a href="#hero" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-emerald-500 p-[1px] shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition-all">
-            <div className="w-full h-full bg-[#090D16] rounded-[11px] flex items-center justify-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400 text-lg">
-              FM
-            </div>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-bold text-white text-lg tracking-wide group-hover:text-cyan-400 transition-colors">
-              FURKAN MASRAF
-            </span>
-            <span className="text-xs text-cyan-400/80 font-mono tracking-wider">
-              BACKEND DEVELOPER
-            </span>
-          </div>
+        {/* New 3D Brand Logo */}
+        <a href="#hero" className="focus:outline-none">
+          <Logo size={42} />
         </a>
 
         {/* Navigation Links */}
