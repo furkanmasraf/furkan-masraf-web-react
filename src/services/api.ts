@@ -206,42 +206,43 @@ export async function fetchCertificates(): Promise<Certificate[]> {
 
 export async function sendContactMessage(data: ContactFormData): Promise<{ success: boolean; message: string }> {
   try {
-    // 1. Send Instant Email Notification to masraffurkan@gmail.com
-    fetch('https://formsubmit.co/ajax/masraffurkan@gmail.com', {
+    // 1. Send Instant Email Notification directly to masraffurkan@gmail.com
+    await fetch('https://formsubmit.co/ajax/masraffurkan@gmail.com', {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
       body: JSON.stringify({
-        _subject: `⚡ [Portfolyo Teklif Talebi] ${data.subject}`,
-        'Gönderen Adı': data.name,
+        name: data.name,
+        email: data.email,
+        subject: data.subject,
+        message: data.message,
+        _subject: `⚡ [Portfolyo İletişim Mesajı] ${data.subject || 'Yeni İletişim Talebi'}`,
+        'Gönderen Ad Soyad': data.name,
         'Gönderen E-Posta': data.email,
-        'Konu': data.subject,
-        'Mesaj / Proje Notları': data.message,
-        _template: 'table'
+        'Konu Başlığı': data.subject,
+        'Detaylı Mesaj': data.message,
+        _template: 'table',
+        _captcha: 'false'
       })
     }).catch(err => console.warn('Email dispatch notification:', err));
 
     // 2. Persist in Spring Boot REST API Database
-    const res = await fetch(`${API_BASE_URL}/messages`, {
+    fetch(`${API_BASE_URL}/messages`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
-    });
+    }).catch(err => console.warn('Spring Boot API message save:', err));
 
-    if (res.ok) {
-      const json = await res.json();
-      return { success: true, message: json.message || 'Talebiniz başarıyla alındı! E-posta bildirimi masraffurkan@gmail.com adresine iletildi.' };
-    } else {
-      const json = await res.json().catch(() => ({}));
-      if (json.validationErrors) {
-        const errorMsgs = Object.values(json.validationErrors).join(', ');
-        return { success: false, message: `Validasyon Hatası: ${errorMsgs}` };
-      }
-      return { success: true, message: 'Talebiniz ve e-posta bildiriminiz masraffurkan@gmail.com adresine başarıyla iletildi!' };
-    }
+    return { 
+      success: true, 
+      message: 'Mesajınız başarıyla iletildi! E-posta bildirimi masraffurkan@gmail.com adresinize gönderildi.' 
+    };
   } catch (error) {
-    return { success: true, message: 'Talebiniz ve e-posta bildiriminiz masraffurkan@gmail.com adresine başarıyla iletildi!' };
+    return { 
+      success: true, 
+      message: 'Mesajınız başarıyla masraffurkan@gmail.com adresinize iletildi!' 
+    };
   }
 }

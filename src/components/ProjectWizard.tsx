@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { sendContactMessage } from '../services/api';
-import { Globe, Smartphone, Server, Layers, Zap, ShieldCheck, Send, CheckCircle2, ArrowRight, ArrowLeft, Sparkles } from 'lucide-react';
+import { Globe, Smartphone, Server, Layers, Zap, ShieldCheck, Send, CheckCircle2, ArrowRight, ArrowLeft } from 'lucide-react';
 
 export const ProjectWizard: React.FC = () => {
   const [step, setStep] = useState(1);
@@ -21,9 +21,9 @@ export const ProjectWizard: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const projectTypes = [
-    { id: 'web', label: 'Web Sitesi / Web Uygulaması', icon: Globe, desc: 'Modern, hızlı, responsive React & Spring Boot tabanlı web çözümleri.' },
+    { id: 'web', label: 'Web Sitesi / Web Uygulaması', icon: Globe, desc: 'Modern, hızlı, responsive React ve Spring Boot / .NET tabanlı web çözümleri.' },
     { id: 'mobile', label: 'Mobil Uygulama', icon: Smartphone, desc: 'Kullanıcı dostu, yüksek performanslı mobil çözümler.' },
-    { id: 'backend', label: 'Backend / REST API Mimarisi', icon: Server, desc: 'Ölçeklenebilir Java Spring Boot API servisleri, Redis önbellekleme ve veritabanı.' },
+    { id: 'backend', label: 'Backend / REST API Mimarisi', icon: Server, desc: 'Ölçeklenebilir Java Spring Boot & C# .NET API servisleri, Redis önbellekleme ve veritabanı.' },
     { id: 'fullstack', label: 'Full-Stack Sistem Mimarisi', icon: Layers, desc: 'Frontend, backend, mobil ve veritabanını kapsayan uçtan uca özel yazılım çözümü.' },
   ];
 
@@ -89,8 +89,8 @@ export const ProjectWizard: React.FC = () => {
         
         {/* Header */}
         <div className="text-center space-y-4 mb-14">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border border-cyan-500/30 text-cyan-400 text-xs font-mono shadow-lg shadow-cyan-500/10">
-            <Sparkles size={14} />
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-panel border border-cyan-500/30 text-cyan-400 text-xs font-mono shadow-lg shadow-cyan-500/10">
+            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
             <span>İNTERAKTİF PROJE & İŞ BİRLİĞİ SİHİRBAZI</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
@@ -292,7 +292,7 @@ export const ProjectWizard: React.FC = () => {
                             required
                             value={clientName}
                             onChange={(e) => setClientName(e.target.value)}
-                            placeholder="Örn: Mehmet Özkan"
+                            placeholder="Örn: Furkan Masraf"
                             className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-500 focus:outline-none text-white text-sm"
                           />
                         </div>
@@ -303,7 +303,7 @@ export const ProjectWizard: React.FC = () => {
                             required
                             value={clientEmail}
                             onChange={(e) => setClientEmail(e.target.value)}
-                            placeholder="mehmet@company.com"
+                            placeholder="furkan@company.com"
                             className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-500 focus:outline-none text-white text-sm"
                           />
                         </div>

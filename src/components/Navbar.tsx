@@ -159,9 +159,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
           <a
             href="#wizard"
             onClick={(e) => handleNavClick(e, 'wizard')}
-            className="hidden md:flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-bold text-xs font-mono shadow-md shadow-cyan-500/20 hover:scale-105 transition-transform whitespace-nowrap"
+            className="hidden md:flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-bold text-xs font-mono shadow-md shadow-cyan-500/20 hover:scale-105 transition-transform whitespace-nowrap"
           >
-            <Sparkles size={13} />
+            <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
             <span>İş Birliği Başlat</span>
           </a>
 
@@ -230,7 +230,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
                   onClick={(e) => handleNavClick(e, 'wizard')}
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-500 text-white font-bold text-xs font-mono shadow-lg shadow-cyan-500/20"
                 >
-                  <Sparkles size={14} />
+                  <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
                   <span>Proje & İş Birliği Başlatın</span>
                 </a>
 

@@ -161,7 +161,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Örn: Ahmet Yılmaz"
+                    placeholder="Örn: Furkan Masraf"
                     className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-500 focus:outline-none text-white text-sm placeholder-gray-500 font-light transition-all"
                   />
                 </div>
@@ -174,7 +174,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="ahmet@example.com"
+                    placeholder="furkan@example.com"
                     className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-500 focus:outline-none text-white text-sm placeholder-gray-500 font-light transition-all"
                   />
                 </div>
@@ -229,7 +229,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
                 ) : (
                   <>
                     <Send size={18} />
-                    <span>Mesajı Spring REST API'ye İlet</span>
+                    <span>Mesajını İlet</span>
                   </>
                 )}
               </button>

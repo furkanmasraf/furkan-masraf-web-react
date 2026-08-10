@@ -8,10 +8,8 @@ interface ExperienceSectionProps {
 }
 
 export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experiences }) => {
-  // Track open/collapsed state for each card (Default first experience open)
-  const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>({
-    0: true
-  });
+  // Track open/collapsed state for each card (Default all collapsed)
+  const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>({});
 
   const toggleItem = (index: number) => {
     setExpandedItems(prev => ({
@@ -95,9 +93,6 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience
                         <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">
                           {exp.company}
                         </h3>
-                        <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 font-mono">
-                          {exp.highlights.length} Sorumluluk
-                        </span>
                       </div>
                       <p className="text-cyan-400 font-semibold text-sm sm:text-base font-mono">
                         {exp.role}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import type { ProfileInfo } from '../types';
-import { Mail, ArrowRight, ShieldCheck, Server, Database, Sparkles, Globe, Smartphone } from 'lucide-react';
+import { Mail, ArrowRight, ShieldCheck, Server, Database, Globe, Smartphone } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import { sanitizeLinkedinUrl } from '../services/api';
 
@@ -126,9 +126,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
               <a
                 href="#wizard"
                 onClick={(e) => scrollToSection(e, 'wizard')}
-                className="flex items-center gap-2 px-7 py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-500 text-white font-bold text-sm shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                className="flex items-center gap-2.5 px-7 py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-500 text-white font-bold text-sm shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
-                <Sparkles size={18} />
+                <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse"></span>
                 <span>Proje & İş Birliği Başlatın</span>
                 <ArrowRight size={18} />
               </a>
