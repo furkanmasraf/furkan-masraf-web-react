@@ -2,6 +2,15 @@ import type { ProfileInfo, Experience, Project, Skill, Certificate, ContactFormD
 
 const API_BASE_URL = 'http://localhost:8080/api/v1';
 
+export const CORRECT_LINKEDIN_URL = "https://www.linkedin.com/in/furkan-masraf-20a8681b6/";
+
+export function sanitizeLinkedinUrl(url?: string): string {
+  if (!url || !url.includes('furkan-masraf-20a8681b6')) {
+    return CORRECT_LINKEDIN_URL;
+  }
+  return url;
+}
+
 // Initial Fallback Seed Data matching Furkan Masraf CV
 export const FALLBACK_PROFILE: ProfileInfo = {
   fullName: "Furkan Masraf",
@@ -9,7 +18,7 @@ export const FALLBACK_PROFILE: ProfileInfo = {
   email: "masraffurkan@gmail.com",
   phone: "+90 538 472 75 54",
   location: "İstanbul, Türkiye",
-  linkedinUrl: "https://www.linkedin.com/in/furkan-masraf-20a8681b6/",
+  linkedinUrl: CORRECT_LINKEDIN_URL,
   githubUrl: "https://github.com/furkanmasraf",
   bio: "Java ve Spring Boot ekosisteminde kurumsal düzeyde backend sistemleri, mikroservis mimarileri ve yüksek erişilebilirlikli RESTful API'ler geliştiren Bilgisayar Mühendisi. Clean Code prensipleri, Aspect-Oriented Programming (AOP), Redis caching, Resilience4j Retry mekanizmaları ve tip güvenli hata yönetimi konularında tutkulu mühendislik yaklaşımına sahibim.",
   university: "Üsküdar Üniversitesi",

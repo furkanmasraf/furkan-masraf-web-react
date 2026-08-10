@@ -3,6 +3,7 @@ import { ChevronUp, Mail } from 'lucide-react';
 import type { ProfileInfo } from '../types';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import { Logo } from './Logo';
+import { sanitizeLinkedinUrl } from '../services/api';
 
 interface FooterProps {
   profile: ProfileInfo;
@@ -29,7 +30,7 @@ export const Footer: React.FC<FooterProps> = ({ profile }) => {
               <span>GitHub</span>
             </a>
             <span>•</span>
-            <a href={profile.linkedinUrl} target="_blank" rel="noreferrer" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+            <a href={sanitizeLinkedinUrl(profile.linkedinUrl)} target="_blank" rel="noreferrer" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5">
               <LinkedinIcon size={16} />
               <span>LinkedIn</span>
             </a>

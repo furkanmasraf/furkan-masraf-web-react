@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import type { ProfileInfo } from '../types';
 import { Mail, ArrowRight, ShieldCheck, Server, Database, Layers } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
+import { sanitizeLinkedinUrl } from '../services/api';
 
 interface HeroSectionProps {
   profile: ProfileInfo;
@@ -127,7 +128,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                 <span>github.com/furkanmasraf</span>
               </a>
               <a 
-                href={profile.linkedinUrl} 
+                href={sanitizeLinkedinUrl(profile.linkedinUrl)} 
                 target="_blank" 
                 rel="noreferrer"
                 className="flex items-center gap-2 hover:text-cyan-400 transition-colors text-xs font-mono"

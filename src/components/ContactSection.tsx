@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
 import type { ProfileInfo, ContactFormData } from '../types';
-import { sendContactMessage } from '../services/api';
+import { sendContactMessage, sanitizeLinkedinUrl } from '../services/api';
 import { Mail, Phone, Send, CheckCircle2, AlertCircle, Copy, Check } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 
@@ -135,7 +135,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
                 </a>
 
                 <a
-                  href={profile.linkedinUrl}
+                  href={sanitizeLinkedinUrl(profile.linkedinUrl)}
                   target="_blank"
                   rel="noreferrer"
                   className="flex items-center gap-2.5 p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-200 hover:text-white text-xs font-mono transition-all"
