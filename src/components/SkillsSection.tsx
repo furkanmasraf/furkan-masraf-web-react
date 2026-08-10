@@ -10,11 +10,17 @@ interface SkillsSectionProps {
 export const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('Hepsi');
 
-  const categories = ['Hepsi', 'Backend', 'Database', 'DevOps', 'Testing', 'Frontend', 'Mobile'];
+  const categories = ['Hepsi', 'Backend', 'Database', 'DevOps', 'Testing', 'Frontend'];
+
+  const validSkills = skills.filter(s => 
+    s.category.toLowerCase() !== 'mobile' && 
+    !s.name.toLowerCase().includes('swift') && 
+    !s.name.toLowerCase().includes('ios')
+  );
 
   const filteredSkills = selectedCategory === 'Hepsi'
-    ? skills
-    : skills.filter(s => s.category.toLowerCase() === selectedCategory.toLowerCase());
+    ? validSkills
+    : validSkills.filter(s => s.category.toLowerCase() === selectedCategory.toLowerCase());
 
   return (
     <section id="skills" className="py-24 relative overflow-hidden bg-grid-pattern">

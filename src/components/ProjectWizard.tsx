@@ -22,7 +22,7 @@ export const ProjectWizard: React.FC = () => {
 
   const projectTypes = [
     { id: 'web', label: 'Web Sitesi / Web Uygulaması', icon: Globe, desc: 'Modern, hızlı, responsive React & Spring Boot tabanlı web çözümleri.' },
-    { id: 'mobile', label: 'Mobil Uygulama', icon: Smartphone, desc: 'Kullanıcı dostu, yüksek performanslı iOS ve Android mobil çözümler.' },
+    { id: 'mobile', label: 'Mobil Uygulama', icon: Smartphone, desc: 'Kullanıcı dostu, yüksek performanslı mobil çözümler.' },
     { id: 'backend', label: 'Backend / REST API Mimarisi', icon: Server, desc: 'Ölçeklenebilir Java Spring Boot API servisleri, Redis önbellekleme ve veritabanı.' },
     { id: 'fullstack', label: 'Full-Stack Sistem Mimarisi', icon: Layers, desc: 'Frontend, backend, mobil ve veritabanını kapsayan uçtan uca özel yazılım çözümü.' },
   ];

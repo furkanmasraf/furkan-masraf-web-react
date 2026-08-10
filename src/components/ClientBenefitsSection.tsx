@@ -7,7 +7,7 @@ export const ClientBenefitsSection: React.FC = () => {
     {
       icon: Globe,
       title: "Web & Mobil Bütünleşik Çözümler",
-      description: "React ile hazırlanan hızlı web sistemleri ve iOS & Android ekosistemine uygun yüksek performanslı mobil uygulamalar geliştiriyorum.",
+      description: "React ile hazırlanan hızlı web sistemleri ve modern ekosisteme uygun yüksek performanslı mobil uygulamalar geliştiriyorum.",
       gradient: "from-cyan-500 to-blue-500",
       badge: "WEB & MOBİL"
     },

@@ -54,6 +54,23 @@ export const DeveloperTerminal: React.FC<DeveloperTerminalProps> = ({
 
   if (!isOpen) return null;
 
+  const scrollToSection = (sectionId: string) => {
+    setTimeout(() => {
+      onClose();
+      const el = document.getElementById(sectionId);
+      if (el) {
+        const navbarOffset = 75;
+        const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - navbarOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 500);
+  };
+
   const handleCommand = (e: React.FormEvent) => {
     e.preventDefault();
     const cmd = inputVal.trim().toLowerCase();
@@ -61,22 +78,69 @@ export const DeveloperTerminal: React.FC<DeveloperTerminalProps> = ({
 
     let outputNode: React.ReactNode = '';
 
+    // Extract section target if command is like 'goto about' or 'cd projects'
+    let targetSection = '';
+    if (cmd.startsWith('goto ') || cmd.startsWith('cd ') || cmd.startsWith('navigate ')) {
+      targetSection = cmd.replace(/^(goto|cd|navigate)\s+/, '').trim();
+    }
+
+    // Direct section navigation aliases
+    const sectionMap: Record<string, string> = {
+      'hero': 'hero',
+      'home': 'hero',
+      'anasayfa': 'hero',
+      'ana sayfa': 'hero',
+      'about': 'about',
+      'hakkımda': 'about',
+      'hakkimda': 'about',
+      'experience': 'experience',
+      'exp': 'experience',
+      'deneyim': 'experience',
+      'staj': 'experience',
+      'projects': 'projects',
+      'projeler': 'projects',
+      'proje': 'projects',
+      'skills': 'skills',
+      'yetenekler': 'skills',
+      'certs': 'certificates',
+      'certificates': 'certificates',
+      'sertifikalar': 'certificates',
+      'contact': 'contact',
+      'iletişim': 'contact',
+      'iletisim': 'contact',
+      'wizard': 'wizard',
+      'isbirligi': 'wizard',
+      'teklif': 'wizard'
+    };
+
+    const resolvedSection = sectionMap[targetSection];
+
     if (cmd === 'clear') {
       setLogs([]);
       setInputVal('');
       return;
+    } else if (resolvedSection) {
+      outputNode = (
+        <div className="text-xs font-mono text-cyan-300 space-y-1">
+          <p className="font-bold">▶ #{resolvedSection} bölümüne yönlendiriliyorsunuz...</p>
+        </div>
+      );
+      scrollToSection(resolvedSection);
     } else if (cmd === 'help') {
       outputNode = (
-        <div className="space-y-1 text-xs font-mono text-gray-300">
-          <p className="text-cyan-400 font-bold">Kullanılabilir Komutlar:</p>
-          <p><span className="text-emerald-400 w-32 inline-block">help</span> : Komut kılavuzunu gösterir</p>
-          <p><span className="text-emerald-400 w-32 inline-block">profile</span> : Profil özeti ve iletişim bilgilerini döndürür</p>
-          <p><span className="text-emerald-400 w-32 inline-block">experience</span> : Doğuş Teknoloji, Fibabanka ve Bilyoner stajlarını listeler</p>
-          <p><span className="text-emerald-400 w-32 inline-block">projects</span> : Geliştirilen backend projelerini ve teknolojilerini gösterir</p>
-          <p><span className="text-emerald-400 w-32 inline-block">skills</span> : Tüm backend, database ve DevOps yeteneklerini sıralar</p>
-          <p><span className="text-emerald-400 w-32 inline-block">certs</span> : Sertifikaları ve başarı belgelerini gösterir</p>
-          <p><span className="text-emerald-400 w-32 inline-block">curl /api/v1/profile</span> : Raw Spring Boot JSON profil çıktısını simüle eder</p>
-          <p><span className="text-emerald-400 w-32 inline-block">clear</span> : Terminal ekranını temizler</p>
+        <div className="space-y-1.5 text-xs font-mono text-gray-300">
+          <p className="text-cyan-400 font-bold">Kullanılabilir Komutlar & Bölüm Yönlendirmeleri:</p>
+          <p><span className="text-emerald-400 w-36 inline-block">goto &lt;bölüm&gt;</span> : Sayfa bölümüne kaydırır (örn: <span className="text-cyan-300">goto about</span>, <span className="text-cyan-300">goto projects</span>)</p>
+          <p><span className="text-emerald-400 w-36 inline-block">about / hakkımda</span> : Hakkımda bölümüne gider</p>
+          <p><span className="text-emerald-400 w-36 inline-block">experience / staj</span> : Kurumsal tecrübeler bölümüne gider</p>
+          <p><span className="text-emerald-400 w-36 inline-block">projects / projeler</span> : Projeler bölümüne gider</p>
+          <p><span className="text-emerald-400 w-36 inline-block">skills / yetenekler</span> : Yetenekler bölümüne gider</p>
+          <p><span className="text-emerald-400 w-36 inline-block">certs / sertifikalar</span> : Sertifikalar bölümüne gider</p>
+          <p><span className="text-emerald-400 w-36 inline-block">wizard / teklif</span> : İş birliği sihirbazına gider</p>
+          <p><span className="text-emerald-400 w-36 inline-block">contact / iletişim</span> : İletişim bölümüne gider</p>
+          <p><span className="text-emerald-400 w-36 inline-block">profile</span> : Profil özeti JSON verisini döndürür</p>
+          <p><span className="text-emerald-400 w-36 inline-block">curl /api/v1/profile</span> : Raw Spring Boot JSON profil çıktısını simüle eder</p>
+          <p><span className="text-emerald-400 w-36 inline-block">clear</span> : Terminal ekranını temizler</p>
         </div>
       );
     } else if (cmd === 'profile' || cmd === 'curl /api/v1/profile') {
@@ -85,49 +149,74 @@ export const DeveloperTerminal: React.FC<DeveloperTerminalProps> = ({
           {JSON.stringify(profile, null, 2)}
         </pre>
       );
-    } else if (cmd === 'experience') {
+    } else if (cmd === 'experience' || cmd === 'exp' || cmd === 'staj' || cmd === 'deneyim') {
       outputNode = (
         <div className="space-y-3 text-xs font-mono text-gray-300">
+          <p className="text-cyan-400 font-bold">▶ #experience (Kurumsal Tecrübeler) bölümüne yönlendiriliyorsunuz...</p>
           {experiences.map(e => (
             <div key={e.id} className="p-2 bg-white/5 rounded border border-white/10">
               <span className="text-cyan-400 font-bold">{e.company}</span> - <span className="text-emerald-400">{e.role}</span> ({e.period})
-              <ul className="list-disc pl-4 mt-1 space-y-0.5 text-gray-400 text-[11px]">
-                {e.highlights.map((h, i) => <li key={i}>{h}</li>)}
-              </ul>
             </div>
           ))}
         </div>
       );
-    } else if (cmd === 'projects') {
+      scrollToSection('experience');
+    } else if (cmd === 'projects' || cmd === 'projeler' || cmd === 'proje') {
       outputNode = (
         <div className="space-y-2 text-xs font-mono">
+          <p className="text-cyan-400 font-bold">▶ #projects (Projeler) bölümüne yönlendiriliyorsunuz...</p>
           {projects.map(p => (
             <div key={p.id} className="p-2 bg-white/5 rounded border border-white/10">
               <p className="text-cyan-300 font-bold">{p.title} [{p.category}]</p>
-              <p className="text-gray-300 text-[11px]">{p.description}</p>
-              <p className="text-emerald-400 text-[10px] mt-1">Stack: {p.technologies.join(', ')}</p>
             </div>
           ))}
         </div>
       );
-    } else if (cmd === 'skills') {
+      scrollToSection('projects');
+    } else if (cmd === 'skills' || cmd === 'yetenekler') {
       outputNode = (
-        <div className="grid grid-cols-2 gap-2 text-xs font-mono text-gray-300">
-          {skills.map(s => (
-            <div key={s.id} className="p-1.5 bg-white/5 rounded border border-white/10">
-              <span className="text-cyan-400">{s.name}</span>: <span className="text-emerald-400">%{s.proficiencyPercentage}</span> ({s.category})
-            </div>
-          ))}
+        <div className="space-y-2 text-xs font-mono">
+          <p className="text-cyan-400 font-bold">▶ #skills (Yetenekler) bölümüne yönlendiriliyorsunuz...</p>
+          <div className="grid grid-cols-2 gap-2 text-gray-300">
+            {skills.map(s => (
+              <div key={s.id} className="p-1.5 bg-white/5 rounded border border-white/10">
+                <span className="text-cyan-400">{s.name}</span>: <span className="text-emerald-400">%{s.proficiencyPercentage}</span>
+              </div>
+            ))}
+          </div>
         </div>
       );
-    } else if (cmd === 'certs') {
+      scrollToSection('skills');
+    } else if (cmd === 'certs' || cmd === 'certificates' || cmd === 'sertifikalar') {
       outputNode = (
         <div className="space-y-1 text-xs font-mono text-gray-300">
+          <p className="text-cyan-400 font-bold mb-1">▶ #certificates (Sertifikalar) bölümüne yönlendiriliyorsunuz...</p>
           {certificates.map(c => (
-            <p key={c.id}>• <span className="text-cyan-400 font-bold">{c.title}</span> - {c.issuer} ({c.issueYear})</p>
+            <p key={c.id}>• <span className="text-cyan-400 font-bold">{c.title}</span> - {c.issuer}</p>
           ))}
         </div>
       );
+      scrollToSection('certificates');
+    } else if (cmd === 'about' || cmd === 'hakkımda' || cmd === 'hakkimda') {
+      outputNode = (
+        <p className="text-cyan-400 text-xs font-mono font-bold">▶ #about (Hakkımda) bölümüne yönlendiriliyorsunuz...</p>
+      );
+      scrollToSection('about');
+    } else if (cmd === 'contact' || cmd === 'iletişim' || cmd === 'iletisim') {
+      outputNode = (
+        <p className="text-cyan-400 text-xs font-mono font-bold">▶ #contact (İletişim) bölümüne yönlendiriliyorsunuz...</p>
+      );
+      scrollToSection('contact');
+    } else if (cmd === 'wizard' || cmd === 'teklif' || cmd === 'isbirligi') {
+      outputNode = (
+        <p className="text-cyan-400 text-xs font-mono font-bold">▶ #wizard (İş Birliği Sihirbazı) bölümüne yönlendiriliyorsunuz...</p>
+      );
+      scrollToSection('wizard');
+    } else if (cmd === 'hero' || cmd === 'home' || cmd === 'anasayfa') {
+      outputNode = (
+        <p className="text-cyan-400 text-xs font-mono font-bold">▶ #hero (Ana Sayfa) bölümüne yönlendiriliyorsunuz...</p>
+      );
+      scrollToSection('hero');
     } else {
       outputNode = (
         <span className="text-red-400 text-xs font-mono">
@@ -147,48 +236,51 @@ export const DeveloperTerminal: React.FC<DeveloperTerminalProps> = ({
         {/* Terminal Header */}
         <div className="px-4 py-3 bg-[#0F1623] border-b border-white/10 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-red-500/80 cursor-pointer" onClick={onClose}></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-            <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
-            <span className="ml-3 text-xs text-gray-400 flex items-center gap-1.5">
-              <TerminalIcon size={13} className="text-cyan-400" />
-              furkanmasraf@backend-cli:~ (bash)
+            <div className="w-3 h-3 rounded-full bg-red-500/80 cursor-pointer hover:bg-red-600 transition-colors" onClick={onClose}></div>
+            <div className="w-3 h-3 rounded-full bg-yellow-500/80 cursor-pointer" onClick={onClose}></div>
+            <div className="w-3 h-3 rounded-full bg-green-500/80 cursor-pointer" onClick={onClose}></div>
+            <span className="ml-2 text-xs text-gray-400 flex items-center gap-1.5">
+              <TerminalIcon size={14} className="text-cyan-400" />
+              <span>FurkanMasraf CLI -- bash -- 80x24</span>
             </span>
           </div>
-
-          <button onClick={onClose} className="text-gray-400 hover:text-white transition-colors">
+          <button 
+            onClick={onClose}
+            className="text-gray-400 hover:text-white p-1 rounded hover:bg-white/10 transition-colors"
+          >
             <X size={16} />
           </button>
         </div>
 
-        {/* Terminal Logs Output */}
+        {/* Terminal Output Body */}
         <div className="flex-1 p-4 overflow-y-auto space-y-4">
-          {logs.map((log, idx) => (
-            <div key={idx} className="space-y-1">
-              <div className="flex items-center gap-2 text-xs text-cyan-400">
-                <span>furkanmasraf@spring-boot:~$</span>
-                <span className="text-white">{log.command}</span>
+          {logs.map((log, index) => (
+            <div key={index} className="space-y-1">
+              <div className="flex items-center gap-2 text-xs">
+                <span className="text-emerald-400 font-bold">furkan@masraf-dev</span>
+                <span className="text-gray-500">:~#</span>
+                <span className="text-white font-semibold">{log.command}</span>
               </div>
-              <div className="pl-4 border-l border-cyan-500/20">
+              <div className="pl-4">
                 {log.output}
               </div>
             </div>
           ))}
-          <div ref={bottomRef}></div>
+          <div ref={bottomRef} />
         </div>
 
-        {/* Terminal Command Input Bar */}
-        <form onSubmit={handleCommand} className="p-3 bg-[#0B0F17] border-t border-white/10 flex items-center gap-2">
-          <span className="text-xs text-cyan-400 font-bold">furkanmasraf@spring-boot:~$</span>
+        {/* Terminal Input Line */}
+        <form onSubmit={handleCommand} className="p-3 bg-[#0C121D] border-t border-white/10 flex items-center gap-2">
+          <span className="text-emerald-400 text-xs font-bold shrink-0">furkan@masraf-dev:~#</span>
           <input
             ref={inputRef}
             type="text"
             value={inputVal}
             onChange={(e) => setInputVal(e.target.value)}
-            placeholder="Komut yazın (örn: 'help', 'experience', 'projects')..."
-            className="flex-1 bg-transparent border-none outline-none text-white text-xs font-mono placeholder-gray-600"
+            placeholder="Komut yazın (örn: help, goto about, projects, skills, contact)..."
+            className="flex-1 bg-transparent border-none outline-none text-xs text-cyan-300 font-mono placeholder:text-gray-600"
           />
-          <button type="submit" className="text-cyan-400 hover:text-cyan-300 p-1">
+          <button type="submit" className="text-gray-500 hover:text-cyan-400 transition-colors p-1">
             <CornerDownLeft size={14} />
           </button>
         </form>

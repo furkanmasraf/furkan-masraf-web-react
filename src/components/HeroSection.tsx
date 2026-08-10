@@ -225,7 +225,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                 <div className="p-2 rounded-lg bg-white/5 border border-white/5">
                   <Smartphone size={18} className="mx-auto text-emerald-400 mb-1" />
                   <span className="block text-[11px] font-semibold text-gray-200">Mobil Uygulama</span>
-                  <span className="block text-[9px] font-mono text-gray-400">iOS & Android</span>
+                  <span className="block text-[9px] font-mono text-gray-400">Cross-Platform</span>
                 </div>
                 <div className="p-2 rounded-lg bg-white/5 border border-white/5">
                   <Server size={18} className="mx-auto text-purple-400 mb-1" />

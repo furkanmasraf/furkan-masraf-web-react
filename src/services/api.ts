@@ -60,16 +60,16 @@ export const FALLBACK_EXPERIENCES: Experience[] = [
   {
     id: 3,
     company: "Bilyoner",
-    role: "iOS Mobile Developer Intern",
+    role: "Mobile Developer Intern",
     period: "06/2024 – 07/2024",
     location: "İstanbul",
     displayOrder: 3,
     highlights: [
-      "Swift kullanarak iOS uygulama geliştirme süreçlerinde görev aldım.",
+      "Mobil uygulama geliştirme ve servis entegrasyon süreçlerinde görev aldım.",
       "API entegrasyonları ve kullanıcı arayüzü iyileştirmeleri yaptım.",
       "Takım içi kod inceleme (code review) süreçlerine katıldım."
     ],
-    technologies: ["Swift", "iOS", "REST API", "Code Review", "UI Optimization"]
+    technologies: ["Mobile App", "REST API", "Code Review", "UI Optimization"]
   }
 ];
 
@@ -138,8 +138,7 @@ export const FALLBACK_SKILLS: Skill[] = [
   { id: 9, name: "PostgreSQL", category: "Database", proficiencyPercentage: 90, iconName: "database", highlightText: "Relational Schema & Performance" },
   { id: 10, name: "Docker & Docker Compose", category: "DevOps", proficiencyPercentage: 85, iconName: "box", highlightText: "Containerization & Orchestration" },
   { id: 11, name: "JUnit 5 & Mockito", category: "Testing", proficiencyPercentage: 85, iconName: "check-circle", highlightText: "Unit Testing & Mocking" },
-  { id: 12, name: "React & TypeScript", category: "Frontend", proficiencyPercentage: 80, iconName: "layout", highlightText: "Modern UI, Component State" },
-  { id: 13, name: "Swift (iOS)", category: "Mobile", proficiencyPercentage: 75, iconName: "smartphone", highlightText: "iOS Development & API integration" }
+  { id: 12, name: "React & TypeScript", category: "Frontend", proficiencyPercentage: 80, iconName: "layout", highlightText: "Modern UI, Component State" }
 ];
 
 export const FALLBACK_CERTIFICATES: Certificate[] = [
