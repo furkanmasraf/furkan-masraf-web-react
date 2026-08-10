@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Code2, Server, FolderGit2, Award, Mail, Cpu } from 'lucide-react';
+import { Terminal, Code2, Server, FolderGit2, Award, Mail, Cpu, Sparkles } from 'lucide-react';
 import { Logo } from './Logo';
 
 interface NavbarProps {
@@ -15,7 +15,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
 
-      const sections = ['hero', 'about', 'experience', 'projects', 'skills', 'certificates', 'contact'];
+      const sections = ['hero', 'about', 'benefits', 'wizard', 'experience', 'projects', 'skills', 'certificates', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -44,6 +44,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
 
   const navLinks = [
     { id: 'hero', label: 'Ana Sayfa', icon: Cpu },
+    { id: 'wizard', label: 'Proje Başlat', icon: Sparkles },
     { id: 'about', label: 'Hakkımda', icon: Code2 },
     { id: 'experience', label: 'Deneyim', icon: Server },
     { id: 'projects', label: 'Projeler', icon: FolderGit2 },
@@ -58,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
-        {/* New 3D Brand Logo */}
+        {/* Brand Logo */}
         <a href="#hero" className="focus:outline-none">
           <Logo size={42} />
         </a>
@@ -103,6 +104,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
             </span>
           </div>
 
+          {/* Direct Project Inquiry Header CTA Button */}
+          <a
+            href="#wizard"
+            className="hidden xl:flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-bold text-xs font-mono shadow-md shadow-cyan-500/20 hover:scale-105 transition-transform"
+          >
+            <Sparkles size={13} />
+            <span>Fiyat Teklifi Al</span>
+          </a>
+
           {/* Dev Terminal Button */}
           <button
             onClick={onOpenTerminal}
@@ -110,7 +120,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
             title="Geliştirici Terminalini Aç (Ctrl + K)"
           >
             <Terminal size={14} className="group-hover:rotate-12 transition-transform" />
-            <span className="hidden md:inline">CLI Easter Egg</span>
+            <span className="hidden md:inline">CLI</span>
             <kbd className="hidden lg:inline-block px-1.5 py-0.5 text-[10px] bg-black/40 text-gray-400 rounded border border-white/10">
               Ctrl+K
             </kbd>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import type { ProfileInfo } from '../types';
-import { Mail, ArrowRight, ShieldCheck, Server, Database, Layers } from 'lucide-react';
+import { Mail, ArrowRight, ShieldCheck, Server, Database, Sparkles, Globe, Smartphone } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import { sanitizeLinkedinUrl } from '../services/api';
 
@@ -12,9 +12,9 @@ interface HeroSectionProps {
 export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
   const roles = [
     "Backend Developer",
+    "Web & Mobil Uygulama Geliştirici",
     "Java & Spring Boot Specialist",
-    "Microservices & Resilience Engineer",
-    "Clean Code & AOP Advocate"
+    "Clean Code & Microservices Architect"
   ];
 
   const [roleIndex, setRoleIndex] = useState(0);
@@ -63,7 +63,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             {/* Status Pill Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border border-cyan-500/30 text-cyan-400 text-xs font-mono w-fit shadow-lg shadow-cyan-500/10">
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-              <span>Available for Backend Engineering Opportunities</span>
+              <span>Web, Mobil ve Backend Projeleriniz İçin Teklif Alın</span>
             </div>
 
             {/* Main Heading */}
@@ -85,34 +85,44 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
 
             {/* Brief Bio Summary */}
             <p className="text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl font-light">
-              Doğuş Teknoloji ve Fibabanka stajlarında edindiğim <strong className="text-white font-medium">Retry şablonları (Resilience4j)</strong>, <strong className="text-white font-medium">Redis Caching</strong>, <strong className="text-white font-medium">Clean Code refactoring</strong> ve <strong className="text-white font-medium">AOP loglama</strong> deneyimleriyle yüksek performanslı Spring Boot RESTful sistemler inşa ediyorum.
+              Doğuş Teknoloji ve Fibabanka stajlarında edindiğim <strong className="text-white font-medium">Java Spring Boot backend</strong>, <strong className="text-white font-medium">React web</strong> ve <strong className="text-white font-medium">mobil uygulama</strong> tecrübesiyle, fikrinizi yüksek performanslı canlı yazılım projesine dönüştürüyorum.
             </p>
 
-            {/* Quick Tech Badges */}
+            {/* Quick Service Pills */}
             <div className="flex flex-wrap gap-2 pt-2">
-              {['Java 17/21', 'Spring Boot 3', 'Spring Data JPA', 'PostgreSQL', 'Redis', 'Docker', 'C# / .NET'].map((tech, idx) => (
-                <span key={idx} className="px-3 py-1 rounded-md text-xs font-mono bg-white/5 border border-white/10 text-cyan-300 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all">
-                  {tech}
-                </span>
-              ))}
+              {[
+                { label: 'Web Uygulama Geliştirme', icon: Globe },
+                { label: 'Mobil Uygulama', icon: Smartphone },
+                { label: 'Spring Boot REST API', icon: Server },
+                { label: 'PostgreSQL & Redis', icon: Database }
+              ].map((tech, idx) => {
+                const Icon = tech.icon;
+                return (
+                  <span key={idx} className="flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-mono bg-white/5 border border-white/10 text-cyan-300 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all">
+                    <Icon size={13} className="text-emerald-400" />
+                    <span>{tech.label}</span>
+                  </span>
+                );
+              })}
             </div>
 
-            {/* Action Buttons */}
+            {/* Conversion Action Buttons */}
             <div className="flex flex-wrap items-center gap-4 pt-4">
               <a
-                href="#projects"
-                className="flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-semibold text-sm shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                href="#wizard"
+                className="flex items-center gap-2 px-7 py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-500 text-white font-bold text-sm shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
-                <span>Projelerimi İncele</span>
+                <Sparkles size={18} />
+                <span>Proje Başlatın & Fiyat Teklifi Alın</span>
                 <ArrowRight size={18} />
               </a>
 
               <a
                 href="#contact"
-                className="flex items-center gap-2 px-6 py-3.5 rounded-xl glass-panel text-gray-200 hover:text-white border border-white/15 hover:border-cyan-500/40 text-sm font-semibold hover:bg-white/5 transition-all"
+                className="flex items-center gap-2 px-6 py-4 rounded-xl glass-panel text-gray-200 hover:text-white border border-white/15 hover:border-cyan-500/40 text-sm font-semibold hover:bg-white/5 transition-all"
               >
                 <Mail size={18} className="text-cyan-400" />
-                <span>İletişime Geç</span>
+                <span>Direkt İletişim</span>
               </a>
             </div>
 
@@ -171,17 +181,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                 <p><span className="text-cyan-400">public class</span> <span className="text-yellow-300">PortfolioApplication</span> &#123;</p>
                 
                 <div className="pl-4 border-l-2 border-cyan-500/30 space-y-1">
-                  <p className="text-gray-500">// Enterprise Microservices Core</p>
-                  <p><span className="text-cyan-400">private final</span> <span className="text-blue-300">ResilienceService</span> retryService;</p>
-                  <p><span className="text-cyan-400">private final</span> <span className="text-blue-300">RedisCacheManager</span> cacheManager;</p>
+                  <p className="text-gray-500">// Full-Stack & Mobile Core</p>
+                  <p><span className="text-cyan-400">private final</span> <span className="text-blue-300">SpringBootService</span> backend;</p>
+                  <p><span className="text-cyan-400">private final</span> <span className="text-blue-300">MobileClientEngine</span> mobileApp;</p>
                   
-                  <p className="pt-2 text-purple-400">@GetMapping(<span className="text-emerald-300">"/architecture"</span>)</p>
-                  <p><span className="text-cyan-400">public</span> ResponseEntity&lt;Profile&gt; getSpecs() &#123;</p>
-                  <p className="pl-4 text-emerald-400">return ResponseEntity.ok(Profile.builder()</p>
+                  <p className="pt-2 text-purple-400">@GetMapping(<span className="text-emerald-300">"/quote"</span>)</p>
+                  <p><span className="text-cyan-400">public</span> ResponseEntity&lt;Quote&gt; buildSystem() &#123;</p>
+                  <p className="pl-4 text-emerald-400">return ResponseEntity.ok(Quote.builder()</p>
                   <p className="pl-8 text-gray-300">.developer(<span className="text-emerald-300">"Furkan Masraf"</span>)</p>
-                  <p className="pl-8 text-gray-300">.stack(<span className="text-emerald-300">"Java 17, Spring Boot 3, PostgreSQL"</span>)</p>
-                  <p className="pl-8 text-gray-300">.resilience(<span className="text-emerald-300">"Resilience4j Retry, AOP Logging"</span>)</p>
-                  <p className="pl-8 text-gray-300">.status(<span className="text-emerald-300">"READY_TO_BUILD"</span>)</p>
+                  <p className="pl-8 text-gray-300">.stack(<span className="text-emerald-300">"Web, Mobil, Spring Boot REST"</span>)</p>
+                  <p className="pl-8 text-gray-300">.response(<span className="text-emerald-300">"&lt; 24 SAAT TEKLİF"</span>)</p>
                   <p className="pl-4 text-emerald-400">.build());</p>
                   <p className="pl-2">&#125;</p>
                 </div>
@@ -192,19 +201,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
               {/* Bottom Quick Feature Highlights */}
               <div className="mt-6 pt-4 border-t border-white/10 grid grid-cols-3 gap-2 text-center">
                 <div className="p-2 rounded-lg bg-white/5 border border-white/5">
-                  <Server size={18} className="mx-auto text-cyan-400 mb-1" />
-                  <span className="block text-[11px] font-semibold text-gray-200">Spring Boot</span>
-                  <span className="block text-[9px] font-mono text-gray-400">REST APIs</span>
+                  <Globe size={18} className="mx-auto text-cyan-400 mb-1" />
+                  <span className="block text-[11px] font-semibold text-gray-200">Web Sitesi</span>
+                  <span className="block text-[9px] font-mono text-gray-400">React + Spring</span>
                 </div>
                 <div className="p-2 rounded-lg bg-white/5 border border-white/5">
-                  <Database size={18} className="mx-auto text-emerald-400 mb-1" />
-                  <span className="block text-[11px] font-semibold text-gray-200">PostgreSQL</span>
-                  <span className="block text-[9px] font-mono text-gray-400">Data JPA</span>
+                  <Smartphone size={18} className="mx-auto text-emerald-400 mb-1" />
+                  <span className="block text-[11px] font-semibold text-gray-200">Mobil Uygulama</span>
+                  <span className="block text-[9px] font-mono text-gray-400">iOS & Android</span>
                 </div>
                 <div className="p-2 rounded-lg bg-white/5 border border-white/5">
-                  <Layers size={18} className="mx-auto text-purple-400 mb-1" />
-                  <span className="block text-[11px] font-semibold text-gray-200">Redis & AOP</span>
-                  <span className="block text-[9px] font-mono text-gray-400">Fault Tolerant</span>
+                  <Server size={18} className="mx-auto text-purple-400 mb-1" />
+                  <span className="block text-[11px] font-semibold text-gray-200">Backend / API</span>
+                  <span className="block text-[9px] font-mono text-gray-400">Java + Redis</span>
                 </div>
               </div>
 

@@ -21,12 +21,15 @@ import {
 
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
+import { ClientBenefitsSection } from './components/ClientBenefitsSection';
+import { ProjectWizard } from './components/ProjectWizard';
 import { AboutSection } from './components/AboutSection';
 import { ExperienceSection } from './components/ExperienceSection';
 import { ProjectsSection } from './components/ProjectsSection';
 import { SkillsSection } from './components/SkillsSection';
 import { CertificatesSection } from './components/CertificatesSection';
 import { ContactSection } from './components/ContactSection';
+import { FloatingContactWidget } from './components/FloatingContactWidget';
 import { DeveloperTerminal } from './components/DeveloperTerminal';
 import { Footer } from './components/Footer';
 
@@ -81,6 +84,8 @@ export function App() {
       {/* Main Sections */}
       <main className="flex-1">
         <HeroSection profile={profile} />
+        <ClientBenefitsSection />
+        <ProjectWizard />
         <AboutSection />
         <ExperienceSection experiences={experiences} />
         <ProjectsSection projects={projects} />
@@ -88,6 +93,9 @@ export function App() {
         <CertificatesSection certificates={certificates} />
         <ContactSection profile={profile} />
       </main>
+
+      {/* Floating Speed Dial Contact Widget (WhatsApp, Email, Phone, LinkedIn) */}
+      <FloatingContactWidget />
 
       {/* Footer */}
       <Footer profile={profile} />
