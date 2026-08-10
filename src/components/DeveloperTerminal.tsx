@@ -113,7 +113,7 @@ export const DeveloperTerminal: React.FC<DeveloperTerminalProps> = ({
       'teklif': 'wizard'
     };
 
-    const resolvedSection = sectionMap[targetSection];
+    const resolvedSection = sectionMap[targetSection] || sectionMap[cmd];
 
     if (cmd === 'clear') {
       setLogs([]);

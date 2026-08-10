@@ -138,10 +138,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
         </nav>
 
         {/* Right Status Pill & Buttons */}
-        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+        <div className="flex items-center gap-2 shrink-0">
           
           {/* Spring Boot API Live Indicator */}
-          <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full glass-panel border border-white/10 text-[11px] font-mono whitespace-nowrap">
+          <div className="hidden 2xl:flex items-center gap-2 px-3 py-1 rounded-full glass-panel border border-white/10 text-[11px] font-mono whitespace-nowrap">
             <span className="relative flex h-2 w-2">
               <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
                 isBackendLive ? 'bg-emerald-400' : 'bg-amber-400'
@@ -159,21 +159,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
           <a
             href="#wizard"
             onClick={(e) => handleNavClick(e, 'wizard')}
-            className="hidden md:flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-bold text-xs font-mono shadow-md shadow-cyan-500/20 hover:scale-105 transition-transform whitespace-nowrap"
+            className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-bold text-xs font-mono shadow-md shadow-cyan-500/20 hover:scale-105 transition-transform whitespace-nowrap"
           >
             <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
             <span>İş Birliği Başlat</span>
           </a>
 
-          {/* Dev Terminal Button */}
+          {/* Dev Terminal CLI Button - Prominently Highlighted */}
           <button
             onClick={onOpenTerminal}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/20 hover:border-cyan-400 text-xs font-mono transition-all shadow-sm group whitespace-nowrap"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-cyan-500/20 border border-cyan-400/60 text-cyan-300 hover:bg-cyan-500/30 hover:border-cyan-300 text-xs font-mono transition-all shadow-md shadow-cyan-500/20 group whitespace-nowrap"
             title="Geliştirici Terminalini Aç (Ctrl + K)"
           >
-            <Terminal size={14} className="group-hover:rotate-12 transition-transform" />
-            <span className="inline">CLI</span>
-            <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] bg-black/40 text-gray-400 rounded border border-white/10 ml-0.5">
+            <Terminal size={14} className="text-cyan-400 group-hover:rotate-12 transition-transform" />
+            <span className="font-bold">&gt;_ CLI</span>
+            <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] bg-black/50 text-cyan-200 rounded border border-cyan-500/30 ml-0.5">
               Ctrl+K
             </kbd>
           </button>
