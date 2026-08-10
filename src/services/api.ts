@@ -9,7 +9,7 @@ export const FALLBACK_PROFILE: ProfileInfo = {
   email: "masraffurkan@gmail.com",
   phone: "+90 538 472 75 54",
   location: "İstanbul, Türkiye",
-  linkedinUrl: "https://linkedin.com/in/furkanmasraf",
+  linkedinUrl: "https://www.linkedin.com/in/furkan-masraf-20a8681b6/",
   githubUrl: "https://github.com/furkanmasraf",
   bio: "Java ve Spring Boot ekosisteminde kurumsal düzeyde backend sistemleri, mikroservis mimarileri ve yüksek erişilebilirlikli RESTful API'ler geliştiren Bilgisayar Mühendisi. Clean Code prensipleri, Aspect-Oriented Programming (AOP), Redis caching, Resilience4j Retry mekanizmaları ve tip güvenli hata yönetimi konularında tutkulu mühendislik yaklaşımına sahibim.",
   university: "Üsküdar Üniversitesi",

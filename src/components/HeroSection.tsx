@@ -133,7 +133,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                 className="flex items-center gap-2 hover:text-cyan-400 transition-colors text-xs font-mono"
               >
                 <LinkedinIcon size={18} />
-                <span>linkedin.com/in/furkanmasraf</span>
+                <span>linkedin.com/in/furkan-masraf</span>
               </a>
             </div>
 
