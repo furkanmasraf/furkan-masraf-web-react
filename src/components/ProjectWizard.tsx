@@ -91,13 +91,13 @@ export const ProjectWizard: React.FC = () => {
         <div className="text-center space-y-4 mb-14">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border border-cyan-500/30 text-cyan-400 text-xs font-mono shadow-lg shadow-cyan-500/10">
             <Sparkles size={14} />
-            <span>İNTERAKTİF PROJE TEKLİF SİHİRBAZI</span>
+            <span>İNTERAKTİF PROJE & İŞ BİRLİĞİ SİHİRBAZI</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Projenizi Başlatın & <span className="text-gradient-cyan">Fiyat Teklifi Alın</span>
+            Projenizi Başlatın & <span className="text-gradient-cyan">İş Birliği Oluşturun</span>
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto text-sm sm:text-base font-light">
-            Web sitesi, mobil uygulama veya backend mimarisi ihtiyacınızı birkaç adımda belirleyin, doğrudan size özel teklif sunayım:
+            Web sitesi, mobil uygulama veya backend mimarisi ihtiyacınızı birkaç adımda belirleyin, doğrudan projenize özel yol haritası oluşturalım:
           </p>
         </div>
 
@@ -113,7 +113,7 @@ export const ProjectWizard: React.FC = () => {
                   {step === 1 && 'Proje Türü Seçimi'}
                   {step === 2 && 'Öncelikler & Hedefler'}
                   {step === 3 && 'Zaman Çizelgesi'}
-                  {step === 4 && 'İletişim & Teklif İletimi'}
+                  {step === 4 && 'İletişim & Proje Detayları'}
                 </span>
               </div>
               <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden p-0.5 border border-white/10">
@@ -281,7 +281,7 @@ export const ProjectWizard: React.FC = () => {
                     exit={{ opacity: 0, x: -20 }}
                     className="space-y-6"
                   >
-                    <h3 className="text-xl font-bold text-white mb-2">4. Teklifi size ulaştırmamız için bilgilerinizi giriniz:</h3>
+                    <h3 className="text-xl font-bold text-white mb-2">4. Sizinle iletişime geçebilmemiz için bilgilerinizi giriniz:</h3>
                     
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -353,7 +353,7 @@ export const ProjectWizard: React.FC = () => {
                         {loading ? 'Gönderiliyor...' : (
                           <>
                             <Send size={18} />
-                            <span>Proje Teklif Talebini Gönder</span>
+                            <span>Proje & İş Birliği Talebini Gönder</span>
                           </>
                         )}
                       </button>

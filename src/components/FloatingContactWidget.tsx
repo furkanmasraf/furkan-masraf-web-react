@@ -26,7 +26,7 @@ export const FloatingContactWidget: React.FC = () => {
     {
       id: 'email',
       label: 'E-Posta Gönderin',
-      href: 'mailto:masraffurkan@gmail.com?subject=Proje%20Teklifi%20Hakk%C4%B1nda',
+      href: 'mailto:masraffurkan@gmail.com?subject=Proje%20ve%20%C4%B0%C5%9F%20Birli%C4%9Fi%20Hakk%C4%B1nda',
       icon: Mail,
       color: 'bg-purple-600 hover:bg-purple-700 text-white',
       badge: 'masraffurkan@gmail.com'

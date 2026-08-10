@@ -14,13 +14,13 @@ export function sanitizeLinkedinUrl(url?: string): string {
 // Initial Fallback Seed Data matching Furkan Masraf CV
 export const FALLBACK_PROFILE: ProfileInfo = {
   fullName: "Furkan Masraf",
-  title: "Backend Developer & Spring Boot Specialist",
+  title: "Backend & Full-Stack Developer (Java & C# .NET)",
   email: "masraffurkan@gmail.com",
   phone: "+90 538 472 75 54",
   location: "İstanbul, Türkiye",
   linkedinUrl: CORRECT_LINKEDIN_URL,
   githubUrl: "https://github.com/furkanmasraf",
-  bio: "Java ve Spring Boot ekosisteminde kurumsal düzeyde backend sistemleri, mikroservis mimarileri ve yüksek erişilebilirlikli RESTful API'ler geliştiren Bilgisayar Mühendisi. Clean Code prensipleri, Aspect-Oriented Programming (AOP), Redis caching, Resilience4j Retry mekanizmaları ve tip güvenli hata yönetimi konularında tutkulu mühendislik yaklaşımına sahibim.",
+  bio: "Java (Spring Boot) ve C# (.NET) ekosistemlerinde kurumsal düzeyde backend sistemleri, mikroservis mimarileri ve yüksek erişilebilirlikli RESTful API'ler geliştiren Bilgisayar Mühendisi. Modern Web (React) ve Mobil Uygulama tecrübesiyle birlikte Clean Code prensipleri, Redis caching, veritabanı optimizasyonu ve güvenli yazılım mimarileri kurgulama konusunda tutkulu bir mühendislik yaklaşımına sahibim.",
   university: "Üsküdar Üniversitesi",
   department: "Bilgisayar Mühendisliği",
   graduationYear: "2020 – 2026"

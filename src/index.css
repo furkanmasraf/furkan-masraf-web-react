@@ -13,6 +13,10 @@
     scroll-behavior: smooth;
   }
 
+  section {
+    scroll-margin-top: 80px;
+  }
+
   body {
     background-color: #080C14;
     color: #F3F4F6;

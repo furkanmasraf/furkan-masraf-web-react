@@ -14,7 +14,7 @@ export const ClientBenefitsSection: React.FC = () => {
     {
       icon: Zap,
       title: "%99.9 Erişilebilirlik & Yüksek Hız",
-      description: "Doğuş Teknoloji stajımda uyguladığım Resilience4j Retry mekanizmaları ve Redis Caching ile kesintisiz, hızlı servisler inşa ediyorum.",
+      description: "Kurumsal projelerde uyguladığım Resilience4j Retry mekanizmaları ve Redis Caching ile kesintisiz, hızlı servisler inşa ediyorum.",
       gradient: "from-emerald-500 to-teal-500",
       badge: "PERFORMANS"
     },

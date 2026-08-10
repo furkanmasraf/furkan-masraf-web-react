@@ -12,8 +12,8 @@ interface HeroSectionProps {
 export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
   const roles = [
     "Backend Developer",
+    "Java Spring Boot & C# .NET Specialist",
     "Web & Mobil Uygulama Geliştirici",
-    "Java & Spring Boot Specialist",
     "Clean Code & Microservices Architect"
   ];
 
@@ -43,6 +43,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
     return () => clearTimeout(timer);
   }, [displayText, isDeleting, roleIndex]);
 
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      const navbarOffset = 75;
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - navbarOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <section id="hero" className="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden bg-grid-pattern">
       
@@ -63,7 +78,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             {/* Status Pill Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border border-cyan-500/30 text-cyan-400 text-xs font-mono w-fit shadow-lg shadow-cyan-500/10">
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-              <span>Web, Mobil ve Backend Projeleriniz İçin Teklif Alın</span>
+              <span>Web, Mobil ve Backend Projeleriniz İçin İletişime Geçin</span>
             </div>
 
             {/* Main Heading */}
@@ -85,7 +100,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
 
             {/* Brief Bio Summary */}
             <p className="text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl font-light">
-              Doğuş Teknoloji ve Fibabanka stajlarında edindiğim <strong className="text-white font-medium">Java Spring Boot backend</strong>, <strong className="text-white font-medium">React web</strong> ve <strong className="text-white font-medium">mobil uygulama</strong> tecrübesiyle, fikrinizi yüksek performanslı canlı yazılım projesine dönüştürüyorum.
+              <strong className="text-white font-medium">Java Spring Boot</strong> ve <strong className="text-white font-medium">C# .NET</strong> kurumsal backend mimarilerinden <strong className="text-white font-medium">React web</strong> ve <strong className="text-white font-medium">mobil uygulama</strong> çözümlerine uzanan geniş yetenek havuzumla; fikirlerinizi yüksek performanslı, ölçeklenebilir ve modern canlı yazılım projelerine dönüştürüyorum.
             </p>
 
             {/* Quick Service Pills */}
@@ -93,7 +108,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
               {[
                 { label: 'Web Uygulama Geliştirme', icon: Globe },
                 { label: 'Mobil Uygulama', icon: Smartphone },
-                { label: 'Spring Boot REST API', icon: Server },
+                { label: 'Java Spring Boot & C# .NET API', icon: Server },
                 { label: 'PostgreSQL & Redis', icon: Database }
               ].map((tech, idx) => {
                 const Icon = tech.icon;
@@ -110,15 +125,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             <div className="flex flex-wrap items-center gap-4 pt-4">
               <a
                 href="#wizard"
+                onClick={(e) => scrollToSection(e, 'wizard')}
                 className="flex items-center gap-2 px-7 py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-500 text-white font-bold text-sm shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
                 <Sparkles size={18} />
-                <span>Proje Başlatın & Fiyat Teklifi Alın</span>
+                <span>Proje & İş Birliği Başlatın</span>
                 <ArrowRight size={18} />
               </a>
 
               <a
                 href="#contact"
+                onClick={(e) => scrollToSection(e, 'contact')}
                 className="flex items-center gap-2 px-6 py-4 rounded-xl glass-panel text-gray-200 hover:text-white border border-white/15 hover:border-cyan-500/40 text-sm font-semibold hover:bg-white/5 transition-all"
               >
                 <Mail size={18} className="text-cyan-400" />
@@ -189,7 +206,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                   <p><span className="text-cyan-400">public</span> ResponseEntity&lt;Quote&gt; buildSystem() &#123;</p>
                   <p className="pl-4 text-emerald-400">return ResponseEntity.ok(Quote.builder()</p>
                   <p className="pl-8 text-gray-300">.developer(<span className="text-emerald-300">"Furkan Masraf"</span>)</p>
-                  <p className="pl-8 text-gray-300">.stack(<span className="text-emerald-300">"Web, Mobil, Spring Boot REST"</span>)</p>
+                  <p className="pl-8 text-gray-300">.stack(<span className="text-emerald-300">"Spring Boot, C# .NET, React"</span>)</p>
                   <p className="pl-8 text-gray-300">.response(<span className="text-emerald-300">"&lt; 24 SAAT TEKLİF"</span>)</p>
                   <p className="pl-4 text-emerald-400">.build());</p>
                   <p className="pl-2">&#125;</p>
@@ -203,7 +220,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                 <div className="p-2 rounded-lg bg-white/5 border border-white/5">
                   <Globe size={18} className="mx-auto text-cyan-400 mb-1" />
                   <span className="block text-[11px] font-semibold text-gray-200">Web Sitesi</span>
-                  <span className="block text-[9px] font-mono text-gray-400">React + Spring</span>
+                  <span className="block text-[9px] font-mono text-gray-400">React + Web API</span>
                 </div>
                 <div className="p-2 rounded-lg bg-white/5 border border-white/5">
                   <Smartphone size={18} className="mx-auto text-emerald-400 mb-1" />
@@ -213,7 +230,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                 <div className="p-2 rounded-lg bg-white/5 border border-white/5">
                   <Server size={18} className="mx-auto text-purple-400 mb-1" />
                   <span className="block text-[11px] font-semibold text-gray-200">Backend / API</span>
-                  <span className="block text-[9px] font-mono text-gray-400">Java + Redis</span>
+                  <span className="block text-[9px] font-mono text-gray-400">Java & C# .NET</span>
                 </div>
               </div>
 
