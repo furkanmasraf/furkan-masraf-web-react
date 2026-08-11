@@ -3,12 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import type { Project } from '../types';
 import { FolderGit2, Sparkles, Terminal, ShieldCheck, ArrowRight } from 'lucide-react';
 import { GithubIcon } from './Icons';
+import { useLanguage } from '../context/LanguageContext';
 
 interface ProjectsSectionProps {
   projects: Project[];
 }
 
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
+  const { t } = useLanguage();
   const [activeProjectModal, setActiveProjectModal] = useState<Project | null>(null);
 
   return (
@@ -19,13 +21,13 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) =>
         <div className="text-center space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-panel border border-cyan-500/30 text-cyan-400 text-xs font-mono">
             <FolderGit2 size={14} />
-            <span>PORTFOLYO & PROJELER</span>
+            <span>{t.projects.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Öne Çıkan <span className="text-gradient-cyan">Yazılım Projelerim</span>
+            {t.projects.title}
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base font-light">
-            Detaylarını ve mimari özelliklerini incelemek için projenin üzerine tıklayın:
+            {t.projects.subtitle}
           </p>
         </div>
 
@@ -45,7 +47,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) =>
               {project.featured && (
                 <div className="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-[10px] font-mono font-semibold">
                   <Sparkles size={12} />
-                  <span>ÖNE ÇIKAN</span>
+                  <span>{t.projects.featured}</span>
                 </div>
               )}
 
@@ -70,9 +72,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) =>
               <div className="pt-4 border-t border-white/10 space-y-4 mt-auto">
                 {/* Tech Tags */}
                 <div className="flex flex-wrap gap-1.5">
-                  {project.technologies.map((t, tIdx) => (
+                  {project.technologies.map((tTag, tIdx) => (
                     <span key={tIdx} className="px-2.5 py-0.5 rounded text-[10px] font-mono bg-white/5 border border-white/10 text-cyan-300">
-                      {t}
+                      {tTag}
                     </span>
                   ))}
                 </div>
@@ -81,7 +83,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) =>
                 <div className="flex items-center justify-between pt-2 text-xs font-mono text-cyan-400 group-hover:text-cyan-300 font-semibold">
                   <span className="flex items-center gap-1.5">
                     <Terminal size={14} />
-                    <span>Mimari Detayları İncele</span>
+                    <span>{t.projects.inspectDetails}</span>
                   </span>
                   <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -128,7 +130,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) =>
               <div className="space-y-3 pt-3 border-t border-white/10">
                 <h4 className="text-sm font-mono text-emerald-400 font-bold flex items-center gap-2">
                   <ShieldCheck size={18} />
-                  <span>Mimari & Teknik Özellikler:</span>
+                  <span>{t.projects.techFeatures}</span>
                 </h4>
 
                 <div className="space-y-2.5">
@@ -144,9 +146,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) =>
               {/* Technologies & Repo Links */}
               <div className="pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
                 <div className="flex flex-wrap gap-1.5">
-                  {activeProjectModal.technologies.map((t, idx) => (
+                  {activeProjectModal.technologies.map((tTag, idx) => (
                     <span key={idx} className="px-2.5 py-1 rounded-md bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 text-xs font-mono">
-                      {t}
+                      {tTag}
                     </span>
                   ))}
                 </div>
@@ -168,7 +170,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) =>
                     onClick={() => setActiveProjectModal(null)}
                     className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border border-white/10 font-mono text-xs transition-colors"
                   >
-                    Kapat
+                    {t.projects.close}
                   </button>
                 </div>
               </div>

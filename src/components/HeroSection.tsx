@@ -4,25 +4,22 @@ import type { ProfileInfo } from '../types';
 import { Mail, ArrowRight, ShieldCheck, Server, Database, Globe, Smartphone } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import { sanitizeLinkedinUrl } from '../services/api';
+import { useLanguage } from '../context/LanguageContext';
 
 interface HeroSectionProps {
   profile: ProfileInfo;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
-  const roles = [
-    "Backend Developer",
-    "Java Spring Boot & C# .NET Specialist",
-    "Web & Mobil Uygulama Geliştirici",
-    "Clean Code & Microservices Architect"
-  ];
+  const { t } = useLanguage();
+  const roles = t.hero.roles;
 
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const currentRole = roles[roleIndex];
+    const currentRole = roles[roleIndex % roles.length];
     let timer: ReturnType<typeof setTimeout>;
 
     if (!isDeleting && displayText !== currentRole) {
@@ -41,7 +38,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
     }
 
     return () => clearTimeout(timer);
-  }, [displayText, isDeleting, roleIndex]);
+  }, [displayText, isDeleting, roleIndex, roles]);
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
@@ -78,15 +75,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             {/* Status Pill Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border border-cyan-500/30 text-cyan-400 text-xs font-mono w-fit shadow-lg shadow-cyan-500/10">
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-              <span>Web, Mobil ve Backend Projeleriniz İçin İletişime Geçin</span>
+              <span>{t.hero.badge}</span>
             </div>
 
             {/* Main Heading */}
             <div className="space-y-2">
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-none">
-                Merhaba, Ben <br />
+                {t.hero.greeting} <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400">
-                  FURKAN MASRAF
+                  {t.hero.titleName}
                 </span>
               </h1>
 
@@ -100,14 +97,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
 
             {/* Brief Bio Summary */}
             <p className="text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl font-light">
-              <strong className="text-white font-medium">Java Spring Boot</strong> ve <strong className="text-white font-medium">C# .NET</strong> kurumsal backend mimarilerinden <strong className="text-white font-medium">React web</strong> ve <strong className="text-white font-medium">mobil uygulama</strong> çözümlerine uzanan geniş yetenek havuzumla; fikirlerinizi yüksek performanslı, ölçeklenebilir ve modern canlı yazılım projelerine dönüştürüyorum.
+              {t.hero.bio}
             </p>
 
             {/* Quick Service Pills */}
             <div className="flex flex-wrap gap-2 pt-2">
               {[
-                { label: 'Web Uygulama Geliştirme', icon: Globe },
-                { label: 'Mobil Uygulama', icon: Smartphone },
+                { label: 'Web App Development', icon: Globe },
+                { label: 'Mobile Application', icon: Smartphone },
                 { label: 'Java Spring Boot & C# .NET API', icon: Server },
                 { label: 'PostgreSQL & Redis', icon: Database }
               ].map((tech, idx) => {
@@ -129,7 +126,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                 className="flex items-center gap-2.5 px-7 py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-500 text-white font-bold text-sm shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
                 <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse"></span>
-                <span>Proje & İş Birliği Başlatın</span>
+                <span>{t.hero.startProject}</span>
                 <ArrowRight size={18} />
               </a>
 
@@ -139,7 +136,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                 className="flex items-center gap-2 px-6 py-4 rounded-xl glass-panel text-gray-200 hover:text-white border border-white/15 hover:border-cyan-500/40 text-sm font-semibold hover:bg-white/5 transition-all"
               >
                 <Mail size={18} className="text-cyan-400" />
-                <span>Direkt İletişim</span>
+                <span>{t.hero.contactMe}</span>
               </a>
             </div>
 
@@ -207,7 +204,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                   <p className="pl-4 text-emerald-400">return ResponseEntity.ok(Quote.builder()</p>
                   <p className="pl-8 text-gray-300">.developer(<span className="text-emerald-300">"Furkan Masraf"</span>)</p>
                   <p className="pl-8 text-gray-300">.stack(<span className="text-emerald-300">"Spring Boot, C# .NET, React"</span>)</p>
-                  <p className="pl-8 text-gray-300">.response(<span className="text-emerald-300">"&lt; 24 SAAT TEKLİF"</span>)</p>
+                  <p className="pl-8 text-gray-300">.response(<span className="text-emerald-300">"&lt; 24h PROPOSAL"</span>)</p>
                   <p className="pl-4 text-emerald-400">.build());</p>
                   <p className="pl-2">&#125;</p>
                 </div>
@@ -219,12 +216,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
               <div className="mt-6 pt-4 border-t border-white/10 grid grid-cols-3 gap-2 text-center">
                 <div className="p-2 rounded-lg bg-white/5 border border-white/5">
                   <Globe size={18} className="mx-auto text-cyan-400 mb-1" />
-                  <span className="block text-[11px] font-semibold text-gray-200">Web Sitesi</span>
+                  <span className="block text-[11px] font-semibold text-gray-200">Web App</span>
                   <span className="block text-[9px] font-mono text-gray-400">React + Web API</span>
                 </div>
                 <div className="p-2 rounded-lg bg-white/5 border border-white/5">
                   <Smartphone size={18} className="mx-auto text-emerald-400 mb-1" />
-                  <span className="block text-[11px] font-semibold text-gray-200">Mobil Uygulama</span>
+                  <span className="block text-[11px] font-semibold text-gray-200">Mobile App</span>
                   <span className="block text-[9px] font-mono text-gray-400">Cross-Platform</span>
                 </div>
                 <div className="p-2 rounded-lg bg-white/5 border border-white/5">

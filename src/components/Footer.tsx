@@ -4,12 +4,14 @@ import type { ProfileInfo } from '../types';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import { Logo } from './Logo';
 import { sanitizeLinkedinUrl } from '../services/api';
+import { useLanguage } from '../context/LanguageContext';
 
 interface FooterProps {
   profile: ProfileInfo;
 }
 
 export const Footer: React.FC<FooterProps> = ({ profile }) => {
+  const { t } = useLanguage();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -45,9 +47,9 @@ export const Footer: React.FC<FooterProps> = ({ profile }) => {
           <button
             onClick={scrollToTop}
             className="p-2.5 rounded-xl glass-panel hover:bg-white/10 text-cyan-400 hover:text-cyan-300 border border-white/10 transition-all flex items-center gap-2 text-xs font-mono"
-            title="Yukarı Çık"
+            title={t.footer.backToTop}
           >
-            <span>Yukarı</span>
+            <span>{t.footer.backToTop}</span>
             <ChevronUp size={16} />
           </button>
 
@@ -55,7 +57,7 @@ export const Footer: React.FC<FooterProps> = ({ profile }) => {
 
         {/* Bottom Credits */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 font-mono gap-4">
-          <p>© {new Date().getFullYear()} Furkan Masraf. Tüm Hakları Saklıdır.</p>
+          <p>© {new Date().getFullYear()} Furkan Masraf. {t.footer.rightsReserved}</p>
           <div className="flex items-center gap-2 text-gray-400">
             <span>Powered by</span>
             <span className="text-cyan-400 font-semibold">Java Spring Boot 3</span>

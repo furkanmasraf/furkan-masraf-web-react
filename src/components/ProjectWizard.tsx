@@ -3,8 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { sendContactMessage } from '../services/api';
 import { Globe, Smartphone, Server, Layers, Zap, ShieldCheck, Send, CheckCircle2, ArrowRight, ArrowLeft } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export const ProjectWizard: React.FC = () => {
+  const { t, language } = useLanguage();
   const [step, setStep] = useState(1);
 
   // Form State
@@ -20,21 +22,35 @@ export const ProjectWizard: React.FC = () => {
   const [submittedSuccess, setSubmittedSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const projectTypes = [
+  const projectTypes = language === 'EN' ? [
+    { id: 'web', label: 'Website / Web Application', icon: Globe, desc: 'Modern, fast, responsive React and Spring Boot / .NET web solutions.' },
+    { id: 'mobile', label: 'Mobile Application', icon: Smartphone, desc: 'User-friendly, high-performance mobile application solutions.' },
+    { id: 'backend', label: 'Backend / REST API Architecture', icon: Server, desc: 'Scalable Java Spring Boot & C# .NET API services, Redis caching, and databases.' },
+    { id: 'fullstack', label: 'Full-Stack System Architecture', icon: Layers, desc: 'End-to-end custom software covering frontend, backend, mobile, and DB.' },
+  ] : [
     { id: 'web', label: 'Web Sitesi / Web Uygulaması', icon: Globe, desc: 'Modern, hızlı, responsive React ve Spring Boot / .NET tabanlı web çözümleri.' },
     { id: 'mobile', label: 'Mobil Uygulama', icon: Smartphone, desc: 'Kullanıcı dostu, yüksek performanslı mobil çözümler.' },
     { id: 'backend', label: 'Backend / REST API Mimarisi', icon: Server, desc: 'Ölçeklenebilir Java Spring Boot & C# .NET API servisleri, Redis önbellekleme ve veritabanı.' },
     { id: 'fullstack', label: 'Full-Stack Sistem Mimarisi', icon: Layers, desc: 'Frontend, backend, mobil ve veritabanını kapsayan uçtan uca özel yazılım çözümü.' },
   ];
 
-  const priorities = [
+  const priorities = language === 'EN' ? [
+    { id: 'perf', label: 'High Performance & Speed', icon: Zap },
+    { id: 'sec', label: 'Enterprise Security & Auth', icon: ShieldCheck },
+    { id: 'mobile_first', label: 'Mobile & Responsive Design', icon: Smartphone },
+    { id: 'scale', label: 'Scalable Database & Caching', icon: Server },
+  ] : [
     { id: 'perf', label: 'Yüksek Performans & Hız', icon: Zap },
     { id: 'sec', label: 'Kurumsal Güvenlik & Yetkilendirme', icon: ShieldCheck },
     { id: 'mobile_first', label: 'Mobil & Responsive Tasarım', icon: Smartphone },
     { id: 'scale', label: 'Ölçeklenebilir Veritabanı & Önbellek', icon: Server },
   ];
 
-  const timelines = [
+  const timelines = language === 'EN' ? [
+    { id: 'fast', label: 'Fast Delivery (1-2 Weeks)', desc: 'Urgent requirements and prototype/MVP developments.' },
+    { id: 'std', label: 'Standard Project (1 Month)', desc: 'Comprehensive features and tested production delivery.' },
+    { id: 'long', label: 'Enterprise / Long-Term Partnership', desc: 'Continuous engineering, maintenance, and tech advisory.' },
+  ] : [
     { id: 'fast', label: 'Hızlı Teslimat (1-2 Hafta)', desc: 'Acil ihtiyaçlar ve prototip/MVP geliştirmeleri.' },
     { id: 'std', label: 'Standart Proje (1 Ay)', desc: 'Kapsamlı özellikler ve test edilmiş canlı teslimat.' },
     { id: 'long', label: 'Kurumsal / Uzun Vadeli İş Birliği', desc: 'Sürekli geliştirme, bakım ve danışmanlık ortaklığı.' },
@@ -46,12 +62,12 @@ export const ProjectWizard: React.FC = () => {
     setErrorMessage('');
 
     const formattedMessage = `
-[PROJE TEKLİF TALEBİ]
-- Proje Türü: ${projectType}
-- Öncelikli Hedef: ${priority}
-- Zaman Çizelgesi: ${timeline}
-- Telefon: ${clientPhone || 'Belirtilmedi'}
-- Proje Detayları / Notlar: ${projectNotes || 'Detay girilmedi.'}
+[PROJE TEKLİF TALEBİ / PROJECT REQUEST]
+- Proje Türü / Type: ${projectType}
+- Öncelikli Hedef / Priority: ${priority}
+- Zaman Çizelgesi / Timeline: ${timeline}
+- Telefon / Phone: ${clientPhone || 'N/A'}
+- Proje Notları / Notes: ${projectNotes || 'N/A'}
     `.trim();
 
     const res = await sendContactMessage({
@@ -91,13 +107,13 @@ export const ProjectWizard: React.FC = () => {
         <div className="text-center space-y-4 mb-14">
           <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-panel border border-cyan-500/30 text-cyan-400 text-xs font-mono shadow-lg shadow-cyan-500/10">
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span>İNTERAKTİF PROJE & İŞ BİRLİĞİ SİHİRBAZI</span>
+            <span>{t.wizard.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Projenizi Başlatın & <span className="text-gradient-cyan">İş Birliği Oluşturun</span>
+            {t.wizard.title}
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto text-sm sm:text-base font-light">
-            Web sitesi, mobil uygulama veya backend mimarisi ihtiyacınızı birkaç adımda belirleyin, doğrudan projenize özel yol haritası oluşturalım:
+            {t.wizard.subtitle}
           </p>
         </div>
 
@@ -108,12 +124,12 @@ export const ProjectWizard: React.FC = () => {
           {!submittedSuccess && (
             <div className="mb-10">
               <div className="flex items-center justify-between text-xs font-mono mb-3">
-                <span className="text-cyan-400 font-bold">ADIM {step} / 4</span>
+                <span className="text-cyan-400 font-bold">{t.wizard.step} {step} / 4</span>
                 <span className="text-gray-400">
-                  {step === 1 && 'Proje Türü Seçimi'}
-                  {step === 2 && 'Öncelikler & Hedefler'}
-                  {step === 3 && 'Zaman Çizelgesi'}
-                  {step === 4 && 'İletişim & Proje Detayları'}
+                  {step === 1 && (language === 'EN' ? 'Project Type Selection' : 'Proje Türü Seçimi')}
+                  {step === 2 && (language === 'EN' ? 'Priorities & Goals' : 'Öncelikler & Hedefler')}
+                  {step === 3 && (language === 'EN' ? 'Delivery Timeline' : 'Zaman Çizelgesi')}
+                  {step === 4 && (language === 'EN' ? 'Contact & Project Details' : 'İletişim & Proje Detayları')}
                 </span>
               </div>
               <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden p-0.5 border border-white/10">
@@ -137,11 +153,12 @@ export const ProjectWizard: React.FC = () => {
                   <CheckCircle2 size={40} />
                 </div>
                 <h3 className="text-3xl font-extrabold text-white">
-                  Proje Talebiniz Başarıyla Alındı!
+                  {t.wizard.successTitle}
                 </h3>
                 <p className="text-gray-300 max-w-lg mx-auto text-sm leading-relaxed font-light">
-                  Teşekkürler <strong className="text-cyan-400 font-semibold">{clientName}</strong>! Proje detaylarınız tarafıma ulaştı. 
-                  En geç <strong className="text-emerald-400 font-semibold">24 saat içerisinde</strong> sizinle e-posta veya telefon üzerinden iletişime geçeceğim.
+                  {language === 'EN'
+                    ? `Thank you ${clientName}! Your project request has been delivered. I will reach out to you via email or phone within 24 hours.`
+                    : `Teşekkürler ${clientName}! Proje detaylarınız tarafıma ulaştı. En geç 24 saat içerisinde sizinle e-posta veya telefon üzerinden iletişime geçeceğim.`}
                 </p>
                 <button
                   onClick={() => {
@@ -150,7 +167,7 @@ export const ProjectWizard: React.FC = () => {
                   }}
                   className="px-8 py-3 rounded-xl glass-panel text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/10 text-xs font-mono font-bold transition-all"
                 >
-                  Yeni Teklif Oluştur
+                  {t.wizard.newProposal}
                 </button>
               </motion.div>
             ) : (
@@ -165,7 +182,9 @@ export const ProjectWizard: React.FC = () => {
                     exit={{ opacity: 0, x: -20 }}
                     className="space-y-6"
                   >
-                    <h3 className="text-xl font-bold text-white mb-2">1. Nasıl bir yazılım projesi yaptırmak istiyorsunuz?</h3>
+                    <h3 className="text-xl font-bold text-white mb-2">
+                      {language === 'EN' ? '1. What type of software project do you need?' : '1. Nasıl bir yazılım projesi yaptırmak istiyorsunuz?'}
+                    </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {projectTypes.map((pt) => {
                         const Icon = pt.icon;
@@ -205,7 +224,9 @@ export const ProjectWizard: React.FC = () => {
                     exit={{ opacity: 0, x: -20 }}
                     className="space-y-6"
                   >
-                    <h3 className="text-xl font-bold text-white mb-2">2. Projenizdeki en önemli teknik öncelik nedir?</h3>
+                    <h3 className="text-xl font-bold text-white mb-2">
+                      {language === 'EN' ? '2. What is the top technical priority for your project?' : '2. Projenizdeki en önemli teknik öncelik nedir?'}
+                    </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {priorities.map((pr) => {
                         const Icon = pr.icon;
@@ -242,7 +263,9 @@ export const ProjectWizard: React.FC = () => {
                     exit={{ opacity: 0, x: -20 }}
                     className="space-y-6"
                   >
-                    <h3 className="text-xl font-bold text-white mb-2">3. Projenin tahmini teslim süresi beklentiniz nedir?</h3>
+                    <h3 className="text-xl font-bold text-white mb-2">
+                      {language === 'EN' ? '3. What is your estimated delivery timeline expectation?' : '3. Projenin tahmini teslim süresi beklentiniz nedir?'}
+                    </h3>
                     <div className="space-y-3">
                       {timelines.map((tm) => {
                         const isSelected = timeline === tm.label;
@@ -281,12 +304,16 @@ export const ProjectWizard: React.FC = () => {
                     exit={{ opacity: 0, x: -20 }}
                     className="space-y-6"
                   >
-                    <h3 className="text-xl font-bold text-white mb-2">4. Sizinle iletişime geçebilmemiz için bilgilerinizi giriniz:</h3>
+                    <h3 className="text-xl font-bold text-white mb-2">
+                      {language === 'EN' ? '4. Please enter your contact information so I can reach you:' : '4. Sizinle iletişime geçebilmemiz için bilgilerinizi giriniz:'}
+                    </h3>
                     
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-xs font-mono text-gray-300 mb-1">Adınız Soyadınız *</label>
+                          <label className="block text-xs font-mono text-gray-300 mb-1">
+                            {language === 'EN' ? 'Full Name *' : 'Adınız Soyadınız *'}
+                          </label>
                           <input
                             type="text"
                             required
@@ -297,7 +324,9 @@ export const ProjectWizard: React.FC = () => {
                           />
                         </div>
                         <div>
-                          <label className="block text-xs font-mono text-gray-300 mb-1">E-posta Adresiniz *</label>
+                          <label className="block text-xs font-mono text-gray-300 mb-1">
+                            {language === 'EN' ? 'Email Address *' : 'E-posta Adresiniz *'}
+                          </label>
                           <input
                             type="email"
                             required
@@ -311,7 +340,9 @@ export const ProjectWizard: React.FC = () => {
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-xs font-mono text-gray-300 mb-1">Telefon / WhatsApp (İsteğe Bağlı)</label>
+                          <label className="block text-xs font-mono text-gray-300 mb-1">
+                            {language === 'EN' ? 'Phone / WhatsApp (Optional)' : 'Telefon / WhatsApp (İsteğe Bağlı)'}
+                          </label>
                           <input
                             type="tel"
                             value={clientPhone}
@@ -321,7 +352,9 @@ export const ProjectWizard: React.FC = () => {
                           />
                         </div>
                         <div>
-                          <label className="block text-xs font-mono text-gray-300 mb-1">Seçilen Proje Özeti</label>
+                          <label className="block text-xs font-mono text-gray-300 mb-1">
+                            {language === 'EN' ? 'Selected Scope Summary' : 'Seçilen Proje Özeti'}
+                          </label>
                           <div className="px-4 py-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono">
                             {projectType} • {priority}
                           </div>
@@ -329,12 +362,14 @@ export const ProjectWizard: React.FC = () => {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-mono text-gray-300 mb-1">Proje Notlarınız veya Özel İstekleriniz</label>
+                        <label className="block text-xs font-mono text-gray-300 mb-1">
+                          {language === 'EN' ? 'Project Notes / Special Requirements' : 'Proje Notlarınız veya Özel İstekleriniz'}
+                        </label>
                         <textarea
                           rows={3}
                           value={projectNotes}
                           onChange={(e) => setProjectNotes(e.target.value)}
-                          placeholder="Projeniz hakkında kısa bir açıklama yazabilirsiniz..."
+                          placeholder={language === 'EN' ? "Write a short summary of your project..." : "Projeniz hakkında kısa bir açıklama yazabilirsiniz..."}
                           className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-500 focus:outline-none text-white text-sm resize-none"
                         ></textarea>
                       </div>
@@ -350,10 +385,10 @@ export const ProjectWizard: React.FC = () => {
                         disabled={loading}
                         className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-bold text-sm shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.01] transition-all flex items-center justify-center gap-2"
                       >
-                        {loading ? 'Gönderiliyor...' : (
+                        {loading ? t.wizard.submitting : (
                           <>
                             <Send size={18} />
-                            <span>Proje & İş Birliği Talebini Gönder</span>
+                            <span>{t.wizard.submit}</span>
                           </>
                         )}
                       </button>
@@ -371,7 +406,7 @@ export const ProjectWizard: React.FC = () => {
                       className="px-5 py-2.5 rounded-xl glass-panel text-gray-300 hover:text-white border border-white/10 text-xs font-mono flex items-center gap-2 transition-all"
                     >
                       <ArrowLeft size={14} />
-                      <span>Geri</span>
+                      <span>{t.wizard.prev}</span>
                     </button>
                   ) : <div></div>}
 
@@ -381,7 +416,7 @@ export const ProjectWizard: React.FC = () => {
                       onClick={() => setStep(prev => prev + 1)}
                       className="px-7 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-bold text-xs font-mono flex items-center gap-2 shadow-lg shadow-cyan-500/20 hover:scale-105 transition-all"
                     >
-                      <span>Devam Et</span>
+                      <span>{t.wizard.next}</span>
                       <ArrowRight size={14} />
                     </button>
                   )}

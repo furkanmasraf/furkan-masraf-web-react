@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, Code2, Server, FolderGit2, Award, Mail, Cpu, Sparkles, Menu, X } from 'lucide-react';
 import { Logo } from './Logo';
+import { useLanguage } from '../context/LanguageContext';
+import { LanguageToggle } from './LanguageToggle';
 
 interface NavbarProps {
   onOpenTerminal: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
+  const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [isBackendLive, setIsBackendLive] = useState<boolean | null>(null);
@@ -63,14 +66,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
   };
 
   const navLinks = [
-    { id: 'hero', label: 'Ana Sayfa', icon: Cpu },
-    { id: 'about', label: 'Hakkımda', icon: Code2 },
-    { id: 'experience', label: 'Deneyim', icon: Server },
-    { id: 'projects', label: 'Projeler', icon: FolderGit2 },
-    { id: 'skills', label: 'Yetenekler', icon: Code2 },
-    { id: 'certificates', label: 'Sertifikalar', icon: Award },
-    { id: 'wizard', label: 'İş Birliği', icon: Sparkles },
-    { id: 'contact', label: 'İletişim', icon: Mail },
+    { id: 'hero', label: t.nav.home, icon: Cpu },
+    { id: 'about', label: t.nav.about, icon: Code2 },
+    { id: 'experience', label: t.nav.experience, icon: Server },
+    { id: 'projects', label: t.nav.projects, icon: FolderGit2 },
+    { id: 'skills', label: t.nav.skills, icon: Code2 },
+    { id: 'certificates', label: t.nav.certificates, icon: Award },
+    { id: 'wizard', label: t.nav.wizard, icon: Sparkles },
+    { id: 'contact', label: t.nav.contact, icon: Mail },
   ];
 
   return (
@@ -111,16 +114,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
 
         {/* Compact Navigation Links for Medium/Large Screens (lg breakpoint) */}
         <nav className="hidden lg:flex xl:hidden items-center gap-1 glass-panel px-2.5 py-1 rounded-full border border-white/10 shrink-0">
-          {[
-            { id: 'hero', label: 'Ana Sayfa' },
-            { id: 'about', label: 'Hakkımda' },
-            { id: 'experience', label: 'Deneyim' },
-            { id: 'projects', label: 'Projeler' },
-            { id: 'skills', label: 'Yetenekler' },
-            { id: 'certificates', label: 'Sertifikalar' },
-            { id: 'wizard', label: 'İş Birliği' },
-            { id: 'contact', label: 'İletişim' }
-          ].map((link) => {
+          {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <a
@@ -153,17 +147,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
               }`}></span>
             </span>
             <span className={isBackendLive ? 'text-emerald-400 font-semibold' : 'text-amber-400 font-semibold'}>
-              {isBackendLive === null ? 'SPRING API...' : isBackendLive ? 'SPRING REST LIVE' : 'OFFLINE MODE'}
+              {isBackendLive === null ? 'SPRING API...' : isBackendLive ? t.nav.backendLive : t.nav.backendOffline}
             </span>
           </div>
 
+          {/* TR / EN Language Toggle Button */}
+          <LanguageToggle />
 
-
-          {/* Dev Terminal CLI Button - Prominently Highlighted */}
+          {/* Dev Terminal CLI Button */}
           <button
             onClick={onOpenTerminal}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-cyan-500/20 border border-cyan-400/60 text-cyan-300 hover:bg-cyan-500/30 hover:border-cyan-300 text-xs font-mono transition-all shadow-md shadow-cyan-500/20 group whitespace-nowrap"
-            title="Geliştirici Terminalini Aç (Ctrl + K)"
+            title={t.nav.cli}
           >
             <Terminal size={14} className="text-cyan-400 group-hover:rotate-12 transition-transform" />
             <span className="font-bold">&gt;_ CLI</span>
@@ -225,14 +220,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-500 text-white font-bold text-xs font-mono shadow-lg shadow-cyan-500/20"
                 >
                   <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-                  <span>Proje & İş Birliği Başlatın</span>
+                  <span>{t.nav.wizard}</span>
                 </a>
 
                 <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-mono">
-                  <span className="text-gray-400">Spring API Durumu:</span>
+                  <span className="text-gray-400">API Status:</span>
                   <span className={`flex items-center gap-1.5 ${isBackendLive ? 'text-emerald-400 font-semibold' : 'text-amber-400 font-semibold'}`}>
                     <span className={`w-2 h-2 rounded-full ${isBackendLive ? 'bg-emerald-400 animate-ping' : 'bg-amber-400 animate-ping'}`}></span>
-                    {isBackendLive === null ? 'SPRING API...' : isBackendLive ? 'SPRING REST LIVE' : 'OFFLINE MODE'}
+                    {isBackendLive === null ? 'SPRING API...' : isBackendLive ? t.nav.backendLive : t.nav.backendOffline}
                   </span>
                 </div>
               </div>

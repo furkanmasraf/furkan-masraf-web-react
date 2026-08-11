@@ -1,9 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Zap, Layers, RefreshCw, Box, GraduationCap, Globe, Server, Clock } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export const AboutSection: React.FC = () => {
-  const principles = [
+  const { t, language } = useLanguage();
+
+  const principlesTR = [
     {
       icon: RefreshCw,
       title: "Retry & Hata Toleransı",
@@ -62,6 +65,67 @@ export const AboutSection: React.FC = () => {
     }
   ];
 
+  const principlesEN = [
+    {
+      icon: RefreshCw,
+      title: "Retry & Fault Tolerance",
+      description: "Engineering Resilience4j Retry patterns against remote API downtime to construct highly available fault-tolerant microservices.",
+      gradient: "from-cyan-500 to-blue-500",
+      badge: "FAULT TOLERANT"
+    },
+    {
+      icon: Shield,
+      title: "Type Safety & Exception Shield",
+      description: "Enforcing type-safe Enums and @ControllerAdvice to intercept runtime validation errors and output standard JSON response models.",
+      gradient: "from-emerald-500 to-teal-500",
+      badge: "TYPE SAFETY"
+    },
+    {
+      icon: Layers,
+      title: "Aspect-Oriented Programming (AOP)",
+      description: "Architecting non-intrusive logging, security, and execution monitoring aspects that operate outside core business domain logic.",
+      gradient: "from-purple-500 to-indigo-500",
+      badge: "MODULAR AOP"
+    },
+    {
+      icon: Zap,
+      title: "Redis Caching & Latency Opt.",
+      description: "Minimizing database bottleneck overhead on frequently accessed endpoints via Redis in-memory caching to achieve sub-second response times.",
+      gradient: "from-amber-500 to-orange-500",
+      badge: "PERFORMANCE"
+    },
+    {
+      icon: Box,
+      title: "Docker Containerization",
+      description: "Containerizing PostgreSQL, Redis, and backend microservices via Docker Compose for seamless, single-command environment setups.",
+      gradient: "from-blue-500 to-cyan-500",
+      badge: "CONTAINER"
+    },
+    {
+      icon: Server,
+      title: "Secure Spring Boot & Relational DB",
+      description: "Designing JWT-secured RESTful APIs with RBAC and normalized relational schemas across PostgreSQL & MS SQL Server.",
+      gradient: "from-teal-500 to-emerald-500",
+      badge: "SECURE API"
+    },
+    {
+      icon: Globe,
+      title: "Integrated Web & Mobile Apps",
+      description: "Building responsive React frontend applications alongside high-throughput mobile application API integrations.",
+      gradient: "from-indigo-500 to-cyan-500",
+      badge: "FULL-STACK"
+    },
+    {
+      icon: Clock,
+      title: "On-Time Delivery & Agile Demos",
+      description: "Iterating through sprint cycles with Agile/Scrum practices and providing transparent live demos for client alignment.",
+      gradient: "from-rose-500 to-amber-500",
+      badge: "AGILE METHODOLOGY"
+    }
+  ];
+
+  const principles = language === 'EN' ? principlesEN : principlesTR;
+
   return (
     <section id="about" className="py-24 relative overflow-hidden bg-grid-pattern">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -70,13 +134,13 @@ export const AboutSection: React.FC = () => {
         <div className="text-center space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-panel border border-cyan-500/30 text-cyan-400 text-xs font-mono">
             <GraduationCap size={14} />
-            <span>HAKKIMDA & MÜHENDİSLİK VİZYONU</span>
+            <span>{t.about.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Hakkımda & <span className="text-gradient-cyan">Mühendislik İlkelerim</span>
+            {t.about.title}
           </h2>
           <p className="text-gray-400 max-w-3xl mx-auto text-sm sm:text-base font-light leading-relaxed">
-            Üsküdar Üniversitesi Bilgisayar Mühendisliği mezuniyet sürecimde kurumsal bankacılık ve teknoloji stajlarında edindiğim pratik tecrübeler, yazılım standartlarım ve mühendislik yaklaşımım:
+            {t.about.subtitle}
           </p>
         </div>
 
@@ -92,21 +156,21 @@ export const AboutSection: React.FC = () => {
             <div className="space-y-2 max-w-2xl">
               <div className="flex items-center gap-2 text-emerald-400 text-xs font-mono font-semibold">
                 <GraduationCap size={18} />
-                <span>AKADEMİK GEÇMİŞ & EĞİTİM</span>
+                <span>{t.about.academicBadge}</span>
               </div>
-              <h3 className="text-2xl font-extrabold text-white">Üsküdar Üniversitesi</h3>
-              <p className="text-emerald-300 font-semibold text-base">Bilgisayar Mühendisliği (Lisans)</p>
+              <h3 className="text-2xl font-extrabold text-white">{t.about.university}</h3>
+              <p className="text-emerald-300 font-semibold text-base">{t.about.degree}</p>
               <p className="text-gray-300 text-sm leading-relaxed font-light">
-                Veri yapıları, algoritma analizi, nesne yönelimli programlama, veritabanı sistemleri ve dağıtık yazılım mimarileri üzerine mühendislik eğitimi.
+                {t.about.degreeDesc}
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row md:flex-col items-start md:items-end gap-2 shrink-0 border-t md:border-t-0 md:border-l border-white/10 pt-4 md:pt-0 md:pl-6 w-full md:w-auto">
               <span className="px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-mono text-xs font-semibold">
-                09/2020 – 02/2026 | İstanbul
+                09/2020 – 02/2026 | {language === 'EN' ? 'Istanbul, Turkey' : 'İstanbul'}
               </span>
               <span className="text-xs text-gray-400 font-mono">
-                Lise: Tuğrul Bey Anadolu Lisesi (2015 – 2019)
+                {t.about.highSchool}
               </span>
             </div>
           </motion.div>

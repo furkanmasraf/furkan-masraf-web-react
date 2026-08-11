@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Experience } from '../types';
 import { Briefcase, Calendar, MapPin, ChevronRight, Server, ChevronDown, Eye, EyeOff } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface ExperienceSectionProps {
   experiences: Experience[];
 }
 
 export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experiences }) => {
+  const { t } = useLanguage();
   // Track open/collapsed state for each card (Default all collapsed)
   const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>({});
 
@@ -40,13 +42,13 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience
         <div className="text-center space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-panel border border-cyan-500/30 text-cyan-400 text-xs font-mono">
             <Briefcase size={14} />
-            <span>KURUMSAL TECRÜBE VE STAJLAR</span>
+            <span>{t.experience.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            İş ve Staj <span className="text-gradient-cyan">Deneyimlerim</span>
+            {t.experience.title}
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base font-light">
-            Türkiye'nin önde gelen teknoloji ve bankacılık kurumlarında edindiğim pratik saha tecrübeleri:
+            {t.experience.subtitle}
           </p>
 
           {/* Quick Expand / Collapse Global Toggle */}
@@ -56,7 +58,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-cyan-500/40 text-cyan-400 hover:text-cyan-300 text-xs font-mono transition-all shadow-sm"
             >
               {isAllExpanded ? <EyeOff size={14} /> : <Eye size={14} />}
-              <span>{isAllExpanded ? 'Tüm Detayları Daralt' : 'Tüm Detayları Genişlet'}</span>
+              <span>{isAllExpanded ? t.experience.collapseAll : t.experience.expandAll}</span>
             </button>
           </div>
         </div>

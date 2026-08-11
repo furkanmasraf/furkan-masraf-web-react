@@ -2,12 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import type { Certificate } from '../types';
 import { Award, Calendar, ShieldCheck } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface CertificatesSectionProps {
   certificates: Certificate[];
 }
 
 export const CertificatesSection: React.FC<CertificatesSectionProps> = ({ certificates }) => {
+  const { t } = useLanguage();
+
   return (
     <section id="certificates" className="py-24 relative overflow-hidden bg-grid-pattern">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -16,13 +19,13 @@ export const CertificatesSection: React.FC<CertificatesSectionProps> = ({ certif
         <div className="text-center space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-panel border border-cyan-500/30 text-cyan-400 text-xs font-mono">
             <Award size={14} />
-            <span>AKREDİTE SERTİFİKALAR VE EĞİTİMLER</span>
+            <span>{t.certificates.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Sertifika & <span className="text-gradient-cyan">Başarı Rozetleri</span>
+            {t.certificates.title}
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base font-light">
-            Sürekli öğrenme tutkum doğrultusunda tamamladığım profesyonel akademi ve kurumsal programlar:
+            {t.certificates.subtitle}
           </p>
         </div>
 
@@ -67,7 +70,7 @@ export const CertificatesSection: React.FC<CertificatesSectionProps> = ({ certif
               <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-emerald-400">
                 <span className="flex items-center gap-1">
                   <ShieldCheck size={14} />
-                  <span>ONAYLI SERTİFİKA</span>
+                  <span>{t.certificates.verified}</span>
                 </span>
                 <span className="text-gray-400 px-2 py-0.5 rounded bg-white/5">
                   #{cert.badgeCategory}

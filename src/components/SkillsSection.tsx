@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Skill } from '../types';
 import { Code2, Server, Database, Box, CheckCircle, Layout, MousePointerClick } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface SkillsSectionProps {
   skills: Skill[];
 }
 
 export const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
+  const { t, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const categories = [
     { id: 'Backend', label: 'Backend', icon: Server, count: skills.filter(s => s.category.toLowerCase() === 'backend').length },
-    { id: 'Database', label: 'Veritabanı', icon: Database, count: skills.filter(s => s.category.toLowerCase() === 'database').length },
+    { id: 'Database', label: language === 'EN' ? 'Database' : 'Veritabanı', icon: Database, count: skills.filter(s => s.category.toLowerCase() === 'database').length },
     { id: 'DevOps', label: 'DevOps & Docker', icon: Box, count: skills.filter(s => s.category.toLowerCase() === 'devops').length },
     { id: 'Testing', label: 'Test & QA', icon: CheckCircle, count: skills.filter(s => s.category.toLowerCase() === 'testing').length },
     { id: 'Frontend', label: 'Frontend', icon: Layout, count: skills.filter(s => s.category.toLowerCase() === 'frontend').length },
@@ -26,13 +28,11 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
 
   const filteredSkills = selectedCategory === null
     ? []
-    : selectedCategory === 'Hepsi'
-    ? validSkills
     : validSkills.filter(s => s.category.toLowerCase() === selectedCategory.toLowerCase());
 
   const handleCategoryClick = (catId: string) => {
     if (selectedCategory === catId) {
-      setSelectedCategory(null); // Collapse if clicking active
+      setSelectedCategory(null);
     } else {
       setSelectedCategory(catId);
     }
@@ -46,13 +46,13 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
         <div className="text-center space-y-4 mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-panel border border-cyan-500/30 text-cyan-400 text-xs font-mono">
             <Code2 size={14} />
-            <span>TEKNİK YETKİNLİKLER</span>
+            <span>{t.skills.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Teknoloji & <span className="text-gradient-cyan">Uzmanlık Haritası</span>
+            {t.skills.title}
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base font-light">
-            Uzmanlaştığım teknoloji ve araçları listelemek için aşağıdaki kategorilerden birine tıklayın:
+            {t.skills.subtitle}
           </p>
         </div>
 
@@ -95,7 +95,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
             >
               <MousePointerClick size={28} className="mx-auto text-cyan-400 animate-bounce" />
               <p className="text-gray-300 text-sm font-mono font-medium">
-                Teknoloji stack'ini ve detayları görmek için yukarıdaki bir kategoriye tıklayın.
+                {t.skills.hint}
               </p>
             </motion.div>
           ) : (

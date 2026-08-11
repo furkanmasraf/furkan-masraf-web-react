@@ -4,12 +4,14 @@ import type { ProfileInfo, ContactFormData } from '../types';
 import { sendContactMessage, sanitizeLinkedinUrl } from '../services/api';
 import { Mail, Send, CheckCircle2, AlertCircle, Copy, Check } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
+import { useLanguage } from '../context/LanguageContext';
 
 interface ContactSectionProps {
   profile: ProfileInfo;
 }
 
 export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
+  const { t, language } = useLanguage();
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -30,10 +32,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
     setLoading(false);
 
     if (res.success) {
-      setStatusMessage({ type: 'success', text: res.message });
+      setStatusMessage({ type: 'success', text: t.contact.successToast });
       setFormData({ name: '', email: '', subject: '', message: '' });
 
-      // Trigger Confetti Celebration!
       try {
         confetti({
           particleCount: 80,
@@ -44,7 +45,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
         // ignore
       }
     } else {
-      setStatusMessage({ type: 'error', text: res.message });
+      setStatusMessage({ type: 'error', text: t.contact.errorToast });
     }
   };
 
@@ -62,13 +63,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
         <div className="text-center space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-panel border border-cyan-500/30 text-cyan-400 text-xs font-mono">
             <Mail size={14} />
-            <span>İLETİŞİM VE PROJE GÖRÜŞMELERİ</span>
+            <span>{t.contact.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Benimle <span className="text-gradient-cyan">İletişime Geçin</span>
+            {t.contact.title}
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base font-light">
-            Yeni projeler, backend iş fırsatları veya teknik sohbetler için doğrudan mesaj bırakabilirsiniz:
+            {t.contact.subtitle}
           </p>
         </div>
 
@@ -84,14 +85,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
                   <Mail size={22} />
                 </div>
                 <div>
-                  <span className="block text-xs font-mono text-gray-400">E-POSTA ADRESİ</span>
+                  <span className="block text-xs font-mono text-gray-400">{t.contact.emailTitle}</span>
                   <span className="text-white font-semibold text-sm sm:text-base font-mono">{profile.email}</span>
                 </div>
               </div>
               <button
                 onClick={() => copyToClipboard(profile.email, 'email')}
                 className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
-                title="Kopyala"
+                title="Copy"
               >
                 {copiedField === 'email' ? <Check size={16} className="text-emerald-400" /> : <Copy size={16} />}
               </button>
@@ -100,7 +101,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
             {/* Social Accounts Quick Links */}
             <div className="glass-panel p-6 rounded-2xl border border-white/10 space-y-4">
               <span className="block text-xs font-mono text-cyan-400 font-semibold tracking-wider uppercase">
-                SOSYAL MEDYA & PLATFORMLAR
+                {t.contact.socialsTitle}
               </span>
 
               <div className="grid grid-cols-2 gap-3">
@@ -135,20 +136,20 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {/* Name Input */}
                 <div className="space-y-1.5">
-                  <label className="block text-xs font-mono text-gray-300 font-medium">Adınız Soyadınız *</label>
+                  <label className="block text-xs font-mono text-gray-300 font-medium">{t.contact.nameLabel}</label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Örn: Furkan Masraf"
+                    placeholder={language === 'EN' ? "e.g. Furkan Masraf" : "Örn: Furkan Masraf"}
                     className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-500 focus:outline-none text-white text-sm placeholder-gray-500 font-light transition-all"
                   />
                 </div>
 
                 {/* Email Input */}
                 <div className="space-y-1.5">
-                  <label className="block text-xs font-mono text-gray-300 font-medium">E-posta Adresiniz *</label>
+                  <label className="block text-xs font-mono text-gray-300 font-medium">{t.contact.emailLabel}</label>
                   <input
                     type="email"
                     required
@@ -162,26 +163,26 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
 
               {/* Subject Input */}
               <div className="space-y-1.5">
-                <label className="block text-xs font-mono text-gray-300 font-medium">Konu Başlığı *</label>
+                <label className="block text-xs font-mono text-gray-300 font-medium">{t.contact.subjectLabel}</label>
                 <input
                   type="text"
                   required
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  placeholder="İş Fırsatı / Proje İş Birliği Hakkında"
+                  placeholder={language === 'EN' ? "Job Opportunity / Project Collaboration" : "İş Fırsatı / Proje İş Birliği Hakkında"}
                   className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-500 focus:outline-none text-white text-sm placeholder-gray-500 font-light transition-all"
                 />
               </div>
 
               {/* Message Input */}
               <div className="space-y-1.5">
-                <label className="block text-xs font-mono text-gray-300 font-medium">Mesajınız *</label>
+                <label className="block text-xs font-mono text-gray-300 font-medium">{t.contact.messageLabel}</label>
                 <textarea
                   required
                   rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Detaylı mesajınızı buraya yazabilirsiniz..."
+                  placeholder={language === 'EN' ? "Write your message here..." : "Mesajınızı yazabilirsiniz..."}
                   className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-500 focus:outline-none text-white text-sm placeholder-gray-500 font-light transition-all resize-none"
                 ></textarea>
               </div>
@@ -205,11 +206,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
                 className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-bold text-sm shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 {loading ? (
-                  <span>Gönderiliyor...</span>
+                  <span>{t.contact.sendingBtn}</span>
                 ) : (
                   <>
                     <Send size={18} />
-                    <span>Mesajını İlet</span>
+                    <span>{t.contact.sendBtn}</span>
                   </>
                 )}
               </button>
