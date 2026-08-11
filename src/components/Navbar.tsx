@@ -79,18 +79,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       scrolled 
-        ? 'py-2.5 glass-panel border-b border-white/10 shadow-2xl backdrop-blur-xl bg-slate-950/85' 
-        : 'py-3.5 bg-slate-950/40 backdrop-blur-md border-b border-white/5'
+        ? 'py-2 glass-panel border-b border-white/10 shadow-2xl backdrop-blur-xl bg-slate-950/90' 
+        : 'py-3 bg-slate-950/50 backdrop-blur-md border-b border-white/5'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-2">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-1 sm:gap-2">
         
         {/* Brand Logo */}
         <a href="#hero" onClick={(e) => handleNavClick(e, 'hero')} className="focus:outline-none shrink-0">
-          <Logo size={36} />
+          <Logo size={34} />
         </a>
 
-        {/* Desktop Full Navigation Links (xl breakpoint and above) */}
-        <nav className="hidden xl:flex items-center gap-1 glass-panel px-3 py-1 rounded-full border border-white/10 shrink-0">
+        {/* 2XL Screens: Ultra Full Desktop Navigation */}
+        <nav className="hidden 2xl:flex items-center gap-1 glass-panel px-3 py-1 rounded-full border border-white/10 shrink-0">
           {navLinks.map((link) => {
             const Icon = link.icon;
             const isActive = activeSection === link.id;
@@ -112,8 +112,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
           })}
         </nav>
 
-        {/* Compact Navigation Links for Medium/Large Screens (lg breakpoint) */}
-        <nav className="hidden lg:flex xl:hidden items-center gap-1 glass-panel px-2.5 py-1 rounded-full border border-white/10 shrink-0">
+        {/* XL Screens: Standard Desktop Navigation */}
+        <nav className="hidden xl:flex 2xl:hidden items-center gap-0.5 glass-panel px-2 py-1 rounded-full border border-white/10 shrink-0">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -121,9 +121,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
                 key={link.id}
                 href={`#${link.id}`}
                 onClick={(e) => handleNavClick(e, link.id)}
-                className={`px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
+                className={`px-2 py-1 rounded-full text-[11px] font-medium whitespace-nowrap transition-all ${
                   isActive
-                    ? 'bg-gradient-to-r from-cyan-500 to-emerald-500 text-white shadow-md shadow-cyan-500/20'
+                    ? 'bg-gradient-to-r from-cyan-500 to-emerald-500 text-white shadow-sm'
                     : 'text-gray-400 hover:text-white hover:bg-white/5'
                 }`}
               >
@@ -133,8 +133,29 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
           })}
         </nav>
 
-        {/* Right Status Pill & Buttons */}
-        <div className="flex items-center gap-2 shrink-0">
+        {/* LG Screens: Compact Navigation */}
+        <nav className="hidden lg:flex xl:hidden items-center gap-0.5 glass-panel px-1.5 py-0.5 rounded-full border border-white/10 shrink-0">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
+            return (
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                onClick={(e) => handleNavClick(e, link.id)}
+                className={`px-1.5 py-0.5 rounded-full text-[10px] font-medium whitespace-nowrap transition-all ${
+                  isActive
+                    ? 'bg-gradient-to-r from-cyan-500 to-emerald-500 text-white shadow-sm'
+                    : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                <span>{link.label}</span>
+              </a>
+            );
+          })}
+        </nav>
+
+        {/* Right Status Pill & Control Buttons */}
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           
           {/* Spring Boot API Live Indicator */}
           <div className="hidden 2xl:flex items-center gap-2 px-3 py-1 rounded-full glass-panel border border-white/10 text-[11px] font-mono whitespace-nowrap">
@@ -157,12 +178,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
           {/* Dev Terminal CLI Button */}
           <button
             onClick={onOpenTerminal}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-cyan-500/20 border border-cyan-400/60 text-cyan-300 hover:bg-cyan-500/30 hover:border-cyan-300 text-xs font-mono transition-all shadow-md shadow-cyan-500/20 group whitespace-nowrap"
+            className="flex items-center gap-1 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-cyan-500/20 border border-cyan-400/60 text-cyan-300 hover:bg-cyan-500/30 hover:border-cyan-300 text-xs font-mono transition-all shadow-md shadow-cyan-500/20 group whitespace-nowrap shrink-0"
             title={t.nav.cli}
           >
-            <Terminal size={14} className="text-cyan-400 group-hover:rotate-12 transition-transform" />
+            <Terminal size={13} className="text-cyan-400 group-hover:rotate-12 transition-transform" />
             <span className="font-bold">&gt;_ CLI</span>
-            <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] bg-black/50 text-cyan-200 rounded border border-cyan-500/30 ml-0.5">
+            <kbd className="hidden sm:inline-block px-1 py-0.5 text-[9px] bg-black/50 text-cyan-200 rounded border border-cyan-500/30 ml-0.5">
               Ctrl+K
             </kbd>
           </button>
@@ -170,10 +191,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
           {/* Mobile Hamburger Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
-            aria-label="Menüyü Aç/Kapat"
+            className="lg:hidden p-1.5 sm:p-2 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+            aria-label="Toggle Menu"
           >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
 
         </div>
@@ -217,7 +238,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
                 <a
                   href="#wizard"
                   onClick={(e) => handleNavClick(e, 'wizard')}
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-500 text-white font-bold text-xs font-mono shadow-lg shadow-cyan-500/20"
+                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-500 text-white font-bold text-xs font-mono shadow-lg shadow-cyan-500/20"
                 >
                   <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
                   <span>{t.nav.wizard}</span>

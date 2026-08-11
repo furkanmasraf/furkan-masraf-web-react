@@ -13,7 +13,7 @@ export const LanguageToggle: React.FC<{ className?: string }> = ({ className = "
 
   return (
     <div 
-      className={`relative inline-flex items-center p-1 rounded-full bg-[#090E1A]/90 border border-cyan-500/40 shadow-lg shadow-cyan-500/15 backdrop-blur-xl select-none ${className}`}
+      className={`relative inline-flex items-center p-0.5 rounded-full bg-[#090E1A]/90 border border-cyan-500/40 shadow-md shadow-cyan-500/10 backdrop-blur-xl select-none ${className}`}
       role="group"
       aria-label="Language Selector"
     >
@@ -25,7 +25,7 @@ export const LanguageToggle: React.FC<{ className?: string }> = ({ className = "
             key={opt.id}
             onClick={() => setLanguage(opt.id)}
             type="button"
-            className={`relative z-10 px-3 py-1 rounded-full text-xs font-mono font-extrabold tracking-wider transition-colors duration-200 focus:outline-none ${
+            className={`relative z-10 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-extrabold tracking-wider transition-colors duration-200 focus:outline-none ${
               isActive ? 'text-white' : 'text-gray-400 hover:text-gray-200'
             }`}
             title={opt.id === 'TR' ? "Türkçe" : "English"}
@@ -34,7 +34,7 @@ export const LanguageToggle: React.FC<{ className?: string }> = ({ className = "
             {isActive && (
               <motion.div
                 layoutId="slidingLangPill"
-                className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-400 shadow-md shadow-cyan-500/30"
+                className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-400 shadow-sm shadow-cyan-500/30"
                 transition={{ type: "spring", stiffness: 450, damping: 30 }}
               />
             )}
