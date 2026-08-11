@@ -191,10 +191,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
           {/* Mobile Collapsible Bar Trigger Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-1.5 sm:p-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 hover:text-white hover:bg-cyan-500/20 transition-all flex items-center gap-1 font-mono text-xs font-bold"
+            className="lg:hidden p-2 rounded-xl bg-cyan-500/20 border border-cyan-400/60 text-cyan-300 hover:text-white hover:bg-cyan-500/30 transition-all flex items-center justify-center shrink-0 shadow-lg shadow-cyan-500/20"
             aria-label="Toggle Navigation Bar"
           >
-            {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+            {mobileMenuOpen ? <X size={20} className="text-cyan-300" /> : <Menu size={20} className="text-cyan-300" />}
           </button>
 
         </div>

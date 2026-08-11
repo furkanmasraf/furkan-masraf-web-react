@@ -8,11 +8,11 @@ interface LogoProps {
 
 export const Logo: React.FC<LogoProps> = ({ size = 42, className = "", showText = true }) => {
   return (
-    <div className={`flex items-center gap-3 group ${className}`}>
+    <div className={`flex items-center gap-2 sm:gap-3 group ${className}`}>
       
       {/* 3D Glowing Hexagon Shield Emblem */}
       <div 
-        className="relative flex items-center justify-center transition-all duration-300 group-hover:scale-105"
+        className="relative flex items-center justify-center transition-all duration-300 group-hover:scale-105 shrink-0"
         style={{ width: size, height: size }}
       >
         {/* Ambient Glow Aura */}
@@ -95,13 +95,13 @@ export const Logo: React.FC<LogoProps> = ({ size = 42, className = "", showText 
         </svg>
       </div>
 
-      {/* Brand Text */}
+      {/* Brand Text - Compact on Mobile */}
       {showText && (
         <div className="flex flex-col">
-          <span className="font-extrabold text-white text-lg tracking-wider group-hover:text-cyan-400 transition-colors leading-tight">
+          <span className="font-extrabold text-white text-sm sm:text-base lg:text-lg tracking-wider group-hover:text-cyan-400 transition-colors leading-tight whitespace-nowrap">
             FURKAN MASRAF
           </span>
-          <span className="text-[10px] text-cyan-400 font-mono tracking-widest uppercase">
+          <span className="hidden sm:block text-[9px] sm:text-[10px] text-cyan-400 font-mono tracking-widest uppercase whitespace-nowrap">
             BACKEND DEVELOPER
           </span>
         </div>
