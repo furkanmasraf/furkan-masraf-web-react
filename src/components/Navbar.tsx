@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, Code2, Server, FolderGit2, Award, Mail, Cpu, Sparkles, Menu, X } from 'lucide-react';
+import { Terminal, Code2, Server, FolderGit2, Award, Mail, Cpu, Sparkles, Menu, X, ChevronRight, ShieldCheck } from 'lucide-react';
 import { Logo } from './Logo';
 import { useLanguage } from '../context/LanguageContext';
 import { LanguageToggle } from './LanguageToggle';
@@ -10,7 +10,7 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [isBackendLive, setIsBackendLive] = useState<boolean | null>(null);
@@ -80,9 +80,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       scrolled 
         ? 'py-2 glass-panel border-b border-white/10 shadow-2xl backdrop-blur-xl bg-slate-950/90' 
-        : 'py-3 bg-slate-950/50 backdrop-blur-md border-b border-white/5'
+        : 'py-2.5 bg-slate-950/60 backdrop-blur-md border-b border-white/5'
     }`}>
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-1 sm:gap-2">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-1.5 sm:gap-2">
         
         {/* Brand Logo */}
         <a href="#hero" onClick={(e) => handleNavClick(e, 'hero')} className="focus:outline-none shrink-0">
@@ -154,7 +154,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
           })}
         </nav>
 
-        {/* Right Status Pill & Control Buttons */}
+        {/* Right Control Group (Live Indicator, Language Switcher, CLI Button, Hamburger Toggle) */}
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           
           {/* Spring Boot API Live Indicator */}
@@ -188,11 +188,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
             </kbd>
           </button>
 
-          {/* Mobile Hamburger Toggle Button */}
+          {/* Mobile Collapsible Bar Trigger Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-1.5 sm:p-2 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
-            aria-label="Toggle Menu"
+            className="lg:hidden p-1.5 sm:p-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 hover:text-white hover:bg-cyan-500/20 transition-all flex items-center gap-1 font-mono text-xs font-bold"
+            aria-label="Toggle Navigation Bar"
           >
             {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -200,18 +200,29 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
         </div>
       </div>
 
-      {/* Mobile & Tablet Drawer Menu */}
+      {/* Ultra Mobile-Friendly Collapsible Drawer / Sheet Bar */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25 }}
-            className="lg:hidden border-b border-white/10 bg-slate-950/95 backdrop-blur-2xl overflow-hidden shadow-2xl"
+            initial={{ opacity: 0, height: 0, y: -10 }}
+            animate={{ opacity: 1, height: 'auto', y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="lg:hidden border-b border-cyan-500/30 bg-slate-950/95 backdrop-blur-2xl overflow-hidden shadow-2xl"
           >
-            <div className="px-4 pt-3 pb-6 space-y-3">
-              <div className="grid grid-cols-2 gap-2 pt-2">
+            {/* Top Sheet Pill Handle */}
+            <div className="w-12 h-1 bg-white/20 rounded-full mx-auto mt-2.5 mb-1"></div>
+
+            <div className="px-4 pt-2 pb-6 space-y-4 max-h-[85vh] overflow-y-auto">
+              
+              {/* Category Header */}
+              <div className="flex items-center justify-between text-[11px] font-mono text-cyan-400 font-bold uppercase tracking-wider px-1">
+                <span>{language === 'EN' ? 'Navigation Menu' : 'Navigasyon Menüsü'}</span>
+                <span className="text-gray-500">8 {language === 'EN' ? 'Sections' : 'Bölüm'}</span>
+              </div>
+
+              {/* Grid 2-Column Touch Navigation Cards */}
+              <div className="grid grid-cols-2 gap-2">
                 {navLinks.map((link) => {
                   const Icon = link.icon;
                   const isActive = activeSection === link.id;
@@ -220,37 +231,59 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
                       key={link.id}
                       href={`#${link.id}`}
                       onClick={(e) => handleNavClick(e, link.id)}
-                      className={`flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs font-medium transition-all ${
+                      className={`flex items-center justify-between px-3 py-3 rounded-xl text-xs font-medium transition-all ${
                         isActive
-                          ? 'bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-bold'
-                          : 'bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white border border-white/5'
+                          ? 'bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-bold shadow-lg shadow-cyan-500/20'
+                          : 'bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white border border-white/5 active:scale-98'
                       }`}
                     >
-                      <Icon size={14} className={isActive ? 'text-white' : 'text-cyan-400'} />
-                      <span>{link.label}</span>
+                      <div className="flex items-center gap-2">
+                        <Icon size={15} className={isActive ? 'text-white' : 'text-cyan-400'} />
+                        <span>{link.label}</span>
+                      </div>
+                      <ChevronRight size={13} className={isActive ? 'text-white' : 'text-gray-500'} />
                     </a>
                   );
                 })}
               </div>
 
-              {/* Mobile CTA & Status Footer inside menu */}
-              <div className="pt-3 border-t border-white/10 flex flex-col gap-2.5">
+              {/* Mobile Action Controls & Proposal Trigger */}
+              <div className="pt-3 border-t border-white/10 space-y-2.5">
+                
+                {/* Start Project CTA Button */}
                 <a
                   href="#wizard"
                   onClick={(e) => handleNavClick(e, 'wizard')}
-                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-500 text-white font-bold text-xs font-mono shadow-lg shadow-cyan-500/20"
+                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-500 text-slate-950 font-extrabold text-xs font-mono shadow-lg shadow-cyan-500/25 active:scale-98 transition-all"
                 >
-                  <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-                  <span>{t.nav.wizard}</span>
+                  <Sparkles size={16} />
+                  <span>{language === 'EN' ? 'Start Project & Collaboration' : 'Proje & İş Birliği Başlatın'}</span>
                 </a>
 
-                <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-mono">
-                  <span className="text-gray-400">API Status:</span>
+                {/* Open CLI Terminal inside Menu */}
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenTerminal();
+                  }}
+                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-cyan-300 font-bold text-xs font-mono transition-all"
+                >
+                  <Terminal size={15} className="text-cyan-400" />
+                  <span>{language === 'EN' ? 'Open Developer CLI Terminal' : 'Geliştirici CLI Terminalini Aç'}</span>
+                </button>
+
+                {/* API Live Status Bar */}
+                <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-white/5 border border-white/5 text-[11px] font-mono">
+                  <span className="text-gray-400 flex items-center gap-1.5">
+                    <ShieldCheck size={14} className="text-cyan-400" />
+                    <span>Spring API Status:</span>
+                  </span>
                   <span className={`flex items-center gap-1.5 ${isBackendLive ? 'text-emerald-400 font-semibold' : 'text-amber-400 font-semibold'}`}>
                     <span className={`w-2 h-2 rounded-full ${isBackendLive ? 'bg-emerald-400 animate-ping' : 'bg-amber-400 animate-ping'}`}></span>
                     {isBackendLive === null ? 'SPRING API...' : isBackendLive ? t.nav.backendLive : t.nav.backendOffline}
                   </span>
                 </div>
+
               </div>
 
             </div>
