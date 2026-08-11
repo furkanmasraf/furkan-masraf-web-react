@@ -175,10 +175,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
           {/* TR / EN Language Toggle Button */}
           <LanguageToggle />
 
-          {/* Dev Terminal CLI Button */}
+          {/* Dev Terminal CLI Button (Hidden on small mobile, accessible via mobile drawer & Ctrl+K) */}
           <button
             onClick={onOpenTerminal}
-            className="flex items-center gap-1 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-cyan-500/20 border border-cyan-400/60 text-cyan-300 hover:bg-cyan-500/30 hover:border-cyan-300 text-xs font-mono transition-all shadow-md shadow-cyan-500/20 group whitespace-nowrap shrink-0"
+            className="hidden sm:flex items-center gap-1 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-cyan-500/20 border border-cyan-400/60 text-cyan-300 hover:bg-cyan-500/30 hover:border-cyan-300 text-xs font-mono transition-all shadow-md shadow-cyan-500/20 group whitespace-nowrap shrink-0"
             title={t.nav.cli}
           >
             <Terminal size={13} className="text-cyan-400 group-hover:rotate-12 transition-transform" />
