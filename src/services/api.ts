@@ -1,6 +1,6 @@
 import type { ProfileInfo, Experience, Project, Skill, Certificate, ContactFormData, ApiResponse } from '../types';
 
-const API_BASE_URL = 'http://localhost:8080/api/v1';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api/v1';
 
 export const CORRECT_LINKEDIN_URL = "https://www.linkedin.com/in/furkan-masraf-20a8681b6/";
 

@@ -39,7 +39,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
 
   // Check Spring Boot API Status
   useEffect(() => {
-    fetch('http://localhost:8080/api/v1/profile', { signal: AbortSignal.timeout(2000) })
+    const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080/api/v1';
+    fetch(`${baseUrl}/profile`, { signal: AbortSignal.timeout(2000) })
       .then(res => setIsBackendLive(res.ok))
       .catch(() => setIsBackendLive(false));
   }, []);
