@@ -16,7 +16,7 @@ export const FALLBACK_PROFILE: ProfileInfo = {
   fullName: "Furkan Masraf",
   title: "Backend & Full-Stack Developer (Java & C# .NET)",
   email: "masraffurkan@gmail.com",
-  phone: "+90 538 472 75 54",
+  phone: "",
   location: "İstanbul, Türkiye",
   linkedinUrl: CORRECT_LINKEDIN_URL,
   githubUrl: "https://github.com/furkanmasraf",

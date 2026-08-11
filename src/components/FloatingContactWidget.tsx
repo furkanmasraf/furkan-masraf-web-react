@@ -1,28 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, Phone, Mail, X, Sparkles, MessageCircle } from 'lucide-react';
+import { MessageSquare, Mail, X, Sparkles } from 'lucide-react';
 import { LinkedinIcon } from './Icons';
 
 export const FloatingContactWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const channels = [
-    {
-      id: 'whatsapp',
-      label: 'WhatsApp Direkt Sohbet',
-      href: 'https://wa.me/905384727554?text=Merhaba%20Furkan%20Bey,%20web/mobil%20yaz%C4%B1l%C4%B1m%20projemiz%20i%C3%A7in%20g%C3%B6r%C3%BC%C5%9Fmek%20istiyoruz.',
-      icon: MessageCircle,
-      color: 'bg-emerald-500 hover:bg-emerald-600 text-white',
-      badge: '+90 538 472 75 54'
-    },
-    {
-      id: 'phone',
-      label: 'Hemen Telefonla Ulaşın',
-      href: 'tel:+905384727554',
-      icon: Phone,
-      color: 'bg-cyan-500 hover:bg-cyan-600 text-white',
-      badge: 'Direkt Arama'
-    },
     {
       id: 'email',
       label: 'E-Posta Gönderin',

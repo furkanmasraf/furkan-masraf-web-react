@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
 import type { ProfileInfo, ContactFormData } from '../types';
 import { sendContactMessage, sanitizeLinkedinUrl } from '../services/api';
-import { Mail, Phone, Send, CheckCircle2, AlertCircle, Copy, Check } from 'lucide-react';
+import { Mail, Send, CheckCircle2, AlertCircle, Copy, Check } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 
 interface ContactSectionProps {
@@ -94,26 +94,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
                 title="Kopyala"
               >
                 {copiedField === 'email' ? <Check size={16} className="text-emerald-400" /> : <Copy size={16} />}
-              </button>
-            </div>
-
-            {/* Phone Card */}
-            <div className="glass-panel p-6 rounded-2xl border border-white/10 hover:border-cyan-500/40 transition-all flex items-center justify-between group">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
-                  <Phone size={22} />
-                </div>
-                <div>
-                  <span className="block text-xs font-mono text-gray-400">TELEFON</span>
-                  <span className="text-white font-semibold text-sm sm:text-base font-mono">{profile.phone}</span>
-                </div>
-              </div>
-              <button
-                onClick={() => copyToClipboard(profile.phone, 'phone')}
-                className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
-                title="Kopyala"
-              >
-                {copiedField === 'phone' ? <Check size={16} className="text-emerald-400" /> : <Copy size={16} />}
               </button>
             </div>
 
