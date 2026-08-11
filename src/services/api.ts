@@ -136,9 +136,11 @@ export const FALLBACK_SKILLS: Skill[] = [
   { id: 7, name: "Aspect-Oriented Programming (AOP)", category: "Backend", proficiencyPercentage: 88, iconName: "layers", highlightText: "Cross-cutting Concerns & Logging" },
   { id: 8, name: "C# / .NET Core", category: "Backend", proficiencyPercentage: 80, iconName: "terminal", highlightText: "Clean Architecture, Linq" },
   { id: 9, name: "PostgreSQL", category: "Database", proficiencyPercentage: 90, iconName: "database", highlightText: "Relational Schema & Performance" },
-  { id: 10, name: "Docker & Docker Compose", category: "DevOps", proficiencyPercentage: 85, iconName: "box", highlightText: "Containerization & Orchestration" },
-  { id: 11, name: "JUnit 5 & Mockito", category: "Testing", proficiencyPercentage: 85, iconName: "check-circle", highlightText: "Unit Testing & Mocking" },
-  { id: 12, name: "React & TypeScript", category: "Frontend", proficiencyPercentage: 80, iconName: "layout", highlightText: "Modern UI, Component State" }
+  { id: 10, name: "Microsoft SQL Server", category: "Database", proficiencyPercentage: 82, iconName: "database", highlightText: "T-SQL & Stored Procedures" },
+  { id: 11, name: "Docker & Docker Compose", category: "DevOps", proficiencyPercentage: 85, iconName: "box", highlightText: "Containerization & Orchestration" },
+  { id: 12, name: "Git / GitHub / Azure DevOps", category: "DevOps", proficiencyPercentage: 90, iconName: "git-branch", highlightText: "Version Control & CI/CD" },
+  { id: 13, name: "JUnit 5 & Mockito", category: "Testing", proficiencyPercentage: 85, iconName: "check-circle", highlightText: "Unit Testing & Mocking" },
+  { id: 14, name: "React & TypeScript", category: "Frontend", proficiencyPercentage: 80, iconName: "layout", highlightText: "Modern UI, Component State" }
 ];
 
 export const FALLBACK_CERTIFICATES: Certificate[] = [
