@@ -21,7 +21,6 @@ import {
 
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { ClientBenefitsSection } from './components/ClientBenefitsSection';
 import { ProjectWizard } from './components/ProjectWizard';
 import { AboutSection } from './components/AboutSection';
 import { ExperienceSection } from './components/ExperienceSection';
@@ -84,13 +83,12 @@ export function App() {
       {/* Main Sections */}
       <main className="flex-1">
         <HeroSection profile={profile} />
-        <ClientBenefitsSection />
-        <ProjectWizard />
         <AboutSection />
         <ExperienceSection experiences={experiences} />
         <ProjectsSection projects={projects} />
         <SkillsSection skills={skills} />
         <CertificatesSection certificates={certificates} />
+        <ProjectWizard />
         <ContactSection profile={profile} />
       </main>
 

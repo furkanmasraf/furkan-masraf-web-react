@@ -17,7 +17,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
 
-      const sections = ['hero', 'about', 'benefits', 'wizard', 'experience', 'projects', 'skills', 'certificates', 'contact'];
+      const sections = ['hero', 'about', 'benefits', 'experience', 'projects', 'skills', 'certificates', 'wizard', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -63,12 +63,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
 
   const navLinks = [
     { id: 'hero', label: 'Ana Sayfa', icon: Cpu },
-    { id: 'wizard', label: 'Proje Başlat', icon: Sparkles },
     { id: 'about', label: 'Hakkımda', icon: Code2 },
     { id: 'experience', label: 'Deneyim', icon: Server },
     { id: 'projects', label: 'Projeler', icon: FolderGit2 },
     { id: 'skills', label: 'Yetenekler', icon: Code2 },
     { id: 'certificates', label: 'Sertifikalar', icon: Award },
+    { id: 'wizard', label: 'İş Birliği', icon: Sparkles },
     { id: 'contact', label: 'İletişim', icon: Mail },
   ];
 
@@ -112,11 +112,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
         <nav className="hidden lg:flex xl:hidden items-center gap-1 glass-panel px-2.5 py-1 rounded-full border border-white/10 shrink-0">
           {[
             { id: 'hero', label: 'Ana Sayfa' },
-            { id: 'wizard', label: 'İş Birliği' },
             { id: 'about', label: 'Hakkımda' },
             { id: 'experience', label: 'Deneyim' },
             { id: 'projects', label: 'Projeler' },
             { id: 'skills', label: 'Yetenekler' },
+            { id: 'certificates', label: 'Sertifikalar' },
+            { id: 'wizard', label: 'İş Birliği' },
             { id: 'contact', label: 'İletişim' }
           ].map((link) => {
             const isActive = activeSection === link.id;
@@ -155,15 +156,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
             </span>
           </div>
 
-          {/* Direct Project Inquiry Header CTA Button */}
-          <a
-            href="#wizard"
-            onClick={(e) => handleNavClick(e, 'wizard')}
-            className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-bold text-xs font-mono shadow-md shadow-cyan-500/20 hover:scale-105 transition-transform whitespace-nowrap"
-          >
-            <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-            <span>İş Birliği Başlat</span>
-          </a>
+
 
           {/* Dev Terminal CLI Button - Prominently Highlighted */}
           <button

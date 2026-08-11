@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Zap, Layers, RefreshCw, Box, GraduationCap } from 'lucide-react';
+import { Shield, Zap, Layers, RefreshCw, Box, GraduationCap, Globe, Server, Clock } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
   const principles = [
@@ -8,31 +8,57 @@ export const AboutSection: React.FC = () => {
       icon: RefreshCw,
       title: "Retry & Hata Toleransı",
       description: "Servisler arası entegrasyonlarda uzak sunucu kesintilerine karşı Resilience4j Retry mekanizmaları kurgulayarak kesintisiz (Fault Tolerant) servis mimarileri inşa ediyorum.",
-      gradient: "from-cyan-500 to-blue-500"
+      gradient: "from-cyan-500 to-blue-500",
+      badge: "FAULT TOLERANT"
     },
     {
       icon: Shield,
       title: "Type Safety & Global Exception Shield",
       description: "Tip güvenli Enum sınıfları ve @ControllerAdvice ile runtime/validasyon hatalarını havada yakalayıp tutarlı ve standart JSON cevap formatları döndürüyorum.",
-      gradient: "from-emerald-500 to-teal-500"
+      gradient: "from-emerald-500 to-teal-500",
+      badge: "TYPE SAFETY"
     },
     {
       icon: Layers,
       title: "Aspect-Oriented Programming (AOP)",
       description: "İş mantığı katmanını (Business Logic) kirletmeden çalışan modüler loglama, güvenlik ve performans takip katmanları tasarlıyorum.",
-      gradient: "from-purple-500 to-indigo-500"
+      gradient: "from-purple-500 to-indigo-500",
+      badge: "MODÜLER AOP"
     },
     {
       icon: Zap,
       title: "Redis Caching & Performans",
       description: "Sık sorgulanan endpoint'lerde Redis önbellekleme (Caching) kullanarak veritabanı yükünü minimize ediyor ve milisaniye seviyesinde yanıt süreleri elde ediyorum.",
-      gradient: "from-amber-500 to-orange-500"
+      gradient: "from-amber-500 to-orange-500",
+      badge: "PERFORMANS"
     },
     {
       icon: Box,
       title: "Docker & Containerization",
       description: "PostgreSQL, Redis ve bağımlılıkları Docker & Docker Compose ile izole ederek ortam bağımsız tek tuşla çalışan servisler hazırlıyorum.",
-      gradient: "from-blue-500 to-cyan-500"
+      gradient: "from-blue-500 to-cyan-500",
+      badge: "CONTAINER"
+    },
+    {
+      icon: Server,
+      title: "Güvenli Spring Boot Backend & DB",
+      description: "JWT tabanlı rol yetkilendirmeli RESTful API'ler ve normalize edilmiş PostgreSQL / SQL Server veritabanı mimarileri kurguluyorum.",
+      gradient: "from-teal-500 to-emerald-500",
+      badge: "GÜVENLİ API"
+    },
+    {
+      icon: Globe,
+      title: "Web & Mobil Bütünleşik Çözümler",
+      description: "React ile hazırlanan hızlı web sistemleri ve modern ekosisteme uygun yüksek performanslı mobil uygulamalar geliştiriyorum.",
+      gradient: "from-indigo-500 to-cyan-500",
+      badge: "FULL-STACK"
+    },
+    {
+      icon: Clock,
+      title: "Zamanında Teslim & Agile Metodoloji",
+      description: "Agile/Scrum prensipleriyle projenizi sprint sprint ilerletiyor, düzenli canlı demolarlar ile şeffaf geliştirme süreci sunuyorum.",
+      gradient: "from-rose-500 to-amber-500",
+      badge: "AGILE / MÜŞTERİ ODAKLI"
     }
   ];
 
@@ -44,18 +70,50 @@ export const AboutSection: React.FC = () => {
         <div className="text-center space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-panel border border-cyan-500/30 text-cyan-400 text-xs font-mono">
             <GraduationCap size={14} />
-            <span>MÜHENDİSLİK VİZYONU & YAKLAŞIM</span>
+            <span>HAKKIMDA & MÜHENDİSLİK VİZYONU</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Backend Mimarisi & <span className="text-gradient-cyan">Mühendislik İlkelerim</span>
+            Hakkımda & <span className="text-gradient-cyan">Mühendislik İlkelerim</span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base font-light">
-            Üsküdar Üniversitesi Bilgisayar Mühendisliği mezuniyet sürecimde kurumsal bankacılık ve teknoloji stajlarında gerçek dünya projelerine uyguladığım temel prensipler:
+          <p className="text-gray-400 max-w-3xl mx-auto text-sm sm:text-base font-light leading-relaxed">
+            Üsküdar Üniversitesi Bilgisayar Mühendisliği mezuniyet sürecimde kurumsal bankacılık ve teknoloji stajlarında edindiğim pratik tecrübeler, yazılım standartlarım ve mühendislik yaklaşımım:
           </p>
         </div>
 
-        {/* Engineering Principles Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Top Featured Education Highlight Card */}
+        <div className="mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="glass-panel-glow p-6 sm:p-8 rounded-3xl border border-emerald-500/30 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
+          >
+            <div className="space-y-2 max-w-2xl">
+              <div className="flex items-center gap-2 text-emerald-400 text-xs font-mono font-semibold">
+                <GraduationCap size={18} />
+                <span>AKADEMİK GEÇMİŞ & EĞİTİM</span>
+              </div>
+              <h3 className="text-2xl font-extrabold text-white">Üsküdar Üniversitesi</h3>
+              <p className="text-emerald-300 font-semibold text-base">Bilgisayar Mühendisliği (Lisans)</p>
+              <p className="text-gray-300 text-sm leading-relaxed font-light">
+                Veri yapıları, algoritma analizi, nesne yönelimli programlama, veritabanı sistemleri ve dağıtık yazılım mimarileri üzerine mühendislik eğitimi.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row md:flex-col items-start md:items-end gap-2 shrink-0 border-t md:border-t-0 md:border-l border-white/10 pt-4 md:pt-0 md:pl-6 w-full md:w-auto">
+              <span className="px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-mono text-xs font-semibold">
+                09/2020 – 02/2026 | İstanbul
+              </span>
+              <span className="text-xs text-gray-400 font-mono">
+                Lise: Tuğrul Bey Anadolu Lisesi (2015 – 2019)
+              </span>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Engineering Principles & Value Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {principles.map((p, idx) => {
             const Icon = p.icon;
             return (
@@ -64,51 +122,31 @@ export const AboutSection: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="glass-panel p-6 rounded-2xl border border-white/10 hover:border-cyan-500/40 hover:bg-white/[0.07] transition-all group"
+                transition={{ duration: 0.4, delay: idx * 0.08 }}
+                className="glass-panel p-6 rounded-2xl border border-white/10 hover:border-cyan-500/40 hover:bg-white/[0.07] transition-all flex flex-col justify-between group shadow-xl"
               >
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${p.gradient} p-0.5 mb-5 shadow-lg group-hover:scale-110 transition-transform`}>
-                  <div className="w-full h-full bg-[#0F1623] rounded-[10px] flex items-center justify-center text-white">
-                    <Icon size={22} className="text-cyan-400" />
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${p.gradient} p-0.5 shadow-lg group-hover:scale-110 transition-transform`}>
+                      <div className="w-full h-full bg-[#0F1623] rounded-[9px] flex items-center justify-center text-cyan-400">
+                        <Icon size={20} />
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-mono font-semibold px-2.5 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">
+                      {p.badge}
+                    </span>
                   </div>
+
+                  <h3 className="text-base font-bold text-white group-hover:text-cyan-400 transition-colors mb-2">
+                    {p.title}
+                  </h3>
+                  <p className="text-gray-300 text-xs leading-relaxed font-light">
+                    {p.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
-                  {p.title}
-                </h3>
-                <p className="text-gray-300 text-sm leading-relaxed font-light">
-                  {p.description}
-                </p>
               </motion.div>
             );
           })}
-
-          {/* Education & Academic Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="glass-panel-glow p-6 rounded-2xl border border-emerald-500/30 flex flex-col justify-between"
-          >
-            <div>
-              <div className="flex items-center gap-2 text-emerald-400 text-xs font-mono font-semibold mb-3">
-                <GraduationCap size={16} />
-                <span>EĞİTİM BİLGİSİ</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-1">Üsküdar Üniversitesi</h3>
-              <p className="text-emerald-300 text-sm font-semibold mb-2">Bilgisayar Mühendisliği</p>
-              <p className="text-gray-400 text-xs font-mono mb-4">09/2020 – 02/2026 | İstanbul</p>
-              <p className="text-gray-300 text-sm leading-relaxed font-light">
-                Veri yapıları, algoritma analizi, veritabanı sistemleri ve yazılım mimarileri üzerine lisans eğitimi.
-              </p>
-            </div>
-
-            <div className="pt-4 border-t border-white/10 mt-4 flex items-center justify-between text-xs text-gray-400">
-              <span className="font-mono">Tuğrul Bey Anadolu Lisesi</span>
-              <span className="text-cyan-400 font-mono">2015 – 2019</span>
-            </div>
-          </motion.div>
-
         </div>
 
       </div>
