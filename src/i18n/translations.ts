@@ -124,7 +124,7 @@ export const translations: Record<Language, Translations> = {
       contactMe: "Direkt İletişim",
       roles: [
         "Backend Developer",
-        "Java Spring Boot & C# .NET Uzmanı",
+        "Java Spring Boot & C# .NET Geliştirici",
         "Web & Mobil Uygulama Geliştirici",
         "Clean Code & Mikroservis Mimarisi"
       ]
@@ -157,8 +157,8 @@ export const translations: Record<Language, Translations> = {
     },
     skills: {
       badge: "TEKNİK YETKİNLİKLER",
-      title: "Teknoloji & Uzmanlık Haritası",
-      subtitle: "Uzmanlaştığım teknoloji ve araçları listelemek için aşağıdaki kategorilerden birine tıklayın:",
+      title: "Teknoloji & Yetenek Haritası",
+      subtitle: "Kullandığım teknoloji ve araçları listelemek için aşağıdaki kategorilerden birine tıklayın:",
       hint: "Teknoloji stack'ini ve detayları görmek için yukarıdaki bir kategoriye tıklayın."
     },
     certificates: {
@@ -228,9 +228,9 @@ export const translations: Record<Language, Translations> = {
       contactMe: "Direct Contact",
       roles: [
         "Backend Developer",
-        "Java Spring Boot & C# .NET Specialist",
+        "Java Spring Boot & C# .NET Developer",
         "Web & Mobile Application Developer",
-        "Clean Code & Microservices Architect"
+        "Clean Code & Microservices Architecture"
       ]
     },
     about: {

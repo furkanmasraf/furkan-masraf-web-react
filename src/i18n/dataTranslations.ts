@@ -270,7 +270,7 @@ export const SKILLS_EN: Skill[] = [
 // --- CERTIFICATES ---
 export const CERTIFICATES_TR: Certificate[] = [
   { id: 1, title: "Data Science", issuer: "Coderspace", issueYear: "2025", description: "Veri analizi, istatistiksel modelleme ve değerlendirme becerileri.", badgeCategory: "Data Science" },
-  { id: 2, title: "Java & Spring Boot", issuer: "BTK Akademi", issueYear: "2025", description: "Kurumsal backend mimarisi ve REST API geliştirme uzmanlığı.", badgeCategory: "Backend" },
+  { id: 2, title: "Java & Spring Boot", issuer: "BTK Akademi", issueYear: "2025", description: "Kurumsal backend mimarisi ve REST API geliştirme yetkinliği.", badgeCategory: "Backend" },
   { id: 3, title: "Fibabanka Future Talent Programme", issuer: "Fibabanka", issueYear: "2025", description: "Bankacılık sistemleri, mikroservisler ve kurumsal yazılım staj deneyimi.", badgeCategory: "Enterprise" },
   { id: 4, title: "Java – Geleceği Yazanlar", issuer: "Turkcell", issueYear: "2025", description: "Nesne yönelimli programlama ve ileri Java mimarisi.", badgeCategory: "Java" },
   { id: 5, title: "Foundational C#", issuer: "Microsoft / FreeCodeCamp", issueYear: "2024", description: ".NET temelleri ve C# yazılım geliştirme.", badgeCategory: ".NET" }
@@ -278,7 +278,7 @@ export const CERTIFICATES_TR: Certificate[] = [
 
 export const CERTIFICATES_EN: Certificate[] = [
   { id: 1, title: "Data Science", issuer: "Coderspace", issueYear: "2025", description: "Data analysis, statistical modeling, and evaluation skills.", badgeCategory: "Data Science" },
-  { id: 2, title: "Java & Spring Boot", issuer: "BTK Akademi", issueYear: "2025", description: "Enterprise backend architecture and REST API development expertise.", badgeCategory: "Backend" },
+  { id: 2, title: "Java & Spring Boot", issuer: "BTK Akademi", issueYear: "2025", description: "Enterprise backend architecture and REST API development competencies.", badgeCategory: "Backend" },
   { id: 3, title: "Fibabanka Future Talent Programme", issuer: "Fibabanka", issueYear: "2025", description: "Banking software architecture, microservices, and enterprise development experience.", badgeCategory: "Enterprise" },
   { id: 4, title: "Java – Geleceği Yazanlar", issuer: "Turkcell", issueYear: "2025", description: "Object-oriented programming and advanced Java architecture.", badgeCategory: "Java" },
   { id: 5, title: "Foundational C#", issuer: "Microsoft / FreeCodeCamp", issueYear: "2024", description: ".NET fundamentals and C# application engineering.", badgeCategory: ".NET" }
