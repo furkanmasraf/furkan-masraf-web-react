@@ -1,18 +1,11 @@
-<svg width="64" height="64" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="64" height="64" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#06B6D4" />
-      <stop offset="50%" stop-color="#38BDF8" />
-      <stop offset="100%" stop-color="#10B981" />
-    </linearGradient>
-    <linearGradient id="logoBg" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#0F172A" />
-      <stop offset="100%" stop-color="#080C14" />
+    <linearGradient id="minGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#38BDF8" />
     </linearGradient>
   </defs>
-  <rect x="4" y="4" width="92" height="92" rx="24" fill="url(#logoBg)" stroke="url(#logoGrad)" stroke-width="4" />
-  <path d="M24 35 L14 50 L24 65" stroke="#06B6D4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-  <path d="M76 35 L86 50 L76 65" stroke="#10B981" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-  <text x="50" y="61" text-anchor="middle" fill="url(#logoGrad)" font-size="34" font-weight="900" font-family="sans-serif">FM</text>
-  <circle cx="50" cy="20" r="3.5" fill="#10B981" />
+
+  <rect x="3" y="3" width="74" height="74" rx="18" fill="#090E17" stroke="#38BDF8" stroke-width="3" />
+  <text x="40" y="51" text-anchor="middle" fill="url(#minGrad)" font-size="30" font-weight="800" font-family="sans-serif" letter-spacing="-1">FM</text>
 </svg>
