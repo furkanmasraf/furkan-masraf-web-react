@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, Code2, Server, FolderGit2, BookOpen, Award, Mail, Cpu, Sparkles, Menu, X, ChevronRight, ShieldCheck } from 'lucide-react';
+import { Terminal, Code2, Server, FolderGit2, BookOpen, Award, Mail, Cpu, Menu, X, ChevronRight, ShieldCheck } from 'lucide-react';
 import { Logo } from './Logo';
 import { useLanguage } from '../context/LanguageContext';
 import { LanguageToggle } from './LanguageToggle';
@@ -20,7 +20,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
 
-      const sections = ['hero', 'about', 'benefits', 'experience', 'projects', 'blog', 'skills', 'certificates', 'wizard', 'contact'];
+      const sections = ['hero', 'about', 'benefits', 'experience', 'projects', 'blog', 'skills', 'certificates', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -73,7 +73,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
     { id: 'blog', label: t.nav.blog, icon: BookOpen },
     { id: 'skills', label: t.nav.skills, icon: Code2 },
     { id: 'certificates', label: t.nav.certificates, icon: Award },
-    { id: 'wizard', label: t.nav.wizard, icon: Sparkles },
     { id: 'contact', label: t.nav.contact, icon: Mail },
   ];
 
@@ -251,14 +250,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
               {/* Mobile Action Controls & Proposal Trigger */}
               <div className="pt-3 border-t border-white/10 space-y-2.5">
                 
-                {/* Start Project CTA Button */}
+                {/* Direct Contact CTA Button */}
                 <a
-                  href="#wizard"
-                  onClick={(e) => handleNavClick(e, 'wizard')}
+                  href="#contact"
+                  onClick={(e) => handleNavClick(e, 'contact')}
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-500 text-slate-950 font-extrabold text-xs font-mono shadow-lg shadow-cyan-500/25 active:scale-98 transition-all"
                 >
-                  <Sparkles size={16} />
-                  <span>{language === 'EN' ? 'Start Project & Collaboration' : 'Proje & İş Birliği Başlatın'}</span>
+                  <Mail size={16} />
+                  <span>{language === 'EN' ? 'Contact & Inquiries' : 'İletişime Geçin'}</span>
                 </a>
 
                 {/* Open CLI Terminal inside Menu */}

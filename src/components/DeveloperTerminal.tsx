@@ -209,9 +209,9 @@ export const DeveloperTerminal: React.FC<DeveloperTerminalProps> = ({
       scrollToSection('contact');
     } else if (cmd === 'wizard' || cmd === 'teklif' || cmd === 'isbirligi') {
       outputNode = (
-        <p className="text-cyan-400 text-xs font-mono font-bold">▶ #wizard (İş Birliği Sihirbazı) bölümüne yönlendiriliyorsunuz...</p>
+        <p className="text-cyan-400 text-xs font-mono font-bold">▶ #contact (İletişim) bölümüne yönlendiriliyorsunuz...</p>
       );
-      scrollToSection('wizard');
+      scrollToSection('contact');
     } else if (cmd === 'hero' || cmd === 'home' || cmd === 'anasayfa') {
       outputNode = (
         <p className="text-cyan-400 text-xs font-mono font-bold">▶ #hero (Ana Sayfa) bölümüne yönlendiriliyorsunuz...</p>

@@ -121,22 +121,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             {/* Conversion Action Buttons */}
             <div className="flex flex-wrap items-center gap-4 pt-4">
               <a
-                href="#wizard"
-                onClick={(e) => scrollToSection(e, 'wizard')}
+                href="#contact"
+                onClick={(e) => scrollToSection(e, 'contact')}
                 className="flex items-center gap-2.5 px-7 py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-500 text-white font-bold text-sm shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
-                <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse"></span>
-                <span>{t.hero.startProject}</span>
+                <Mail size={18} />
+                <span>{t.hero.contactMe}</span>
                 <ArrowRight size={18} />
               </a>
 
               <a
-                href="#contact"
-                onClick={(e) => scrollToSection(e, 'contact')}
+                href="#about"
+                onClick={(e) => scrollToSection(e, 'about')}
                 className="flex items-center gap-2 px-6 py-4 rounded-xl glass-panel text-gray-200 hover:text-white border border-white/15 hover:border-cyan-500/40 text-sm font-semibold hover:bg-white/5 transition-all"
               >
-                <Mail size={18} className="text-cyan-400" />
-                <span>{t.hero.contactMe}</span>
+                <span>{t.about.title}</span>
               </a>
             </div>
 

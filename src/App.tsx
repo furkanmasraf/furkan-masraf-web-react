@@ -17,7 +17,6 @@ import {
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { ProjectWizard } from './components/ProjectWizard';
 import { AboutSection } from './components/AboutSection';
 import { ExperienceSection } from './components/ExperienceSection';
 import { ProjectsSection } from './components/ProjectsSection';
@@ -100,7 +99,6 @@ function MainLayout() {
         <BlogSection posts={blogPosts} />
         <SkillsSection skills={skills} />
         <CertificatesSection certificates={certificates} />
-        <ProjectWizard />
         <ContactSection profile={profile} />
       </main>
 

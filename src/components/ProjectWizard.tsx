@@ -317,7 +317,7 @@ export const ProjectWizard: React.FC = () => {
                     className="space-y-6"
                   >
                     <h3 className="text-xl font-bold text-white mb-2">
-                      {language === 'EN' ? '4. Please enter your contact information:' : '4. Sizinle iletişime geçebilmemiz için bilgilerinizi giriniz:'}
+                      {language === 'EN' ? '4. Please enter your contact information:' : '4. Sizinle iletişime geçebilmem için bilgilerinizi giriniz:'}
                     </h3>
                     
                     <form onSubmit={handleSubmit} className="space-y-4">
@@ -331,7 +331,7 @@ export const ProjectWizard: React.FC = () => {
                             required
                             value={clientName}
                             onChange={(e) => setClientName(e.target.value)}
-                            placeholder="Örn: Ahmet Yılmaz"
+                            placeholder="Örn: Furkan Masraf"
                             className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-500 focus:outline-none text-white text-sm"
                           />
                         </div>
@@ -344,7 +344,7 @@ export const ProjectWizard: React.FC = () => {
                             required
                             value={clientEmail}
                             onChange={(e) => setClientEmail(e.target.value)}
-                            placeholder="ahmet@company.com"
+                            placeholder="furkan@company.com"
                             className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-500 focus:outline-none text-white text-sm"
                           />
                         </div>
