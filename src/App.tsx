@@ -28,8 +28,10 @@ import { FloatingContactWidget } from './components/FloatingContactWidget';
 import { DeveloperTerminal } from './components/DeveloperTerminal';
 import { Footer } from './components/Footer';
 
+import { BlogSection } from './components/BlogSection';
+
 function MainLayout() {
-  const { getProfile, getExperiences, getProjects, getSkills, getCertificates } = useLanguage();
+  const { getProfile, getExperiences, getProjects, getBlogPosts, getSkills, getCertificates } = useLanguage();
 
   const [rawProfile, setRawProfile] = useState<ProfileInfo | undefined>(undefined);
   const [rawExperiences, setRawExperiences] = useState<Experience[] | undefined>(undefined);
@@ -79,6 +81,7 @@ function MainLayout() {
   const profile = getProfile(rawProfile);
   const experiences = getExperiences(rawExperiences);
   const projects = getProjects(rawProjects);
+  const blogPosts = getBlogPosts();
   const skills = getSkills(rawSkills);
   const certificates = getCertificates(rawCertificates);
 
@@ -94,6 +97,7 @@ function MainLayout() {
         <AboutSection />
         <ExperienceSection experiences={experiences} />
         <ProjectsSection projects={projects} />
+        <BlogSection posts={blogPosts} />
         <SkillsSection skills={skills} />
         <CertificatesSection certificates={certificates} />
         <ProjectWizard />

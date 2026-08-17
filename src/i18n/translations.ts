@@ -6,6 +6,7 @@ export interface Translations {
     about: string;
     experience: string;
     projects: string;
+    blog: string;
     skills: string;
     certificates: string;
     wizard: string;
@@ -48,6 +49,17 @@ export interface Translations {
     inspectDetails: string;
     techFeatures: string;
     close: string;
+  };
+  blog: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    readArticle: string;
+    readTime: string;
+    allCategories: string;
+    searchPlaceholder: string;
+    featuredArticle: string;
+    closeArticle: string;
   };
   skills: {
     badge: string;
@@ -107,6 +119,7 @@ export const translations: Record<Language, Translations> = {
       about: "Hakkımda",
       experience: "Deneyim",
       projects: "Projeler",
+      blog: "Blog & Mühendislik",
       skills: "Yetenekler",
       certificates: "Sertifikalar",
       wizard: "İş Birliği",
@@ -154,6 +167,17 @@ export const translations: Record<Language, Translations> = {
       inspectDetails: "Mimari Detayları İncele",
       techFeatures: "Mimari & Teknik Özellikler:",
       close: "Kapat"
+    },
+    blog: {
+      badge: "TEKNİK MAKALE VE MÜHENDİSLİK NOTLARI",
+      title: "Mühendislik & Backend Blogu",
+      subtitle: "REST API mimarileri, Spring Boot best-practice'leri, caching stratejileri ve kurumsal yazılım mühendisliği üzerine kaleme aldığım teknik rehberler:",
+      readArticle: "Yazıyı Oku",
+      readTime: "okuma",
+      allCategories: "Tüm Kategoriler",
+      searchPlaceholder: "Makale veya konu ara...",
+      featuredArticle: "ÖNE ÇIKAN MAKALE",
+      closeArticle: "Kapat"
     },
     skills: {
       badge: "TEKNİK YETKİNLİKLER",
@@ -211,6 +235,7 @@ export const translations: Record<Language, Translations> = {
       about: "About",
       experience: "Experience",
       projects: "Projects",
+      blog: "Blog & Articles",
       skills: "Skills",
       certificates: "Certificates",
       wizard: "Start Project",
@@ -258,6 +283,17 @@ export const translations: Record<Language, Translations> = {
       inspectDetails: "Inspect Architecture Details",
       techFeatures: "Architectural & Technical Features:",
       close: "Close"
+    },
+    blog: {
+      badge: "TECHNICAL ARTICLES & ENGINEERING NOTES",
+      title: "Engineering & Backend Blog",
+      subtitle: "In-depth guides and articles covering REST API design, Spring Boot best practices, caching strategies, and enterprise software engineering:",
+      readArticle: "Read Article",
+      readTime: "read",
+      allCategories: "All Categories",
+      searchPlaceholder: "Search articles or topics...",
+      featuredArticle: "FEATURED ARTICLE",
+      closeArticle: "Close"
     },
     skills: {
       badge: "TECHNICAL COMPETENCIES",

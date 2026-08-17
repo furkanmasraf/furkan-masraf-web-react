@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, Code2, Server, FolderGit2, Award, Mail, Cpu, Sparkles, Menu, X, ChevronRight, ShieldCheck } from 'lucide-react';
+import { Terminal, Code2, Server, FolderGit2, BookOpen, Award, Mail, Cpu, Sparkles, Menu, X, ChevronRight, ShieldCheck } from 'lucide-react';
 import { Logo } from './Logo';
 import { useLanguage } from '../context/LanguageContext';
 import { LanguageToggle } from './LanguageToggle';
@@ -20,7 +20,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
 
-      const sections = ['hero', 'about', 'benefits', 'experience', 'projects', 'skills', 'certificates', 'wizard', 'contact'];
+      const sections = ['hero', 'about', 'benefits', 'experience', 'projects', 'blog', 'skills', 'certificates', 'wizard', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -70,6 +70,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
     { id: 'about', label: t.nav.about, icon: Code2 },
     { id: 'experience', label: t.nav.experience, icon: Server },
     { id: 'projects', label: t.nav.projects, icon: FolderGit2 },
+    { id: 'blog', label: t.nav.blog, icon: BookOpen },
     { id: 'skills', label: t.nav.skills, icon: Code2 },
     { id: 'certificates', label: t.nav.certificates, icon: Award },
     { id: 'wizard', label: t.nav.wizard, icon: Sparkles },

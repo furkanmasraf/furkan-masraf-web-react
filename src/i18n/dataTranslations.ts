@@ -1,4 +1,4 @@
-import type { ProfileInfo, Experience, Project, Skill, Certificate } from '../types';
+import type { ProfileInfo, Experience, Project, Skill, Certificate, BlogPost } from '../types';
 import { CORRECT_LINKEDIN_URL } from '../services/api';
 
 // --- PROFILE ---
@@ -282,4 +282,308 @@ export const CERTIFICATES_EN: Certificate[] = [
   { id: 3, title: "Fibabanka Future Talent Programme", issuer: "Fibabanka", issueYear: "2025", description: "Banking software architecture, microservices, and enterprise development experience.", badgeCategory: "Enterprise" },
   { id: 4, title: "Java – Geleceği Yazanlar", issuer: "Turkcell", issueYear: "2025", description: "Object-oriented programming and advanced Java architecture.", badgeCategory: "Java" },
   { id: 5, title: "Foundational C#", issuer: "Microsoft / FreeCodeCamp", issueYear: "2024", description: ".NET fundamentals and C# application engineering.", badgeCategory: ".NET" }
+];
+
+// --- BLOG POSTS ---
+export const BLOG_POSTS_TR: BlogPost[] = [
+  {
+    id: 1,
+    slug: "api-tasarimi-nasil-yapilir",
+    title: "Kurumsal Yazılımlarda RESTful API Tasarımı Nasıl Yapılır? (6 Temel Adım)",
+    summary: "İyi tasarlanmış bir API; anlaşılır, güvenli, sürdürülebilir ve ölçeklenebilirdir. İhtiyaç analizinden kaynak odaklı endpoint kurgusuna, hata yönetiminden Swagger dokümantasyonuna kapsamlı rehber.",
+    author: "Furkan Masraf",
+    date: "17 Ağustos 2026",
+    readTime: "6 dk okuma",
+    category: "API Design",
+    featured: true,
+    tags: ["API Design", "RESTful API", "Spring Boot", "Swagger", "Clean Code", "Security"],
+    content: `
+### 🚀 Giriş: İyi Bir API Neden Kritik Öneme Sahiptir?
+Modern kurumsal yazılım mimarilerinde backend servisleri; web, mobil ve 3. parti entegrasyonların kalbinde yer alır. **İyi tasarlanmış bir API; anlaşılır, güvenli, sürdürülebilir ve ölçeklenebilirdir.**
+
+Peki üretim seviyesinde (production-ready) bir RESTful API tasarlarken hangi aşamaları takip etmeliyiz? İşte 6 adımda modern API mimarisi prensipleri:
+
+---
+
+### 📌 1. İhtiyaç Analizi & Kapsam Belirleme
+API kodlamaya başlamadan önce ilk adım, iş hedeflerini ve kullanıcı ihtiyaçlarını eksiksiz anlamaktır.
+- API'nin ana sorumluluk sınırı (domain boundary) nedir?
+- Hangi istemciler (Client: Web, Mobil, Microservice) bu API'yi tüketecek?
+- İhtiyaç duyulan veri hacmi ve eşzamanlı istek (throughput) beklentisi nedir?
+
+---
+
+### 🔗 2. Kaynak Odaklı Endpoint Tasarımı (Resource-Oriented)
+REST (Representational State Transfer) mimarisinde endpoint'ler **eylemleri değil, kaynakları (resources)** temsil etmelidir. İsimlendirmelerde çoğul isimler (plural nouns) tercih edilir.
+
+#### ❌ Yanlış Kullanım (RPC Tarzı):
+- \`GET /api/getProducts\`
+- \`POST /api/createNewUser\`
+- \`POST /api/deleteProductById?id=5\`
+
+#### ✅ Doğru RESTful Standart:
+- \`GET /api/v1/products\` ➔ Ürün listesini getirir.
+- \`POST /api/v1/products\` ➔ Yeni ürün oluşturur.
+- \`GET /api/v1/products/{id}\` ➔ Belirli bir ürünü getirir.
+- \`PUT /api/v1/products/{id}\` ➔ Ürün bilgilerini tamamen günceller.
+- \`DELETE /api/v1/products/{id}\` ➔ Ürünü siler.
+
+---
+
+### 🗄️ 3. Veri Modeli & DTO Katmanı (Data Transfer Objects)
+Veritabanı varlıklarınızı (Entity) doğrudan dış dünyaya açmak ciddi güvenlik ve performans sorunlarına yol açar.
+- **DTO Deseni:** İstek için \`ProductCreateRequestDTO\`, yanıt için \`ProductResponseDTO\` nesneleri kullanılmalıdır.
+- **Esnek & Tutarlı Yapılar:** JSON yanıtlarında tutarlı alan isimleri (\`camelCase\`) ve ISO-8601 tarih formatları tercih edilmelidir.
+
+---
+
+### 🔒 4. Güvenlik Best-Practice'leri
+- **Kimlik Doğrulama & Yetkilendirme:** Durumsuz (stateless) **JWT (JSON Web Token)** veya OAuth2 altyapısı.
+- **İletişim Güvenliği:** Tüm uç noktalar **HTTPS / TLS** üzerinden haberleşmelidir.
+- **Girdi Doğrulama:** \`@Valid\` ve \`@NotNull\` gibi annotation'lar ile SQL Injection veya XSS saldırılarına karşı istemci verileri filtrelenmelidir.
+
+---
+
+### ⚠️ 5. Tutarlı Hata Yönetimi (Global Exception Handling)
+İstemciye dönen hata yanıtları rastgele değil, standart bir formatta olmalıdır. Spring Boot uygulamalarında \`@ControllerAdvice\` ile tüm exception'lar merkezi bir kalkan arkasında yakalanır.
+
+#### Örnek Hata Yanıt Formatı (RFC 7807 Standardı):
+\`\`\`json
+{
+  "timestamp": "2026-08-17T15:00:00Z",
+  "status": 404,
+  "error": "Not Found",
+  "message": "ID'si 42 olan ürün veritabanında bulunamadı.",
+  "path": "/api/v1/products/42"
+}
+\`\`\`
+
+---
+
+### 📑 6. Dokümantasyon & Swagger (OpenAPI 3.0)
+Canlıya alınan bir API'nin dokümantasyonu yoksa kullanımı imkansız hale gelir. **OpenAPI 3.0 / Swagger UI** entegrasyonu ile endpoint'lerin parametreleri, yanıt tipleri ve örnek JSON şemaları otomatik türetilmelidir.
+
+---
+
+### 🌟 Özet REST Prensipleri
+1. **Kaynaksal (Resource-Based):** URL'ler eylem değil nesne taşır.
+2. **Durumsuz (Stateless):** Sunucu istemcinin oturum durumunu saklamaz.
+3. **Önizlenebilir (Cacheable):** Yanıtlar uygun HTTP header'ları ile önbelleklenebilir.
+4. **Katmanlı Mimari:** İstemci, arka plandaki mikroservis katmanlarından izole edilir.
+`
+  },
+  {
+    id: 2,
+    slug: "docker-nedir-ne-ise-yarar-nasil-kullanilir",
+    title: "Docker Nedir, Ne İşe Yarar ve Nasıl Kullanılır? (Konteyner Mimarisi Rehberi)",
+    summary: "Yazılımları bağımlılıklarıyla birlikte izole konteynerler içinde paketleyip her ortamda sorunsuz çalıştırmayı sağlayan Docker açık kaynak platformunun kurumsal kullanım rehberi.",
+    author: "Furkan Masraf",
+    date: "17 Ağustos 2026",
+    readTime: "5 dk okuma",
+    category: "DevOps & Cloud",
+    featured: false,
+    tags: ["Docker", "DevOps", "Containers", "Microservices", "Spring Boot", "Architecture"],
+    content: `
+### 🚀 Giriş: "Benim Bilgisayarımda Çalışıyordu!" Problemine Son
+Yazılım geliştirmede en sık karşılaşılan sorunlardan biri, bir uygulamanın geliştiricinin bilgisayarında sorunsuz çalışırken test sunucusunda veya canlıda (Production) hata vermesidir. İşletim sistemi farklılıkları, kütüphane versiyon uyuşmazlıkları ve ortam değişkenleri bu duruma yol açar.
+
+**Docker**, yazılımı ve çalıştığı tüm bağımlılıkları (veritabanı, kütüphaneler, ortam konfigürasyonları) tek bir **Konteyner (Container)** içinde paketleyerek bu problemi kökten çözer.
+
+---
+
+### 💡 Docker Ne İşe Yarar ve Avantajları Nelerdir?
+
+1. **Tam İzolasyon (Isolation):** Her uygulama kendi bağımsız izolasyon alanında çalışır. Aynı sunucuda farklı Java veya Node.js sürümleri çakışmadan barınabilir.
+2. **Hafif ve Hızlı (Lightweight):** Sanal Makineler (Virtual Machine) gibi her konteyner için ayrı bir işletim sistemi kurmaz. Sunucunun OS Çekirdeğini (Kernel) paylaşır, milisaniyeler içinde başlar.
+3. **Taşınabilirlik (Portability - Build Once, Run Anywhere):** Kendi bilgisayarınızda oluşturduğunuz bir Docker imajı, AWS, Azure, Google Cloud veya herhangi bir Linux sunucuda birebir aynı şekilde çalışır.
+4. **Mikroservis Kolaylığı:** Spring Boot, Redis, PostgreSQL gibi mikroservis bileşenlerini tek tıkla ayağa kaldırmanızı sağlar.
+
+---
+
+### 🛠️ Docker Temel Kavramları
+
+- **Dockerfile:** Uygulamanızın nasıl paketleneceğini belirten adım adım tarif dosyasıdır.
+- **Docker Image (İmaj):** Dockerfile'ın derlenmiş, çalıştırılmaya hazır, salt-okunur şablon halidir.
+- **Docker Container:** İmajın hafızada çalışan canlı örneğidir.
+- **Docker Compose:** Birden fazla konteyner içeren sistemleri (örn. Spring Boot Backend + PostgreSQL DB + Redis Cache) tek bir \`docker-compose.yml\` dosyası ile yönetmeyi sağlar.
+
+---
+
+### 📦 Örnek Kullanım: Spring Boot Uygulamasını Dockerize Etme
+
+#### 1. Dockerfile Oluşturma
+Projenizin kök dizinine aşağıdaki \`Dockerfile\` dosyasını ekleyin:
+
+\`\`\`dockerfile
+# 1. Aşama: Çalışma Zamanı Ortamı (JDK 17)
+FROM eclipse-temurin:17-jdk-alpine
+
+# Working Directory
+WORKDIR /app
+
+# JAR dosyasını konteynere kopyala
+COPY target/app.jar app.jar
+
+# Uygulama Portunu Dışa Aç
+EXPOSE 8080
+
+# Uygulamayı Başlat
+ENTRYPOINT ["java", "-jar", "app.jar"]
+\`\`\`
+
+#### 2. Temel Terminal Komutları
+
+- **İmaj Derleme (Build):**
+  \`\`\`bash
+  docker build -t my-backend-app:v1 .
+  \`\`\`
+
+- **Konteyneri Başlatma (Run):**
+  \`\`\`bash
+  docker run -d -p 8080:8080 --name backend-service my-backend-app:v1
+  \`\`\`
+
+- **Çalışan Konteynerleri Listeleme:**
+  \`\`\`bash
+  docker ps
+  \`\`\`
+
+- **Konteyner Loglarını İzleme:**
+  \`\`\`bash
+  docker logs -f backend-service
+  \`\`\`
+
+---
+
+### 🌟 Özet
+Docker; modern yazılım mimarilerinde **DevOps, mikroservis ve bulut (Cloud-Native)** süreçlerinin vazgeçilmez standardıdır.
+`
+  }
+];
+
+export const BLOG_POSTS_EN: BlogPost[] = [
+  {
+    id: 1,
+    slug: "api-tasarimi-nasil-yapilir",
+    title: "How to Design RESTful APIs for Enterprise Applications (6 Essential Steps)",
+    summary: "A well-designed API is intuitive, secure, maintainable, and scalable. A comprehensive guide covering requirement analysis, resource-oriented endpoint design, error handling, and OpenAPI specifications.",
+    author: "Furkan Masraf",
+    date: "August 17, 2026",
+    readTime: "6 min read",
+    category: "API Design",
+    featured: true,
+    tags: ["API Design", "RESTful API", "Spring Boot", "Swagger", "Clean Code", "Security"],
+    content: `
+### 🚀 Introduction: Why API Design Matters
+In enterprise software engineering, backend services sit at the heart of web apps, mobile clients, and third-party integrations. **A well-designed API is intuitive, secure, maintainable, and scalable.**
+
+Follow these 6 production-grade steps to build clean RESTful APIs:
+
+---
+
+### 📌 1. Requirement Analysis & Domain Scoping
+Understand client needs and domain boundaries before writing code.
+- What is the primary domain responsibility of this service?
+- Which clients (Web, Mobile, Microservices) will consume these endpoints?
+- What are the throughput expectations and concurrency requirements?
+
+---
+
+### 🔗 2. Resource-Oriented Endpoint Naming
+REST APIs should model **resources, not actions**. Always use plural nouns.
+
+#### ❌ Flawed RPC-Style:
+- \`GET /api/getProducts\`
+- \`POST /api/createNewUser\`
+
+#### ✅ Clean REST Standard:
+- \`GET /api/v1/products\` ➔ Fetch list of products.
+- \`POST /api/v1/products\` ➔ Create a new product.
+- \`GET /api/v1/products/{id}\` ➔ Fetch product details by ID.
+- \`PUT /api/v1/products/{id}\` ➔ Update product entity.
+- \`DELETE /api/v1/products/{id}\` ➔ Delete product entity.
+
+---
+
+### 🗄️ 3. DTO Layer & Data Modeling
+Never expose JPA database entities directly to API clients. Use dedicated Request/Response Data Transfer Objects (DTOs) with \`camelCase\` formatting and ISO-8601 timestamps.
+
+---
+
+### 🔒 4. Security Best Practices
+- **Stateless Authentication:** Enforce JWT (JSON Web Tokens) or OAuth2 protocols.
+- **Transport Layer:** Encrypt all API communication using HTTPS / TLS.
+- **Input Validation:** Annotate DTOs with \`@Valid\`, \`@NotNull\`, and \`@Size\` to prevent SQL Injection and XSS vulnerabilities.
+
+---
+
+### ⚠️ 5. Global Exception Handling
+Handle runtime exceptions centrally using Spring Boot's \`@ControllerAdvice\` shield, returning RFC 7807 Problem Details payloads.
+
+---
+
+### 📑 6. OpenAPI / Swagger Documentation
+Auto-generate interactive REST API documentation using OpenAPI 3.0 / Swagger UI annotations.
+`
+  },
+  {
+    id: 2,
+    slug: "docker-nedir-ne-ise-yarar-nasil-kullanilir",
+    title: "What is Docker, Why Use It, and How to Use It? (Container Architecture Guide)",
+    summary: "An essential developer guide to containerization with Docker, enabling seamless execution of applications across local and cloud environments.",
+    author: "Furkan Masraf",
+    date: "August 17, 2026",
+    readTime: "5 min read",
+    category: "DevOps & Cloud",
+    featured: false,
+    tags: ["Docker", "DevOps", "Containers", "Microservices", "Spring Boot", "Architecture"],
+    content: `
+### 🚀 Introduction: Eliminating "It Works on My Machine"
+In modern software engineering, code behaving differently across local machines, staging environments, and production servers is a classic bottleneck. Operating system variations and dependency mismatches cause unexpected runtime crashes.
+
+**Docker** solves this by bundling application code, runtime libraries, environment variables, and dependencies into lightweight, isolated **Containers**.
+
+---
+
+### 💡 Core Benefits of Docker
+
+1. **Full Isolation:** Applications execute in isolated sandboxes without dependency version conflicts.
+2. **Lightweight & Sub-Second Boot:** Shares the host OS kernel instead of virtualizing entire operating systems like traditional Virtual Machines (VMs).
+3. **Portability (Build Once, Run Anywhere):** An image built on macOS or Windows runs identically on AWS, GCP, Azure, or Ubuntu Linux servers.
+
+---
+
+### 🛠️ Key Concepts
+
+- **Dockerfile:** Text document containing instructions to build a Docker Image.
+- **Docker Image:** Executable, immutable package containing application binaries and dependencies.
+- **Docker Container:** A runnable instance of a Docker Image.
+- **Docker Compose:** Orchestrates multi-container applications (e.g. Spring Boot + PostgreSQL + Redis) using a single YAML configuration.
+
+---
+
+### 📦 Production Usage Example: Dockerizing Spring Boot
+
+\`\`\`dockerfile
+FROM eclipse-temurin:17-jdk-alpine
+WORKDIR /app
+COPY target/app.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
+\`\`\`
+
+#### Essential CLI Commands:
+
+\`\`\`bash
+# Build Image
+docker build -t my-backend-app:v1 .
+
+# Run Container
+docker run -d -p 8080:8080 --name backend-service my-backend-app:v1
+
+# View Running Containers
+docker ps
+\`\`\`
+`
+  }
 ];

@@ -37,6 +37,20 @@ export interface Project {
   displayOrder: number;
 }
 
+export interface BlogPost {
+  id: number;
+  slug: string;
+  title: string;
+  summary: string;
+  content: string;
+  date: string;
+  readTime: string;
+  category: string;
+  tags: string[];
+  featured: boolean;
+  author: string;
+}
+
 export interface Skill {
   id: number;
   name: string;

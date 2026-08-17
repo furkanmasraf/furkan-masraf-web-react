@@ -1,13 +1,14 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { Language, Translations } from '../i18n/translations';
 import { translations } from '../i18n/translations';
-import type { ProfileInfo, Experience, Project, Skill, Certificate } from '../types';
+import type { ProfileInfo, Experience, Project, Skill, Certificate, BlogPost } from '../types';
 import { 
   PROFILE_TR, PROFILE_EN, 
   EXPERIENCES_TR, EXPERIENCES_EN, 
   PROJECTS_TR, PROJECTS_EN, 
   SKILLS_TR, SKILLS_EN, 
-  CERTIFICATES_TR, CERTIFICATES_EN 
+  CERTIFICATES_TR, CERTIFICATES_EN,
+  BLOG_POSTS_TR, BLOG_POSTS_EN
 } from '../i18n/dataTranslations';
 
 interface LanguageContextType {
@@ -17,6 +18,7 @@ interface LanguageContextType {
   getProfile: (_raw?: ProfileInfo) => ProfileInfo;
   getExperiences: (_raw?: Experience[]) => Experience[];
   getProjects: (_raw?: Project[]) => Project[];
+  getBlogPosts: () => BlogPost[];
   getSkills: (_raw?: Skill[]) => Skill[];
   getCertificates: (_raw?: Certificate[]) => Certificate[];
 }
@@ -50,6 +52,10 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return language === 'EN' ? PROJECTS_EN : PROJECTS_TR;
   };
 
+  const getBlogPosts = (): BlogPost[] => {
+    return language === 'EN' ? BLOG_POSTS_EN : BLOG_POSTS_TR;
+  };
+
   const getSkills = (_raw?: Skill[]): Skill[] => {
     return language === 'EN' ? SKILLS_EN : SKILLS_TR;
   };
@@ -66,6 +72,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       getProfile,
       getExperiences,
       getProjects,
+      getBlogPosts,
       getSkills,
       getCertificates
     }}>
