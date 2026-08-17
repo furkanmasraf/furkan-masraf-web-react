@@ -122,19 +122,19 @@ export const translations: Record<Language, Translations> = {
       blog: "Blog & Mühendislik",
       skills: "Yetenekler",
       certificates: "Sertifikalar",
-      wizard: "İş Birliği",
+      wizard: "Birlikte Çalışalım",
       contact: "İletişim",
       cli: "Developer CLI",
       backendLive: "SPRING REST LIVE",
       backendOffline: "OFFLINE MODE"
     },
     hero: {
-      badge: "Web, Mobil ve Backend Projeleriniz İçin İletişime Geçin",
+      badge: "Tam Zamanlı Pozisyonlar & Proje İş Birliklerine Açık",
       greeting: "Merhaba, Ben",
       titleName: "FURKAN MASRAF",
-      bio: "Java Spring Boot ve C# .NET kurumsal backend mimarilerinden React web ve mobil uygulama çözümlerine uzanan geniş yetenek havuzumla; fikirlerinizi yüksek performanslı, ölçeklenebilir ve modern canlı yazılım projelerine dönüştürüyorum.",
-      startProject: "Proje & İş Birliği Başlatın",
-      contactMe: "Direkt İletişim",
+      bio: "Üsküdar Üniversitesi Bilgisayar Mühendisliği mezuniyetim ve kurumsal staj deneyimlerimle; Java Spring Boot, C# .NET ve modern web teknolojilerinde güçlü bir teknik temel inşa ettim. Öğrenmeye ve gelişime açık bir geliştirici olarak, hem tam zamanlı rollerde değer yaratmaya hem de yenilikçi projelerde yer almaya hazırım.",
+      startProject: "Birlikte Çalışalım",
+      contactMe: "İletişime Geçin",
       roles: [
         "Backend Developer",
         "Java Spring Boot & C# .NET Geliştirici",
@@ -143,13 +143,13 @@ export const translations: Record<Language, Translations> = {
       ]
     },
     about: {
-      badge: "HAKKIMDA & MÜHENDİSLİK VİZYONU",
+      badge: "HAKKIMDA & MÜHENDİSLİK YAKLAŞIMIM",
       title: "Hakkımda & Mühendislik İlkelerim",
-      subtitle: "Üsküdar Üniversitesi Bilgisayar Mühendisliği mezuniyet sürecimde kurumsal bankacılık ve teknoloji stajlarında edindiğim pratik tecrübeler, yazılım standartlarım ve mühendislik yaklaşımım:",
+      subtitle: "Üsküdar Üniversitesi Bilgisayar Mühendisliği mezuniyetim ile kurumsal bankacılık ve teknoloji stajlarımda edindiğim pratik tecrübeler; sürekli öğrenme tutkumu, kod standartlarımı ve mühendislik ilkelerimi şekillendirdi:",
       academicBadge: "AKADEMİK GEÇMİŞ & EĞİTİM",
       university: "Üsküdar Üniversitesi",
       degree: "Bilgisayar Mühendisliği (Lisans)",
-      degreeDesc: "Veri yapıları, algoritma analizi, nesne yönelimli programlama, veritabanı sistemleri ve dağıtık yazılım mimarileri üzerine mühendislik eğitimi.",
+      degreeDesc: "Bilgisayar Mühendisliği lisans eğitimimi başarıyla tamamladım. Veri yapıları, algoritma analizi, nesne yönelimli programlama (OOP), veritabanı sistemleri ve dağıtık yazılım mimarileri üzerine güçlü bir akademik temel edindim.",
       highSchool: "Lise: Tuğrul Bey Anadolu Lisesi (2015 – 2019)"
     },
     experience: {
@@ -192,27 +192,27 @@ export const translations: Record<Language, Translations> = {
       verified: "ONAYLI SERTİFİKA"
     },
     benefits: {
-      badge: "MÜŞTERİ AVANTAJLARI & KALİTE GARANTİSİ",
+      badge: "MÜHENDİSLİK İLKELERİ & YAKLAŞIMIM",
       title: "Neden Benimle Çalışmalısınız?",
-      subtitle: "Yazılım projenizin fikir aşamasından canlı yayına geçişine kadar sunduğum mühendislik değerleri:",
+      subtitle: "Öğrenme açlığım, kod standartlarım ve iş akışlarında sunduğum mühendislik değerleri:",
       guarantee: "Garanti Edilen Standart"
     },
     wizard: {
-      badge: "İNTERAKTİF PROJE & İŞ BİRLİĞİ SİHİRBAZI",
-      title: "Projenizi Başlatın & İş Birliği Oluşturun",
-      subtitle: "Web sitesi, mobil uygulama veya backend mimarisi ihtiyacınızı birkaç adımda belirleyin, doğrudan projenize özel yol haritası oluşturalım:",
+      badge: "İŞ BİRLİĞİ & PROJE GEREKSİNİM SİHİRBAZI",
+      title: "Birlikte Çalışalım & Fikrinizi Paylaşın",
+      subtitle: "İster ekibiniz için tam zamanlı bir pozisyon değerlendirmesi yapın, ister projenizin teknik ihtiyaçlarını adım adım belirleyerek birlikte bir yol haritası oluşturalım:",
       step: "ADIM",
       prev: "Geri",
       next: "Devam Et",
-      submit: "Proje & İş Birliği Talebini Gönder",
+      submit: "İş Birliği / Proje Talebini Gönder",
       submitting: "Gönderiliyor...",
-      successTitle: "Proje Talebiniz Başarıyla Alındı!",
-      newProposal: "Yeni Teklif Oluştur"
+      successTitle: "Talebiniz Başarıyla Alındı!",
+      newProposal: "Yeni İş Birliği Talebi"
     },
     contact: {
-      badge: "İLETİŞİM VE PROJE GÖRÜŞMELERİ",
+      badge: "İLETİŞİM VE İŞ BİRLİĞİ GÖRÜŞMELERİ",
       title: "Benimle İletişime Geçin",
-      subtitle: "Yeni projeler, backend iş fırsatları veya teknik sohbetler için doğrudan mesaj bırakabilirsiniz:",
+      subtitle: "Tam zamanlı iş fırsatları, proje iş birlikleri veya teknik sohbetler için dilediğiniz zaman mesaj bırakabilirsiniz:",
       nameLabel: "Adınız Soyadınız *",
       emailLabel: "E-posta Adresiniz *",
       subjectLabel: "Konu Başlığı *",
@@ -238,19 +238,19 @@ export const translations: Record<Language, Translations> = {
       blog: "Blog & Articles",
       skills: "Skills",
       certificates: "Certificates",
-      wizard: "Start Project",
+      wizard: "Let's Work Together",
       contact: "Contact",
       cli: "Developer CLI",
       backendLive: "SPRING REST LIVE",
       backendOffline: "OFFLINE MODE"
     },
     hero: {
-      badge: "Get in touch for Web, Mobile & Backend Projects",
+      badge: "Available for Full-Time Roles & Project Collaboration",
       greeting: "Hello, I am",
       titleName: "FURKAN MASRAF",
-      bio: "Engineering enterprise RESTful APIs, microservices architectures, Redis caching, and Clean Code solutions across Java (Spring Boot) and C# (.NET Core) ecosystems, alongside modern Web (React) and Mobile development experience.",
-      startProject: "Start Project & Collaboration",
-      contactMe: "Direct Contact",
+      bio: "With a degree in Computer Engineering from Üsküdar University and corporate internship experiences, I built a strong technical foundation in Java Spring Boot, C# .NET, and modern web technologies. As an eager learner, I am ready to contribute to full-time roles and collaborate on innovative software projects.",
+      startProject: "Let's Work Together",
+      contactMe: "About & Experience",
       roles: [
         "Backend Developer",
         "Java Spring Boot & C# .NET Developer",
@@ -259,13 +259,13 @@ export const translations: Record<Language, Translations> = {
       ]
     },
     about: {
-      badge: "ABOUT ME & ENGINEERING VISION",
+      badge: "ABOUT ME & ENGINEERING APPROACH",
       title: "About Me & Engineering Principles",
-      subtitle: "Practical enterprise internship experience in banking and technology during my Computer Engineering studies at Üsküdar University:",
+      subtitle: "My graduation in Computer Engineering from Üsküdar University along with hands-on corporate banking and technology internships shaped my passion for continuous learning and software engineering principles:",
       academicBadge: "ACADEMIC BACKGROUND & DEGREE",
       university: "Üsküdar University",
       degree: "Computer Engineering (B.Sc.)",
-      degreeDesc: "Engineering coursework covering data structures, algorithm analysis, object-oriented design, database systems, and distributed software architectures.",
+      degreeDesc: "Successfully completed my Bachelor's degree in Computer Engineering with a solid academic foundation in data structures, algorithm analysis, object-oriented design, database systems, and software architecture.",
       highSchool: "High School: Tuğrul Bey High School (2015 – 2019)"
     },
     experience: {
@@ -308,27 +308,27 @@ export const translations: Record<Language, Translations> = {
       verified: "VERIFIED CREDENTIAL"
     },
     benefits: {
-      badge: "CLIENT ADVANTAGES & QUALITY ASSURANCE",
+      badge: "ENGINEERING PRINCIPLES & APPROACH",
       title: "Why Work With Me?",
-      subtitle: "Engineering values delivered from project inception to production launch:",
+      subtitle: "My passion for learning, code quality standards, and engineering values delivered to software workflows:",
       guarantee: "Guaranteed Standard"
     },
     wizard: {
-      badge: "INTERACTIVE PROJECT WIZARD",
-      title: "Start Your Project & Collaborate",
-      subtitle: "Define your website, mobile app, or backend architecture requirements in a few easy steps:",
+      badge: "COLLABORATION & REQUIREMENT WIZARD",
+      title: "Let's Work Together & Share Your Idea",
+      subtitle: "Whether assessing a full-time role for your team or outlining technical project requirements step-by-step, let's create a roadmap together:",
       step: "STEP",
       prev: "Back",
       next: "Continue",
-      submit: "Submit Project Request",
+      submit: "Submit Collaboration Request",
       submitting: "Submitting...",
-      successTitle: "Project Request Successfully Received!",
-      newProposal: "Create New Proposal"
+      successTitle: "Request Successfully Received!",
+      newProposal: "New Collaboration Request"
     },
     contact: {
-      badge: "CONTACT & INQUIRIES",
+      badge: "CONTACT & COLLABORATION",
       title: "Get In Touch",
-      subtitle: "Feel free to leave a message for new projects, backend opportunities, or technical inquiries:",
+      subtitle: "Feel free to leave a message for full-time job opportunities, project collaborations, or technical conversations:",
       nameLabel: "Full Name *",
       emailLabel: "Email Address *",
       subjectLabel: "Subject *",

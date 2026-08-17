@@ -10,9 +10,15 @@ export const ProjectWizard: React.FC = () => {
   const [step, setStep] = useState(1);
 
   // Form State
-  const [projectType, setProjectType] = useState<string>('Web Uygulaması');
-  const [priority, setPriority] = useState<string>('Yüksek Performans & Hız');
-  const [timeline, setTimeline] = useState<string>('Standart (1 Ay)');
+  const [projectType, setProjectType] = useState<string>(
+    language === 'EN' ? 'Website / Web Application' : 'Web Sitesi / Web Uygulaması'
+  );
+  const [priority, setPriority] = useState<string>(
+    language === 'EN' ? 'High Performance & Speed' : 'Yüksek Performans & Hız'
+  );
+  const [timeline, setTimeline] = useState<string>(
+    language === 'EN' ? 'Standard Project (1 Month)' : 'Standart Proje (1 Ay)'
+  );
   const [clientName, setClientName] = useState('');
   const [clientEmail, setClientEmail] = useState('');
   const [clientPhone, setClientPhone] = useState('');
@@ -22,6 +28,7 @@ export const ProjectWizard: React.FC = () => {
   const [submittedSuccess, setSubmittedSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Step 1 Options
   const projectTypes = language === 'EN' ? [
     { id: 'web', label: 'Website / Web Application', icon: Globe, desc: 'Modern, fast, responsive React and Spring Boot / .NET web solutions.' },
     { id: 'mobile', label: 'Mobile Application', icon: Smartphone, desc: 'User-friendly, high-performance mobile application solutions.' },
@@ -34,6 +41,7 @@ export const ProjectWizard: React.FC = () => {
     { id: 'fullstack', label: 'Full-Stack Sistem Mimarisi', icon: Layers, desc: 'Frontend, backend, mobil ve veritabanını kapsayan uçtan uca özel yazılım çözümü.' },
   ];
 
+  // Step 2 Options
   const priorities = language === 'EN' ? [
     { id: 'perf', label: 'High Performance & Speed', icon: Zap },
     { id: 'sec', label: 'Enterprise Security & Auth', icon: ShieldCheck },
@@ -46,6 +54,7 @@ export const ProjectWizard: React.FC = () => {
     { id: 'scale', label: 'Ölçeklenebilir Veritabanı & Önbellek', icon: Server },
   ];
 
+  // Step 3 Options
   const timelines = language === 'EN' ? [
     { id: 'fast', label: 'Fast Delivery (1-2 Weeks)', desc: 'Urgent requirements and prototype/MVP developments.' },
     { id: 'std', label: 'Standard Project (1 Month)', desc: 'Comprehensive features and tested production delivery.' },
@@ -62,10 +71,11 @@ export const ProjectWizard: React.FC = () => {
     setErrorMessage('');
 
     const formattedMessage = `
-[PROJE TEKLİF TALEBİ / PROJECT REQUEST]
+[PROJE İŞ BİRLİĞİ TALEBİ / COLLABORATION REQUEST]
 - Proje Türü / Type: ${projectType}
 - Öncelikli Hedef / Priority: ${priority}
 - Zaman Çizelgesi / Timeline: ${timeline}
+- İletişim / Contact: ${clientName} (${clientEmail})
 - Telefon / Phone: ${clientPhone || 'N/A'}
 - Proje Notları / Notes: ${projectNotes || 'N/A'}
     `.trim();
@@ -73,7 +83,7 @@ export const ProjectWizard: React.FC = () => {
     const res = await sendContactMessage({
       name: clientName,
       email: clientEmail,
-      subject: `[PROJE TEKLİFİ] ${projectType} - ${clientName}`,
+      subject: `[PROJE İŞ BİRLİĞİ] ${projectType} - ${clientName}`,
       message: formattedMessage
     });
 
@@ -127,9 +137,9 @@ export const ProjectWizard: React.FC = () => {
                 <span className="text-cyan-400 font-bold">{t.wizard.step} {step} / 4</span>
                 <span className="text-gray-400">
                   {step === 1 && (language === 'EN' ? 'Project Type Selection' : 'Proje Türü Seçimi')}
-                  {step === 2 && (language === 'EN' ? 'Priorities & Goals' : 'Öncelikler & Hedefler')}
-                  {step === 3 && (language === 'EN' ? 'Delivery Timeline' : 'Zaman Çizelgesi')}
-                  {step === 4 && (language === 'EN' ? 'Contact & Project Details' : 'İletişim & Proje Detayları')}
+                  {step === 2 && (language === 'EN' ? 'Technical Priorities' : 'Teknik Öncelikler')}
+                  {step === 3 && (language === 'EN' ? 'Delivery Timeline' : 'Teslimat Süresi')}
+                  {step === 4 && (language === 'EN' ? 'Contact Information' : 'İletişim & Proje Detayları')}
                 </span>
               </div>
               <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden p-0.5 border border-white/10">
@@ -157,15 +167,15 @@ export const ProjectWizard: React.FC = () => {
                 </h3>
                 <p className="text-gray-300 max-w-lg mx-auto text-sm leading-relaxed font-light">
                   {language === 'EN'
-                    ? `Thank you ${clientName}! Your project request has been delivered. I will reach out to you via email or phone within 24 hours.`
-                    : `Teşekkürler ${clientName}! Proje detaylarınız tarafıma ulaştı. En geç 24 saat içerisinde sizinle e-posta veya telefon üzerinden iletişime geçeceğim.`}
+                    ? `Thank you ${clientName}! Your request has been delivered. I will reach out to you via email or phone as soon as possible.`
+                    : `Teşekkürler ${clientName}! İletişim ve proje detaylarınız tarafıma ulaştı. En kısa sürede sizinle e-posta veya telefon üzerinden iletişime geçeceğim.`}
                 </p>
                 <button
                   onClick={() => {
                     setSubmittedSuccess(false);
                     setStep(1);
                   }}
-                  className="px-8 py-3 rounded-xl glass-panel text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/10 text-xs font-mono font-bold transition-all"
+                  className="px-8 py-3 rounded-xl glass-panel text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/10 text-xs font-mono font-bold transition-all cursor-pointer"
                 >
                   {t.wizard.newProposal}
                 </button>
@@ -183,7 +193,9 @@ export const ProjectWizard: React.FC = () => {
                     className="space-y-6"
                   >
                     <h3 className="text-xl font-bold text-white mb-2">
-                      {language === 'EN' ? '1. What type of software project do you need?' : '1. Nasıl bir yazılım projesi yaptırmak istiyorsunuz?'}
+                      {language === 'EN' 
+                        ? '1. What type of software project do you need?' 
+                        : '1. Nasıl bir yazılım projesi değerlendirmek istiyorsunuz?'}
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {projectTypes.map((pt) => {
@@ -305,21 +317,21 @@ export const ProjectWizard: React.FC = () => {
                     className="space-y-6"
                   >
                     <h3 className="text-xl font-bold text-white mb-2">
-                      {language === 'EN' ? '4. Please enter your contact information so I can reach you:' : '4. Sizinle iletişime geçebilmemiz için bilgilerinizi giriniz:'}
+                      {language === 'EN' ? '4. Please enter your contact information:' : '4. Sizinle iletişime geçebilmemiz için bilgilerinizi giriniz:'}
                     </h3>
                     
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <label className="block text-xs font-mono text-gray-300 mb-1">
-                            {language === 'EN' ? 'Full Name *' : 'Adınız Soyadınız *'}
+                            {language === 'EN' ? 'Full Name / Company *' : 'Adınız Soyadınız / Şirket *'}
                           </label>
                           <input
                             type="text"
                             required
                             value={clientName}
                             onChange={(e) => setClientName(e.target.value)}
-                            placeholder="Örn: Furkan Masraf"
+                            placeholder="Örn: Ahmet Yılmaz"
                             className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-500 focus:outline-none text-white text-sm"
                           />
                         </div>
@@ -332,7 +344,7 @@ export const ProjectWizard: React.FC = () => {
                             required
                             value={clientEmail}
                             onChange={(e) => setClientEmail(e.target.value)}
-                            placeholder="furkan@company.com"
+                            placeholder="ahmet@company.com"
                             className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-500 focus:outline-none text-white text-sm"
                           />
                         </div>
@@ -353,9 +365,9 @@ export const ProjectWizard: React.FC = () => {
                         </div>
                         <div>
                           <label className="block text-xs font-mono text-gray-300 mb-1">
-                            {language === 'EN' ? 'Selected Scope Summary' : 'Seçilen Proje Özeti'}
+                            {language === 'EN' ? 'Selected Scope Summary' : 'Seçilen Özeti'}
                           </label>
-                          <div className="px-4 py-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono">
+                          <div className="px-4 py-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono truncate">
                             {projectType} • {priority}
                           </div>
                         </div>
@@ -383,7 +395,7 @@ export const ProjectWizard: React.FC = () => {
                       <button
                         type="submit"
                         disabled={loading}
-                        className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-bold text-sm shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.01] transition-all flex items-center justify-center gap-2"
+                        className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-bold text-sm shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.01] transition-all flex items-center justify-center gap-2 cursor-pointer"
                       >
                         {loading ? t.wizard.submitting : (
                           <>
@@ -403,7 +415,7 @@ export const ProjectWizard: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setStep(prev => prev - 1)}
-                      className="px-5 py-2.5 rounded-xl glass-panel text-gray-300 hover:text-white border border-white/10 text-xs font-mono flex items-center gap-2 transition-all"
+                      className="px-5 py-2.5 rounded-xl glass-panel text-gray-300 hover:text-white border border-white/10 text-xs font-mono flex items-center gap-2 transition-all cursor-pointer"
                     >
                       <ArrowLeft size={14} />
                       <span>{t.wizard.prev}</span>
@@ -414,7 +426,7 @@ export const ProjectWizard: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setStep(prev => prev + 1)}
-                      className="px-7 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-bold text-xs font-mono flex items-center gap-2 shadow-lg shadow-cyan-500/20 hover:scale-105 transition-all"
+                      className="px-7 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-bold text-xs font-mono flex items-center gap-2 shadow-lg shadow-cyan-500/20 hover:scale-105 transition-all cursor-pointer"
                     >
                       <span>{t.wizard.next}</span>
                       <ArrowRight size={14} />

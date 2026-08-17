@@ -199,12 +199,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                   <p><span className="text-cyan-400">private final</span> <span className="text-blue-300">SpringBootService</span> backend;</p>
                   <p><span className="text-cyan-400">private final</span> <span className="text-blue-300">MobileClientEngine</span> mobileApp;</p>
                   
-                  <p className="pt-2 text-purple-400">@GetMapping(<span className="text-emerald-300">"/quote"</span>)</p>
-                  <p><span className="text-cyan-400">public</span> ResponseEntity&lt;Quote&gt; buildSystem() &#123;</p>
-                  <p className="pl-4 text-emerald-400">return ResponseEntity.ok(Quote.builder()</p>
+                  <p className="pt-2 text-purple-400">@GetMapping(<span className="text-emerald-300">"/status"</span>)</p>
+                  <p><span className="text-cyan-400">public</span> ResponseEntity&lt;EngineerStatus&gt; getStatus() &#123;</p>
+                  <p className="pl-4 text-emerald-400">return ResponseEntity.ok(EngineerStatus.builder()</p>
                   <p className="pl-8 text-gray-300">.developer(<span className="text-emerald-300">"Furkan Masraf"</span>)</p>
                   <p className="pl-8 text-gray-300">.stack(<span className="text-emerald-300">"Spring Boot, C# .NET, React"</span>)</p>
-                  <p className="pl-8 text-gray-300">.response(<span className="text-emerald-300">"&lt; 24h PROPOSAL"</span>)</p>
+                  <p className="pl-8 text-gray-300">.status(<span className="text-emerald-300">"OPEN_FOR_OPPORTUNITIES"</span>)</p>
                   <p className="pl-4 text-emerald-400">.build());</p>
                   <p className="pl-2">&#125;</p>
                 </div>

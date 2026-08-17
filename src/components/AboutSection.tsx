@@ -10,14 +10,14 @@ export const AboutSection: React.FC = () => {
     {
       icon: RefreshCw,
       title: "Retry & Hata Toleransı",
-      description: "Servisler arası entegrasyonlarda uzak sunucu kesintilerine karşı Resilience4j Retry mekanizmaları kurgulayarak kesintisiz (Fault Tolerant) servis mimarileri inşa ediyorum.",
+      description: "Servisler arası entegrasyonlarda uzak sunucu kesintilerine karşı Resilience4j Retry mekanizmaları kurgulayarak dayanıklı servis mimarileri inşa etmeyi hedefliyorum.",
       gradient: "from-cyan-500 to-blue-500",
       badge: "FAULT TOLERANT"
     },
     {
       icon: Shield,
       title: "Type Safety & Global Exception Shield",
-      description: "Tip güvenli Enum sınıfları ve @ControllerAdvice ile runtime/validasyon hatalarını havada yakalayıp tutarlı ve standart JSON cevap formatları döndürüyorum.",
+      description: "Tip güvenli Enum sınıfları ve @ControllerAdvice ile runtime/validasyon hatalarını merkezi olarak yakalayıp tutarlı JSON cevap formatları döndürüyorum.",
       gradient: "from-emerald-500 to-teal-500",
       badge: "TYPE SAFETY"
     },
@@ -31,14 +31,14 @@ export const AboutSection: React.FC = () => {
     {
       icon: Zap,
       title: "Redis Caching & Performans",
-      description: "Sık sorgulanan endpoint'lerde Redis önbellekleme (Caching) kullanarak veritabanı yükünü minimize ediyor ve milisaniye seviyesinde yanıt süreleri elde ediyorum.",
+      description: "Sık sorgulanan endpoint'lerde Redis önbellekleme (Caching) kullanarak veritabanı yükünü minimize ediyor ve hızlı yanıt süreleri elde ediyorum.",
       gradient: "from-amber-500 to-orange-500",
       badge: "PERFORMANS"
     },
     {
       icon: Box,
       title: "Docker & Containerization",
-      description: "PostgreSQL, Redis ve bağımlılıkları Docker & Docker Compose ile izole ederek ortam bağımsız tek tuşla çalışan servisler hazırlıyorum.",
+      description: "PostgreSQL, Redis ve bağımlılıkları Docker & Docker Compose ile izole ederek ortam bağımsız çalışan geliştirme ve test ortamları hazırlıyorum.",
       gradient: "from-blue-500 to-cyan-500",
       badge: "CONTAINER"
     },
@@ -51,17 +51,17 @@ export const AboutSection: React.FC = () => {
     },
     {
       icon: Globe,
-      title: "Web & Mobil Bütünleşik Çözümler",
-      description: "React ile hazırlanan hızlı web sistemleri ve modern ekosisteme uygun yüksek performanslı mobil uygulamalar geliştiriyorum.",
+      title: "Modern Frontend & API Entegrasyonu",
+      description: "Spring Boot ve .NET backend servislerimi modern React web ve mobil arayüzleriyle entegre ederek uçtan uca çalışabilen projeler geliştiriyorum.",
       gradient: "from-indigo-500 to-cyan-500",
       badge: "FULL-STACK"
     },
     {
       icon: Clock,
-      title: "Zamanında Teslim & Agile Metodoloji",
-      description: "Agile/Scrum prensipleriyle projenizi sprint sprint ilerletiyor, düzenli canlı demolarlar ile şeffaf geliştirme süreci sunuyorum.",
+      title: "Temiz Kod & Takım Çalışması (Agile)",
+      description: "Agile takım süreçlerine hızlı adapte olan, birim testleri (Unit Tests) ve sürdürülebilir temiz kod (Clean Code) prensiplerini benimseyen bir yaklaşım sergiliyorum.",
       gradient: "from-rose-500 to-amber-500",
-      badge: "AGILE / MÜŞTERİ ODAKLI"
+      badge: "CLEAN CODE & AGILE"
     }
   ];
 
@@ -69,7 +69,7 @@ export const AboutSection: React.FC = () => {
     {
       icon: RefreshCw,
       title: "Retry & Fault Tolerance",
-      description: "Engineering Resilience4j Retry patterns against remote API downtime to construct highly available fault-tolerant microservices.",
+      description: "Applying Resilience4j Retry patterns against remote API downtime to build resilient, reliable backend microservices.",
       gradient: "from-cyan-500 to-blue-500",
       badge: "FAULT TOLERANT"
     },
@@ -90,14 +90,14 @@ export const AboutSection: React.FC = () => {
     {
       icon: Zap,
       title: "Redis Caching & Latency Opt.",
-      description: "Minimizing database bottleneck overhead on frequently accessed endpoints via Redis in-memory caching to achieve sub-second response times.",
+      description: "Minimizing database bottleneck overhead on frequently accessed endpoints via Redis in-memory caching to achieve low-latency response times.",
       gradient: "from-amber-500 to-orange-500",
       badge: "PERFORMANCE"
     },
     {
       icon: Box,
       title: "Docker Containerization",
-      description: "Containerizing PostgreSQL, Redis, and backend microservices via Docker Compose for seamless, single-command environment setups.",
+      description: "Containerizing PostgreSQL, Redis, and backend microservices via Docker Compose for seamless, isolated environment setups.",
       gradient: "from-blue-500 to-cyan-500",
       badge: "CONTAINER"
     },
@@ -110,17 +110,17 @@ export const AboutSection: React.FC = () => {
     },
     {
       icon: Globe,
-      title: "Integrated Web & Mobile Apps",
-      description: "Building responsive React frontend applications alongside high-throughput mobile application API integrations.",
+      title: "Modern Frontend & API Integration",
+      description: "Integrating Spring Boot and .NET backend services with modern React web and mobile interfaces to build functional end-to-end applications.",
       gradient: "from-indigo-500 to-cyan-500",
       badge: "FULL-STACK"
     },
     {
       icon: Clock,
-      title: "On-Time Delivery & Agile Demos",
-      description: "Iterating through sprint cycles with Agile/Scrum practices and providing transparent live demos for client alignment.",
+      title: "Clean Code & Agile Teamwork",
+      description: "Adapting quickly to Agile team workflows while applying clean code principles and unit testing to write maintainable software.",
       gradient: "from-rose-500 to-amber-500",
-      badge: "AGILE METHODOLOGY"
+      badge: "CLEAN CODE & AGILE"
     }
   ];
 
