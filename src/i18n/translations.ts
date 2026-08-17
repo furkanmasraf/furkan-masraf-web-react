@@ -171,7 +171,7 @@ export const translations: Record<Language, Translations> = {
     blog: {
       badge: "TEKNİK MAKALE VE MÜHENDİSLİK NOTLARI",
       title: "Mühendislik & Backend Blogu",
-      subtitle: "REST API mimarileri, Spring Boot best-practice'leri, caching stratejileri ve kurumsal yazılım mühendisliği üzerine kaleme aldığım teknik rehberler:",
+      subtitle: "Yazılım geliştirmede edindiğim teknik deneyimler, mimari yaklaşımlar ve mühendislik üzerine rehber yazılarım:",
       readArticle: "Yazıyı Oku",
       readTime: "okuma",
       allCategories: "Tüm Kategoriler",
@@ -287,7 +287,7 @@ export const translations: Record<Language, Translations> = {
     blog: {
       badge: "TECHNICAL ARTICLES & ENGINEERING NOTES",
       title: "Engineering & Backend Blog",
-      subtitle: "In-depth guides and articles covering REST API design, Spring Boot best practices, caching strategies, and enterprise software engineering:",
+      subtitle: "Technical articles and engineering guides sharing insights on software architecture, design principles, and technology:",
       readArticle: "Read Article",
       readTime: "read",
       allCategories: "All Categories",

@@ -289,87 +289,65 @@ export const BLOG_POSTS_TR: BlogPost[] = [
   {
     id: 1,
     slug: "api-tasarimi-nasil-yapilir",
-    title: "Kurumsal Yazılımlarda RESTful API Tasarımı Nasıl Yapılır? (6 Temel Adım)",
-    summary: "İyi tasarlanmış bir API; anlaşılır, güvenli, sürdürülebilir ve ölçeklenebilirdir. İhtiyaç analizinden kaynak odaklı endpoint kurgusuna, hata yönetiminden Swagger dokümantasyonuna kapsamlı rehber.",
+    title: "Modern Backend Mimarilerinde RESTful API Tasarım Prensipleri",
+    summary: "Ölçeklenebilir, sürdürülebilir ve kurumsal standartlara uygun bir REST API kurgularken dikkat edilmesi gereken mimari yaklaşımlar, güvenlik pratikleri ve Spring Boot kodlama prensipleri.",
     author: "Furkan Masraf",
     date: "17 Ağustos 2026",
     readTime: "6 dk okuma",
     category: "API Design",
-    featured: true,
+    featured: false,
     tags: ["API Design", "RESTful API", "Spring Boot", "Swagger", "Clean Code", "Security"],
     content: `
-### 🚀 Giriş: İyi Bir API Neden Kritik Öneme Sahiptir?
-Modern kurumsal yazılım mimarilerinde backend servisleri; web, mobil ve 3. parti entegrasyonların kalbinde yer alır. **İyi tasarlanmış bir API; anlaşılır, güvenli, sürdürülebilir ve ölçeklenebilirdir.**
+### 🚀 Giriş: Kurumsal Yazılımlarda API Mimarisi
+Modern backend sistemlerinde hazırladığımız API'ler; web istemcileri, mobil uygulamalar ve mikroservis ekosistemi arasındaki temel haberleşme köprüsüdür. **İyi kurgulanmış bir API; anlaşılır, güvenli, kolay bakımı yapılabilir ve yüksek yük altında ölçeklenebilirdir.**
 
-Peki üretim seviyesinde (production-ready) bir RESTful API tasarlarken hangi aşamaları takip etmeliyiz? İşte 6 adımda modern API mimarisi prensipleri:
-
----
-
-### 📌 1. İhtiyaç Analizi & Kapsam Belirleme
-API kodlamaya başlamadan önce ilk adım, iş hedeflerini ve kullanıcı ihtiyaçlarını eksiksiz anlamaktır.
-- API'nin ana sorumluluk sınırı (domain boundary) nedir?
-- Hangi istemciler (Client: Web, Mobil, Microservice) bu API'yi tüketecek?
-- İhtiyaç duyulan veri hacmi ve eşzamanlı istek (throughput) beklentisi nedir?
+Peki üretim seviyesinde (production-ready) bir RESTful servis mimarisi tasarlarken neleri ön planda tutmalıyız?
 
 ---
 
-### 🔗 2. Kaynak Odaklı Endpoint Tasarımı (Resource-Oriented)
-REST (Representational State Transfer) mimarisinde endpoint'ler **eylemleri değil, kaynakları (resources)** temsil etmelidir. İsimlendirmelerde çoğul isimler (plural nouns) tercih edilir.
+### 🌐 1. Kaynak Odaklı (Resource-Oriented) Endpoint Kurgusu
+REST mimarisinin temeli, URL'lerde fiiller/eylemler yerine **kaynakların (resources)** temsil edilmesidir. Çoğul isimler (plural nouns) kullanmak ve HTTP fiillerini (\`GET\`, \`POST\`, \`PUT\`, \`PATCH\`, \`DELETE\`) doğru eşlemek tutarlılık sağlar.
 
-#### ❌ Yanlış Kullanım (RPC Tarzı):
-- \`GET /api/getProducts\`
-- \`POST /api/createNewUser\`
-- \`POST /api/deleteProductById?id=5\`
-
-#### ✅ Doğru RESTful Standart:
-- \`GET /api/v1/products\` ➔ Ürün listesini getirir.
-- \`POST /api/v1/products\` ➔ Yeni ürün oluşturur.
-- \`GET /api/v1/products/{id}\` ➔ Belirli bir ürünü getirir.
-- \`PUT /api/v1/products/{id}\` ➔ Ürün bilgilerini tamamen günceller.
-- \`DELETE /api/v1/products/{id}\` ➔ Ürünü siler.
+#### Standarda Uygun URL Yapısı:
+- \`GET /api/v1/users\` ➔ Kullanıcı listesini getirir.
+- \`POST /api/v1/users\` ➔ Yeni bir kullanıcı oluşturur.
+- \`GET /api/v1/users/{id}\` ➔ Belirli kullanıcının detayını getirir.
+- \`PUT /api/v1/users/{id}\` ➔ Kullanıcıyı tamamen günceller.
+- \`DELETE /api/v1/users/{id}\` ➔ Kullanıcıyı siler.
 
 ---
 
-### 🗄️ 3. Veri Modeli & DTO Katmanı (Data Transfer Objects)
-Veritabanı varlıklarınızı (Entity) doğrudan dış dünyaya açmak ciddi güvenlik ve performans sorunlarına yol açar.
-- **DTO Deseni:** İstek için \`ProductCreateRequestDTO\`, yanıt için \`ProductResponseDTO\` nesneleri kullanılmalıdır.
-- **Esnek & Tutarlı Yapılar:** JSON yanıtlarında tutarlı alan isimleri (\`camelCase\`) ve ISO-8601 tarih formatları tercih edilmelidir.
+### 🛡️ 2. Katmanlı İzolasyon: DTO (Data Transfer Object) Desenleri
+Veritabanı varlıklarını (JPA Entity) doğrudan dış dünyaya açmak ciddi güvenlik açıkları ve esneklik kayıpları yaratır. 
+- **Request & Response DTO:** İstemcinin gönderdiği veriler ile servisin döndüğü veriler ayrıştırılmalıdır.
+- **Validasyon:** \`@Valid\`, \`@NotNull\`, \`@Size\` gibi annotation'lar ile veritabanına ulaşmadan önce istemci girdileri doğrulanmalıdır.
 
 ---
 
-### 🔒 4. Güvenlik Best-Practice'leri
-- **Kimlik Doğrulama & Yetkilendirme:** Durumsuz (stateless) **JWT (JSON Web Token)** veya OAuth2 altyapısı.
-- **İletişim Güvenliği:** Tüm uç noktalar **HTTPS / TLS** üzerinden haberleşmelidir.
-- **Girdi Doğrulama:** \`@Valid\` ve \`@NotNull\` gibi annotation'lar ile SQL Injection veya XSS saldırılarına karşı istemci verileri filtrelenmelidir.
+### 🔑 3. Güvenlik & Kimlik Doğrulama Best-Practice'leri
+- **Durumsuz (Stateless) JWT:** Sunucuda oturum tutmadan token tabanlı kimlik doğrulama.
+- **HTTPS & TLS:** Tüm veri iletimi şifrelenmiş kanallardan yapılmalıdır.
+- **CORS & Rate Limiting:** İstemci kaynaklı aşırı istekleri (DDoS) ve yetkisiz domain erişimlerini kısıtlama.
 
 ---
 
-### ⚠️ 5. Tutarlı Hata Yönetimi (Global Exception Handling)
-İstemciye dönen hata yanıtları rastgele değil, standart bir formatta olmalıdır. Spring Boot uygulamalarında \`@ControllerAdvice\` ile tüm exception'lar merkezi bir kalkan arkasında yakalanır.
+### ⚠️ 4. Merkezi Hata Yönetimi (Global Exception Handling)
+Hata durumunda istemciye anlamsız stack trace'ler veya HTML hata sayfaları dönmek yerine standart bir JSON formatı sunulmalıdır.
 
-#### Örnek Hata Yanıt Formatı (RFC 7807 Standardı):
 \`\`\`json
 {
-  "timestamp": "2026-08-17T15:00:00Z",
+  "timestamp": "2026-08-17T15:45:00Z",
   "status": 404,
   "error": "Not Found",
-  "message": "ID'si 42 olan ürün veritabanında bulunamadı.",
-  "path": "/api/v1/products/42"
+  "message": "ID'si 102 olan kullanıcı bulunamadı.",
+  "path": "/api/v1/users/102"
 }
 \`\`\`
 
 ---
 
-### 📑 6. Dokümantasyon & Swagger (OpenAPI 3.0)
-Canlıya alınan bir API'nin dokümantasyonu yoksa kullanımı imkansız hale gelir. **OpenAPI 3.0 / Swagger UI** entegrasyonu ile endpoint'lerin parametreleri, yanıt tipleri ve örnek JSON şemaları otomatik türetilmelidir.
-
----
-
-### 🌟 Özet REST Prensipleri
-1. **Kaynaksal (Resource-Based):** URL'ler eylem değil nesne taşır.
-2. **Durumsuz (Stateless):** Sunucu istemcinin oturum durumunu saklamaz.
-3. **Önizlenebilir (Cacheable):** Yanıtlar uygun HTTP header'ları ile önbelleklenebilir.
-4. **Katmanlı Mimari:** İstemci, arka plandaki mikroservis katmanlarından izole edilir.
+### 📑 5. Canlı Dokümantasyon (OpenAPI 3.0 & Swagger)
+Kod ile senkronize çalışan Swagger UI entegrasyonu sayesinde frontend ve mobil geliştiricilerin API isteklerini doğrudan test edebilmesi sağlanır.
 `
   },
   {
@@ -458,6 +436,233 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 ### 🌟 Özet
 Docker; modern yazılım mimarilerinde **DevOps, mikroservis ve bulut (Cloud-Native)** süreçlerinin vazgeçilmez standardıdır.
 `
+  },
+  {
+    id: 3,
+    slug: "redis-nedir-ne-ise-yarar-caching-rehberi",
+    title: "Redis Nedir, Ne İşe Yarar? High-Performance Caching Stratejileri",
+    summary: "Veritabanı okuma yükünü hafifletmek, milisaniyelik yanıt süreleri elde etmek ve distributed caching mimarisi kurmak için Redis bellek içi veri deposu rehberi.",
+    author: "Furkan Masraf",
+    date: "17 Ağustos 2026",
+    readTime: "5 dk okuma",
+    category: "Database & Caching",
+    featured: false,
+    tags: ["Redis", "Caching", "Backend Architecture", "Spring Boot", "Performance", "NoSQL"],
+    content: `
+### ⚡ Giriş: Yüksek Performanslı Sistemlerde Redis'in Yeri
+Kurumsal yazılım mimarilerinde veritabanına yapılan yoğun okuma sorguları (read-heavy workloads) zamanla yanıt sürelerini yükseltir ve sunucu kaynaklarını tüketir. **Redis (Remote Dictionary Server)**, verileri doğrudan sunucunun RAM hafızasında saklayarak milisaniyeler altında (sub-millisecond) veri erişimi sağlayan açık kaynaklı bir in-memory veri deposudur.
+
+---
+
+### 💡 Redis Ne İşe Yarar ve Kullanım Senaryoları Nelerdir?
+
+1. **Önbellekleme (Caching):** Sık erişilen ancak seyrek değişen verileri (ürün katalogları, kullanıcı profilleri, konfigürasyonlar) bellekten dönerek veritabanı yükünü %80-90 oranında hafifletir.
+2. **Dağıtık Oturum Yönetimi (Distributed Session Management):** Birden fazla sunucuda çalışan mikroservis mimarilerinde oturum verilerini ortak Redis sunucusunda saklama.
+3. **Anlık Sayaçlar & Rate Limiting:** API istek sınırlandırma (Rate Limiter), canlı ziyaretçi sayaçları veya skor tabloları (Leaderboard).
+4. **Mesajlaşma (Pub/Sub):** Servisler arasında hafif ve anlık olay (event) yayını.
+
+---
+
+### 🛠️ Redis Veri Yapıları
+Klasik Key-Value depolarından farklı olarak Redis zengin veri yapılarını destekler:
+- **Strings:** Metin, sayı veya JSON metinleri.
+- **Hashes:** Nesne alanlarını saklama (\`user:100 ➔ name: Furkan, role: Dev\`).
+- **Lists:** Kuyruk (FIFO/LIFO) yönetimi.
+- **Sets & Sorted Sets (ZSET):** Benzersiz veri kümeleri ve skor bazlı sıralamalar.
+
+---
+
+### 📦 Spring Boot & Redis Caching Entegrasyonu
+
+#### 1. Bağımlılık (pom.xml)
+\`\`\`xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-cache</artifactId>
+</dependency>
+\`\`\`
+
+#### 2. Service Katmanında @Cacheable Kullanımı
+\`\`\`java
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    // İlk istek veritabanından çekilip Redis'e yazılır, sonraki istekler Redis'ten döner!
+    @Cacheable(value = "users", key = "#id")
+    public UserDTO getUserById(Long id) {
+        return userRepository.findById(id)
+                .map(UserDTO::new)
+                .orElseThrow(() -> new ResourceNotFoundException("Kullanıcı bulunamadı"));
+    }
+
+    // Veri güncellendiğinde Redis'teki bayat veriyi temizler
+    @CacheEvict(value = "users", key = "#userDTO.id")
+    public UserDTO updateUser(UserDTO userDTO) {
+        // Güncelleme mantığı...
+        return updatedUser;
+    }
+}
+\`\`\`
+
+---
+
+### 💡 Dikkat Edilmesi Gereken Caching Stratejileri
+- **TTL (Time-To-Live):** Bellek şişmesini önlemek için her cache verisine mantıklı bir yaşam süresi (örn. 30 dakika) tanımlayın.
+- **Cache Invalidation:** Veri güncellendiğinde veya silindiğinde önbellekteki eski veriyi mutlaka temizleyin (\`@CacheEvict\`).
+`
+  },
+  {
+    id: 4,
+    slug: "postman-nedir-ne-ise-yarar-api-test-rehberi",
+    title: "Postman Nedir, Ne İşe Yarar? API Test ve Geliştirme Rehberi",
+    summary: "Backend servislerini test etme, HTTP istekleri simüle etme, ortam değişkenleri (Environment) yönetimi ve otomatik test senaryoları kurgulamak için Postman platformu kullanım rehberi.",
+    author: "Furkan Masraf",
+    date: "17 Ağustos 2026",
+    readTime: "4 dk okuma",
+    category: "API Testing & Tools",
+    featured: false,
+    tags: ["Postman", "API Testing", "REST API", "Backend Tools", "Swagger", "Automation"],
+    content: `
+### 🚀 Giriş: Backend Geliştirmede Postman'in Rolü
+Bir backend geliştiricisi olarak hazırladığımız RESTful API uç noktalarını frontend (kullanıcı arayüzü) geliştirmesi tamamlanmadan önce doğrudan test etmemiz gerekir. **Postman**, HTTP isteklerini (\`GET\`, \`POST\`, \`PUT\`, \`DELETE\`) simüle ederek backend servislerinin yanıtlarını, durum kodlarını ve veri yapılarını test etmeyi sağlayan dünyaca ünlü bir API geliştirme platformudur.
+
+---
+
+### 💡 Postman Ne İşe Yarar ve Avantajları Nelerdir?
+
+1. **Çok Yönlü HTTP İstekleri:** İstek başlıkları (Headers), URL parametreleri (Query Params) ve JSON gövdesi (Body) ile özelleştirilmiş istekler gönderme.
+2. **Koleksiyonlar (Collections):** Tüm API endpoint'lerini projeler ve modüller halinde klasörleyip kaydedebilme, geliştirici ekibiyle paylaşma.
+3. **Ortam Değişkenleri (Environment Variables):** Yerel geliştirme (\`http://localhost:8080\`), test sunucusu (Staging) ve canlı ortam (Production) URL/Token değerleri arasında tek tıkla geçiş yapabilme.
+4. **Otomatik Test Script'leri:** Yanıt kodlarını (\`200 OK\`, \`401 Unauthorized\`), JSON şemalarını ve yanıt sürelerini JavaScript yazarak otomatik doğrulama.
+
+---
+
+### 🛠️ Örnek Postman Otomatik Test Scripti (Tests Tab)
+
+Postman içinde bir isteğin **Tests** sekmesine JavaScript kodları yazarak otomatik doğrulama yapabilirsiniz:
+
+\`\`\`javascript
+// 1. Yanıt Kodu 200 OK mi?
+pm.test("HTTP Yanıt Kodu 200 Olmalı", function () {
+    pm.response.to.have.status(200);
+});
+
+// 2. Yanıt Süresi 500ms Altında mı?
+pm.test("Yanıt Süresi Hızlı Olmalı (< 500ms)", function () {
+    pm.expect(pm.response.responseTime).to.be.below(500);
+});
+
+// 3. Oturum Token'ını Ortam Değişkenine Otomatik Kaydetme
+var responseData = pm.response.json();
+if (responseData.token) {
+    pm.environment.set("jwt_token", responseData.token);
+    console.log("JWT Token ortama kaydedildi.");
+}
+\`\`\`
+
+---
+
+### 🌟 Özet
+Postman; backend ve frontend ekipleri arasında **kesintisiz entegrasyon, hızlı hata tespiti ve kaliteli API testi** sağlayan temel bir araçtır.
+`
+  },
+  {
+    id: 5,
+    slug: "aspect-oriented-programming-aop-nedir-rehberi",
+    title: "Aspect-Oriented Programming (AOP) Nedir? Spring Boot AOP Rehberi",
+    summary: "Nesne Yönelimli Programlamayı (OOP) tamamlayan, kod tekrarını önleyen ve loglama, güvenlik, transaction yönetimi gibi çapraz kesen ilgileri (Cross-Cutting Concerns) modülerleştiren AOP mimarisi rehberi.",
+    author: "Furkan Masraf",
+    date: "17 Ağustos 2026",
+    readTime: "6 dk okuma",
+    category: "Clean Architecture",
+    featured: false,
+    tags: ["AOP", "Spring AOP", "Clean Code", "Design Patterns", "Java", "Backend"],
+    content: `
+### 🚀 Giriş: AOP (Cephe Yönelimli Programlama) Nedir?
+Geleneksel Nesne Yönelimli Programlamada (OOP) sınıflar ve nesneler üzerinden modüler yapılar kurgularız. Ancak kurumsal yazılımlarda birçok farklı sınıf ve metodun içinde **ortak olarak tekrarlanan yan sorumluluklar** bulunur. Loglama (Logging), Güvenlik/Yetkilendirme (Security), Veritabanı Transaction Yönetimi ve Metod Performans Ölçümü bu sorumluluklara örnektir.
+
+**Aspect-Oriented Programming (AOP)**, iş mantığıyla (Business Logic) doğrudan ilgisi olmayan bu ortak yan sorumlulukları **Çapraz Kesen İlgiler (Cross-Cutting Concerns)** adı altında toplayıp ana kod kümesinden izole eden güçlü bir programlama yaklaşımıdır.
+
+---
+
+### 💡 AOP Neden Kullanılır ve Avantajları Nelerdir?
+
+1. **Temiz ve Okunabilir Kod (Clean Code):** İş mantığı metodlarınızın içi try-catch blokları, log ifadeleri veya performans sayaçları ile dolmaz. Metod sadece kendi ana işine odaklanır (Single Responsibility Principle).
+2. **Kod Tekrarına Son (DRY - Don't Repeat Yourself):** Bir loglama biçimi veya yetki kontrolü değiştiğinde 100 farklı servisteki metodları tek tek değiştirmek yerine sadece ilgili **Aspect** sınıfını güncellemeniz yeterlidir.
+3. **Merkezi Yönetim ve Modülerlik:** Güvenlik ve performans izleme gibi sistem seviyesi ilgiler tek bir noktadan yönetilir.
+
+---
+
+### 🛠️ AOP Temel Kavramları (Terminoloji)
+
+- **Aspect (Cephe):** Çapraz kesen ilgiyi modüler hale getiren sınıftır (örn. \`@Aspect\` anotasyonu ile işaretlenen loglama sınıfı).
+- **Join Point (Bağlanma Noktası):** Uygulama akışında Aspect'in müdahale edebileceği spesifik bir koddur (metod çağrısı, exception anı vb.).
+- **Pointcut (Kesişim Noktası):** Hangi metodların Aspect tarafından tetikleneceğini belirten filtre veya ifadedir (örn. *"service paketindeki tüm public metodlar"*).
+- **Advice (Eylem / Tavsiye):** Aspect'in **ne zaman** çalışacağını belirten tetikleyici türüdür:
+  - **@Before:** Hedef metod çalışmadan **önce**.
+  - **@After:** Hedef metod çalıştıktan **sonra** (başarılı veya hatalı).
+  - **@AfterReturning:** Hedef metod **başarıyla sonuçlandığında**.
+  - **@AfterThrowing:** Hedef metod **hata (Exception) fırlattığında**.
+  - **@Around:** Hedef metodun **hem öncesinde hem sonrasında** çalışarak metodun çalışmasını tamamen kontrol edebilen en güçlü tavsiye türüdür.
+
+---
+
+### 📦 Örnek Kullanım: Spring Boot ile Metod Performansı Ölçen Aspect
+
+#### 1. Özel Anotasyon Tanımlama (@LogExecutionTime)
+\`\`\`java
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface LogExecutionTime {
+}
+\`\`\`
+
+#### 2. Aspect Sınıfını Yazma (@Around Advice)
+\`\`\`java
+@Aspect
+@Component
+@Slf4j
+public class PerformanceLoggingAspect {
+
+    @Around("@annotation(LogExecutionTime)")
+    public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
+        long start = System.currentTimeMillis();
+
+        Object proceed = joinPoint.proceed(); // Hedef metodu çalıştır
+
+        long executionTime = System.currentTimeMillis() - start;
+        log.info("⏱️ [AOP Log] {} metodu {} ms sürede tamamlandı.", 
+                joinPoint.getSignature().toShortString(), executionTime);
+
+        return proceed;
+    }
+}
+\`\`\`
+
+#### 3. Servis Metodunda Kullanımı
+\`\`\`java
+@Service
+public class ReportService {
+
+    @LogExecutionTime
+    public void generateMonthlyReport() {
+        // Ağır rapor hesaplama işlemleri...
+    }
+}
+\`\`\`
+
+---
+
+### 🌟 Özet
+Aspect-Oriented Programming (AOP); Spring Boot ve kurumsal backend mimarilerinde **kod kalitesini artıran, okunabilirliği yükselten ve spagetti kod oluşumunu engelleyen** en temel tasarım kalıplarından biridir.
+`
   }
 ];
 
@@ -465,65 +670,45 @@ export const BLOG_POSTS_EN: BlogPost[] = [
   {
     id: 1,
     slug: "api-tasarimi-nasil-yapilir",
-    title: "How to Design RESTful APIs for Enterprise Applications (6 Essential Steps)",
-    summary: "A well-designed API is intuitive, secure, maintainable, and scalable. A comprehensive guide covering requirement analysis, resource-oriented endpoint design, error handling, and OpenAPI specifications.",
+    title: "RESTful API Design Principles in Modern Backend Architectures",
+    summary: "Architectural approaches, security best practices, and Spring Boot coding principles for building scalable, maintainable enterprise REST APIs.",
     author: "Furkan Masraf",
     date: "August 17, 2026",
     readTime: "6 min read",
     category: "API Design",
-    featured: true,
+    featured: false,
     tags: ["API Design", "RESTful API", "Spring Boot", "Swagger", "Clean Code", "Security"],
     content: `
-### 🚀 Introduction: Why API Design Matters
-In enterprise software engineering, backend services sit at the heart of web apps, mobile clients, and third-party integrations. **A well-designed API is intuitive, secure, maintainable, and scalable.**
-
-Follow these 6 production-grade steps to build clean RESTful APIs:
+### 🚀 Introduction: Enterprise API Architecture
+In modern software engineering, backend APIs serve as the primary communication bridge between web clients, mobile apps, and microservices. **A well-designed API is intuitive, secure, maintainable, and scalable under load.**
 
 ---
 
-### 📌 1. Requirement Analysis & Domain Scoping
-Understand client needs and domain boundaries before writing code.
-- What is the primary domain responsibility of this service?
-- Which clients (Web, Mobile, Microservices) will consume these endpoints?
-- What are the throughput expectations and concurrency requirements?
+### 🌐 1. Resource-Oriented Naming Standard
+REST APIs model **resources, not actions**. Always use plural nouns and standard HTTP verbs (\`GET\`, \`POST\`, \`PUT\`, \`PATCH\`, \`DELETE\`).
+
+#### Clean Endpoint Standard:
+- \`GET /api/v1/users\` ➔ Fetch user list.
+- \`POST /api/v1/users\` ➔ Create a new user.
+- \`GET /api/v1/users/{id}\` ➔ Fetch user details.
+- \`PUT /api/v1/users/{id}\` ➔ Update user entity.
+- \`DELETE /api/v1/users/{id}\` ➔ Delete user entity.
 
 ---
 
-### 🔗 2. Resource-Oriented Endpoint Naming
-REST APIs should model **resources, not actions**. Always use plural nouns.
-
-#### ❌ Flawed RPC-Style:
-- \`GET /api/getProducts\`
-- \`POST /api/createNewUser\`
-
-#### ✅ Clean REST Standard:
-- \`GET /api/v1/products\` ➔ Fetch list of products.
-- \`POST /api/v1/products\` ➔ Create a new product.
-- \`GET /api/v1/products/{id}\` ➔ Fetch product details by ID.
-- \`PUT /api/v1/products/{id}\` ➔ Update product entity.
-- \`DELETE /api/v1/products/{id}\` ➔ Delete product entity.
+### 🛡️ 2. DTO (Data Transfer Object) Abstraction
+Never expose JPA database entities directly to API clients. Use dedicated Request/Response DTOs with input sanitization annotations (\`@Valid\`, \`@NotNull\`, \`@Size\`).
 
 ---
 
-### 🗄️ 3. DTO Layer & Data Modeling
-Never expose JPA database entities directly to API clients. Use dedicated Request/Response Data Transfer Objects (DTOs) with \`camelCase\` formatting and ISO-8601 timestamps.
+### 🔑 3. Security & Stateless Authentication
+- **Stateless JWT:** Token-based authentication eliminating server session state.
+- **Transport Encryption:** Enforce HTTPS / TLS across all API endpoints.
 
 ---
 
-### 🔒 4. Security Best Practices
-- **Stateless Authentication:** Enforce JWT (JSON Web Tokens) or OAuth2 protocols.
-- **Transport Layer:** Encrypt all API communication using HTTPS / TLS.
-- **Input Validation:** Annotate DTOs with \`@Valid\`, \`@NotNull\`, and \`@Size\` to prevent SQL Injection and XSS vulnerabilities.
-
----
-
-### ⚠️ 5. Global Exception Handling
-Handle runtime exceptions centrally using Spring Boot's \`@ControllerAdvice\` shield, returning RFC 7807 Problem Details payloads.
-
----
-
-### 📑 6. OpenAPI / Swagger Documentation
-Auto-generate interactive REST API documentation using OpenAPI 3.0 / Swagger UI annotations.
+### ⚠️ 4. Centralized Exception Shield
+Handle runtime errors centrally using Spring Boot's \`@ControllerAdvice\`, returning RFC 7807 problem details payloads.
 `
   },
   {
@@ -583,6 +768,112 @@ docker run -d -p 8080:8080 --name backend-service my-backend-app:v1
 
 # View Running Containers
 docker ps
+\`\`\`
+`
+  },
+  {
+    id: 3,
+    slug: "redis-nedir-ne-ise-yarar-caching-rehberi",
+    title: "What is Redis and Why Use It? High-Performance Caching Strategies",
+    summary: "An engineering guide to Redis in-memory data store for alleviating database workload, sub-millisecond query latencies, and distributed caching.",
+    author: "Furkan Masraf",
+    date: "August 17, 2026",
+    readTime: "5 min read",
+    category: "Database & Caching",
+    featured: false,
+    tags: ["Redis", "Caching", "Backend Architecture", "Spring Boot", "Performance", "NoSQL"],
+    content: `
+### ⚡ Introduction: The Power of In-Memory Data Stores
+In high-throughput enterprise systems, repeated database queries bottleneck response times. **Redis (Remote Dictionary Server)** stores data directly in RAM, achieving sub-millisecond query latencies.
+
+---
+
+### 💡 Core Use Cases for Redis
+
+1. **Caching Layer:** Caching hot data (product catalogs, user profiles) to reduce database load by up to 90%.
+2. **Distributed Sessions:** Storing user session tokens across multi-instance microservices.
+3. **Rate Limiting & Counters:** Enforcing API rate limits and maintaining real-time leaderboards.
+`
+  },
+  {
+    id: 4,
+    slug: "postman-nedir-ne-ise-yarar-api-test-rehberi",
+    title: "What is Postman and Why Use It? API Testing & Automation Guide",
+    summary: "A practical guide to Postman for simulating HTTP requests, managing environments, and writing automated API assertions in backend development.",
+    author: "Furkan Masraf",
+    date: "August 17, 2026",
+    readTime: "4 min read",
+    category: "API Testing & Tools",
+    featured: false,
+    tags: ["Postman", "API Testing", "REST API", "Backend Tools", "Swagger", "Automation"],
+    content: `
+### 🚀 Introduction: Testing Backend APIs Efficiently
+Before UI frontend components are built, backend engineers must test REST API endpoints directly. **Postman** is the industry-standard API client platform for executing, debugging, and automating HTTP requests (\`GET\`, \`POST\`, \`PUT\`, \`DELETE\`).
+
+---
+
+### 💡 Core Advantages of Postman
+
+1. **Custom HTTP Requests:** Pass headers, URL parameters, authentication tokens (Bearer JWT), and JSON payloads effortlessly.
+2. **Collections & Sharing:** Organize endpoints into structured project folders and export them across engineering teams.
+3. **Environment Management:** Switch seamlessly between \`localhost:8080\`, staging, and production environments.
+4. **Automated Testing Scripts:** Write JavaScript assertions to validate HTTP status codes, response schemas, and response times.
+`
+  },
+  {
+    id: 5,
+    slug: "aspect-oriented-programming-aop-nedir-rehberi",
+    title: "What is Aspect-Oriented Programming (AOP)? Spring Boot AOP Guide",
+    summary: "An engineering guide to Aspect-Oriented Programming for modularizing Cross-Cutting Concerns such as logging, security, and transaction management in Spring Boot.",
+    author: "Furkan Masraf",
+    date: "August 17, 2026",
+    readTime: "6 min read",
+    category: "Clean Architecture",
+    featured: false,
+    tags: ["AOP", "Spring AOP", "Clean Code", "Design Patterns", "Java", "Backend"],
+    content: `
+### 🚀 Introduction: Decoupling Cross-Cutting Concerns
+While Object-Oriented Programming (OOP) excels at modularizing domain entities, corporate applications often suffer from duplicated infrastructure logic spanning across multiple layers. Logging, security authorization, transaction control, and performance monitoring are prime examples.
+
+**Aspect-Oriented Programming (AOP)** complements OOP by isolating these **Cross-Cutting Concerns** into independent **Aspects**, keeping business logic clean and maintainable.
+
+---
+
+### 💡 Core Benefits of AOP
+
+1. **Clean Code & Single Responsibility:** Business methods focus purely on domain rules without cluttering \`try-catch\` or logging statements.
+2. **DRY Principle (Don't Repeat Yourself):** Modifying a logging or authorization policy requires updating a single Aspect class instead of hundreds of service methods.
+3. **Centralized Infrastructure Governance:** Security checks and performance metrics are governed from a single source.
+
+---
+
+### 🛠️ Key Terminology
+
+- **Aspect:** A module encapsulating a cross-cutting concern (e.g. annotated with \`@Aspect\`).
+- **Join Point:** A candidate execution point in code (such as a method call or exception event).
+- **Pointcut:** A predicate or expression matching specific Join Points.
+- **Advice:** Action taken at a Join Point (\`@Before\`, \`@After\`, \`@Around\`).
+
+---
+
+### 📦 Code Example: Spring Boot Execution Time Aspect
+
+\`\`\`java
+@Aspect
+@Component
+@Slf4j
+public class PerformanceLoggingAspect {
+
+    @Around("@annotation(LogExecutionTime)")
+    public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
+        long start = System.currentTimeMillis();
+        Object proceed = joinPoint.proceed();
+        long executionTime = System.currentTimeMillis() - start;
+
+        log.info("⏱️ [AOP] {} executed in {} ms", joinPoint.getSignature().toShortString(), executionTime);
+        return proceed;
+    }
+}
 \`\`\`
 `
   }
