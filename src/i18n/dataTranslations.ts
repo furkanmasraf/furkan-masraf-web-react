@@ -663,6 +663,99 @@ public class ReportService {
 ### 🌟 Özet
 Aspect-Oriented Programming (AOP); Spring Boot ve kurumsal backend mimarilerinde **kod kalitesini artıran, okunabilirliği yükselten ve spagetti kod oluşumunu engelleyen** en temel tasarım kalıplarından biridir.
 `
+  },
+  {
+    id: 6,
+    slug: "swagger-nedir-ne-ise-yarar-kullanim-amaci-rehberi",
+    title: "Swagger (OpenAPI) Nedir, Ne İşe Yarar ve Kullanım Amacı Nedir? (Spring Boot & REST API Rehberi)",
+    summary: "REST API'lerinizi canlı ve etkileşimli olarak dokümante etmeyi, frontend geliştiricilerle kesintisiz haberleşmeyi ve API testlerini arayüz üzerinden yapmayı sağlayan Swagger (OpenAPI 3.0) standartları rehberi.",
+    author: "Furkan Masraf",
+    date: "22 Ağustos 2026",
+    readTime: "5 dk okuma",
+    category: "API Documentation & Tools",
+    featured: false,
+    tags: ["Swagger", "OpenAPI", "API Documentation", "Spring Boot", "REST API", "Postman"],
+    content: `
+### 🚀 Giriş: Yazılım Projelerinde API Dokümantasyonunun Önemi
+Modern backend ve mikroservis geliştirmede hazırladığımız RESTful API uç noktalarını (endpoints) doğru şekilde belgelemek yazılım kalitesinin en kritik adımlarından biridir. Dokümantasyonu yapılmamış veya güncelliğini yitirmiş (outdated PDF/Excel) bir API; frontend (React, Vue), mobil ve entegrasyon ekipleri için ciddi zaman kayıplarına ve iletişim hatalarına yol açar.
+
+**Swagger (güncel adıyla OpenAPI Specification)**, RESTful servislerin yapısını, parametrelerini, yanıt modellerini (JSON Schema) ve durum kodlarını hem insanların hem de makinelerin okuyabileceği standart bir formatta canlı olarak dokümante eden ve test imkanı sunan bir araç setidir.
+
+---
+
+### 💡 Swagger ve OpenAPI Arasındaki Fark Nedir?
+Sektörde sıklıkla karıştırılan iki kavram arasındaki fark şudur:
+- **OpenAPI Specification (OAS):** REST API'lerin dil bağımsız olarak nasıl tanımlanacağını belirten uluslararası açık standart / şartnamedir (Specification).
+- **Swagger:** OpenAPI şartnamesini uygulamak, görselleştirmek, canlı UI arayüzü sunmak (\`Swagger UI\`) ve otomatik kod üretmek (\`Swagger Codegen\`) için kullanılan popüler açık kaynaklı araçlar kümesidir (Tooling).
+
+---
+
+### 🛠️ Swagger / OpenAPI Kullanım Amaçları ve Avantajları
+
+1. **Canlı ve Kendiliğinden Güncellenen Dokümantasyon:**
+   Kod tabanınızda bir DTO alanı veya endpoint değiştirdiğinizde Swagger dokümantasyonu anında güncellenir. Statik PDF veya Word dokümanı tutma zorunluluğu ortadan kalkar.
+
+2. **İnteraktif API Testi ("Try it out"):**
+   Geliştiricilerin veya test mühendislerinin Postman gibi harici bir araca bile ihtiyaç duymadan doğrudan tarayıcı üzerinden parametre girerek API istekleri göndermesini ve canlı JSON yanıtlarını incelemesini sağlar.
+
+3. **Frontend ve Mobil Ekiplerle Kesintisiz Entegrasyon:**
+   İstemci tarafını geliştiren mühendisler hangi endpoint'in ne tür parametreler beklediğini, hangi HTTP durum kodlarını (\`200 OK\`, \`400 Bad Request\`, \`401 Unauthorized\`, \`404 Not Found\`) döndürdüğünü şeffafça görür.
+
+4. **Veri Modelleri ve Validasyon Kuralları (Schema Viewer):**
+   Request ve Response gövdelerinde kullanılan nesnelerin (DTO) zorunlu alanlarını, veri tiplerini (\`string\`, \`integer\`, \`enum\`) ve maksimum/minimum sınırlarını şematik olarak sergiler.
+
+---
+
+### 📦 Spring Boot 3 & Springdoc OpenAPI Entegrasyonu
+
+Spring Boot projelerinde Swagger (OpenAPI 3.0) entegrasyonu yapmak son derece kolaydır.
+
+#### 1. Bağımlılık (pom.xml)
+\`\`\`xml
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+    <version>2.3.0</version>
+</dependency>
+\`\`\`
+
+#### 2. RestController Üzerinde Annotation Kullanımı
+\`\`\`java
+@RestController
+@RequestMapping("/api/v1/users")
+@Tag(name = "User Management", description = "Kullanıcı kaydı, profil güncelleme ve detay sorgulama servisleri")
+public class UserController {
+
+    @Operation(
+        summary = "ID ile Kullanıcı Detayı Getir",
+        description = "Sistemde kayıtlı kullanıcının benzersiz ID bilgisini alarak profil verilerini döndürür."
+    )
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Kullanıcı başarıyla bulundu"),
+        @ApiResponse(responseCode = "404", description = "Kullanıcı bulunamadı"),
+        @ApiResponse(responseCode = "401", description = "Yetkisiz erişim / Geçersiz Token")
+    })
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTO> getUserById(
+        @Parameter(description = "Sorgulanacak kullanıcının benzersiz ID'si", example = "42")
+        @PathVariable Long id
+    ) {
+        return ResponseEntity.ok(userService.findById(id));
+    }
+}
+\`\`\`
+
+#### 3. Swagger UI Arayüzüne Erişim
+Uygulamanızı başlattıktan sonra tarayıcınızdan aşağıdaki adrese girerek canlı API arayüzüne erişebilirsiniz:
+\`\`\`text
+http://localhost:8080/swagger-ui.html
+\`\`\`
+
+---
+
+### 🌟 Özet
+Swagger ve OpenAPI 3.0; modern backend geliştirme süreçlerinde **ölçeklenebilir, şeffaf, kolay test edilebilir ve profesyonel** yazılım mimarileri kurmanın vazgeçilmez bir standardıdır.
+`
   }
 ];
 
@@ -875,6 +968,96 @@ public class PerformanceLoggingAspect {
     }
 }
 \`\`\`
+`
+  },
+  {
+    id: 6,
+    slug: "swagger-nedir-ne-ise-yarar-kullanim-amaci-rehberi",
+    title: "What is Swagger (OpenAPI) and Why Use It? (Spring Boot & REST API Guide)",
+    summary: "A practical engineering guide to Swagger (OpenAPI 3.0) standards for generating live interactive API documentation, facilitating frontend integration, and testing endpoints directly in browser.",
+    author: "Furkan Masraf",
+    date: "August 22, 2026",
+    readTime: "5 min read",
+    category: "API Documentation & Tools",
+    featured: false,
+    tags: ["Swagger", "OpenAPI", "API Documentation", "Spring Boot", "REST API", "Postman"],
+    content: `
+### 🚀 Introduction: The Critical Role of API Documentation
+In modern backend and microservices software development, documenting RESTful API endpoints accurately is a fundamental quality requirement. Outdated static documents (PDF/Excel) lead to integration delays, miscommunication, and productivity loss across frontend (React, Vue) and mobile engineering teams.
+
+**Swagger (now OpenAPI Specification)** solves this by providing a standardized, language-agnostic format for live API documentation and interactive browser testing.
+
+---
+
+### 💡 Difference Between OpenAPI and Swagger
+- **OpenAPI Specification (OAS):** The open industry specification defining standard REST API contracts.
+- **Swagger:** The open-source tooling ecosystem (\`Swagger UI\`, \`Swagger Codegen\`) used to render, visualize, and generate code from OpenAPI specifications.
+
+---
+
+### 🛠️ Key Benefits of Swagger
+
+1. **Self-Updating Live Documentation:**
+   Modifying a DTO property or controller endpoint instantly reflects in the Swagger UI, eliminating manual document updates.
+
+2. **Interactive API Testing ("Try it out"):**
+   Engineers and QA teams can execute HTTP requests directly inside the browser and inspect real JSON response models without needing external tools.
+
+3. **Seamless Frontend & Mobile Integration:**
+   Provides full visibility into request parameters, response structures, and HTTP status codes (\`200 OK\`, \`400 Bad Request\`, \`401 Unauthorized\`, \`404 Not Found\`).
+
+4. **Data Schema Visualization:**
+   Displays Data Transfer Object (DTO) validation constraints, field data types, and required properties schematically.
+
+---
+
+### 📦 Spring Boot 3 & Springdoc OpenAPI Setup
+
+#### 1. Add Dependency (pom.xml)
+\`\`\`xml
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+    <version>2.3.0</version>
+</dependency>
+\`\`\`
+
+#### 2. RestController Annotations Example
+\`\`\`java
+@RestController
+@RequestMapping("/api/v1/users")
+@Tag(name = "User Management", description = "Endpoints for fetching and updating user profiles")
+public class UserController {
+
+    @Operation(
+        summary = "Fetch User By ID",
+        description = "Retrieves user profile data by unique user identifier."
+    )
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "User successfully retrieved"),
+        @ApiResponse(responseCode = "404", description = "User not found"),
+        @ApiResponse(responseCode = "401", description = "Unauthorized access / Invalid token")
+    })
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTO> getUserById(
+        @Parameter(description = "Unique ID of the target user", example = "42")
+        @PathVariable Long id
+    ) {
+        return ResponseEntity.ok(userService.findById(id));
+    }
+}
+\`\`\`
+
+#### 3. Accessing Swagger UI
+Launch your application and navigate to:
+\`\`\`text
+http://localhost:8080/swagger-ui.html
+\`\`\`
+
+---
+
+### 🌟 Conclusion
+Swagger and OpenAPI 3.0 represent the industry standard for creating **transparent, testable, and maintainable** REST API architectures.
 `
   }
 ];
